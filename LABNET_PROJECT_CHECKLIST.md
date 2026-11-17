@@ -4,7 +4,7 @@ Deadline: **Wed 25 Nov 2026** (PDF). Dates below are a suggestion (DS project is
 Rule from the earlier labs: only put numbers you measured in the report.
 
 ## M1: Setup and target (15-16 Nov)
-- [ ] Confirm the deadline with the instructor (PDF says 25 Nov, earlier note said 28/29)
+- [x] Deadline: the end is between 23 and 25 Nov (PDF says Wed 25 Nov), so plan to finish by 23 Nov
 - [ ] Fix row 6 text: add security (ufw, rate limiting, threads) and the tool names (ss, iftop, tcpdump, Wireshark)
 - [ ] Define the fields: title, author, first_publish_year, edition_count
 - [ ] Define the query/subject and the sample size (e.g. 500-1000 books, same set for all 3 methods)
