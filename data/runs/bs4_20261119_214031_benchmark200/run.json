@@ -12,7 +12,7 @@
   "attempt_seconds": {
     "n": 200,
     "mean": 1.417,
-    "median": 1.185,
+    "median": 1.178,
     "max": 6.443
   },
   "decoded_body_bytes_total": 45755277,
@@ -39,5 +39,11 @@
     "requests": "2.34.2",
     "bs4": "4.15.0",
     "selenium": "4.52.0"
+  },
+  "derived_statistic_correction": {
+    "date": "2026-11-20",
+    "field": "attempt_seconds.median",
+    "previous_value": 1.185,
+    "method": "statistics.median of the unchanged attempt elapsed_s observations"
   }
 }

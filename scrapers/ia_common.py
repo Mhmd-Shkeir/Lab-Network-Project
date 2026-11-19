@@ -13,6 +13,7 @@ import json
 import platform
 import random
 import re
+import statistics
 import sys
 import threading
 import time
@@ -271,7 +272,7 @@ class Run:
             "retry_attempts_total": sum(1 for a in attempts if a.get("attempt", 1) > 1),
             "attempt_seconds": {
                 "n": len(elapsed), "mean": round(sum(elapsed) / len(elapsed), 3) if elapsed else None,
-                "median": round(sorted(elapsed)[len(elapsed) // 2], 3) if elapsed else None,
+                "median": round(statistics.median(elapsed), 3) if elapsed else None,
                 "max": round(max(elapsed), 3) if elapsed else None,
             },
             "decoded_body_bytes_total": sum(a.get("decoded_bytes") or 0 for a in attempts),

@@ -37,9 +37,9 @@ so Selenium Manager cannot supply a browser. You need a Chromium **and** a match
 1. Ubuntu snap: `sudo snap install chromium`, then
    `export CHROME_BINARY=/snap/bin/chromium` and `export CHROMEDRIVER=/snap/bin/chromium.chromedriver`
    (snap confinement sometimes blocks the temp profile folder; if it does, try option 2).
-2. A distribution package that ships both for ARM (for example Debian's `chromium` + `chromium-driver`, or a community PPA).
+2. A distribution package that ships both for ARM (for example Debian's `chromium` + `chromium-driver`, using that distribution's supported packages).
    Then `which chromium chromedriver` should print both; no variables needed.
-3. If neither works, tell Mohammad: the Selenium measurement runs can be done on his x86-64 WSL machine instead (say so in the report).
+3. If neither works, tell Mohammad: all three measured methods should run on one working Linux environment, such as his x86-64 WSL machine. Do not combine per-method timings from different machines.
 
 Set once per terminal (or put in `~/.bashrc`):
 ```bash

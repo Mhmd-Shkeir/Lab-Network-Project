@@ -192,6 +192,9 @@ def main(argv=None):
         row, events, nav_seconds = pending
         events = events + extra_events
         perf = summarize_perf(events)
+        # Counts include every attempt; the document status describes the final attempt.
+        if row.get("http_status") != "":
+            perf["document_status"] = row["http_status"]
         row["browser"] = {k: v for k, v in perf.items() if k != "document_headers"}
         row["browser"]["navigation_seconds"] = nav_seconds
         page_metrics.append({"identifier": row["identifier"], "navigation_seconds": nav_seconds,
@@ -237,9 +240,11 @@ def main(argv=None):
                     usable = False
             elapsed = time.perf_counter() - t0
             run.pacer.done()
-            events += drain(driver)
+            attempt_events = drain(driver)
+            events += attempt_events
             perf = summarize_perf(events)
-            status = perf["document_status"]
+            attempt_perf = summarize_perf(attempt_events)
+            status = attempt_perf["document_status"]
             entry = {"context": identifier, "attempt": attempt, "started_at_utc": started,
                      "elapsed_s": round(elapsed, 4), "url": url, "status": status, "decoded_bytes": None,
                      "final_url": driver.current_url if not error else None, "error": error or None,
@@ -271,7 +276,7 @@ def main(argv=None):
                 return
             wait = None
             if retryable and attempt <= config.MAX_RETRIES:
-                ra = _retry_after_seconds(perf["document_headers"].get("retry-after"))
+                ra = _retry_after_seconds(attempt_perf["document_headers"].get("retry-after"))
                 if status in (429, 503):
                     run.pacer.slow_down()
                 if ra is not None and ra > config.MAX_RETRY_AFTER:

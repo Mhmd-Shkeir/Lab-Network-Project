@@ -12,7 +12,7 @@
   "attempt_seconds": {
     "n": 200,
     "mean": 1.615,
-    "median": 1.208,
+    "median": 1.207,
     "max": 7.92
   },
   "decoded_body_bytes_total": 0,
@@ -45,5 +45,11 @@
   "chrome_binary": "/home/mhmd2/chrome_for_testing/chrome-linux64/chrome",
   "chromedriver": "/home/mhmd2/chrome_for_testing/chromedriver-linux64/chromedriver",
   "browser_version": "157.0.8103.78",
-  "driver_version": "157.0.8103.78 (4b3d0dabb8250b6f152d2d85d"
+  "driver_version": "157.0.8103.78 (4b3d0dabb8250b6f152d2d85d",
+  "derived_statistic_correction": {
+    "date": "2026-11-20",
+    "field": "attempt_seconds.median",
+    "previous_value": 1.208,
+    "method": "statistics.median of the unchanged attempt elapsed_s observations"
+  }
 }
