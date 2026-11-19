@@ -1,0 +1,105 @@
+{
+  "normalization": "Reparsed saved HTML locally, no new website requests. Creator labels vary author/creator; select creator metadata block. Deduplicate repeated subject tags. Preserve original extraction files. Measured timings remain those of original acquisition and initial parsing.",
+  "missing": {
+    "api": [],
+    "bs4": [],
+    "selenium": []
+  },
+  "differences": [
+    {
+      "identifier": "02713411.5992.emory.edu",
+      "field": "views_all_time",
+      "values": {
+        "api": 865,
+        "bs4": 854,
+        "selenium": 854
+      }
+    },
+    {
+      "identifier": "02713411.5993.emory.edu",
+      "field": "views_all_time",
+      "values": {
+        "api": 873,
+        "bs4": 862,
+        "selenium": 862
+      }
+    },
+    {
+      "identifier": "02lastmohicans00cooprich",
+      "field": "views_all_time",
+      "values": {
+        "api": 4552,
+        "bs4": 4504,
+        "selenium": 4504
+      }
+    },
+    {
+      "identifier": "10000days00royc",
+      "field": "views_all_time",
+      "values": {
+        "api": 79,
+        "bs4": 78,
+        "selenium": 78
+      }
+    },
+    {
+      "identifier": "100booksforgirls00dods",
+      "field": "views_all_time",
+      "values": {
+        "api": 176,
+        "bs4": 175,
+        "selenium": 175
+      }
+    },
+    {
+      "identifier": "100crookedlittle00robe",
+      "field": "views_all_time",
+      "values": {
+        "api": 465,
+        "bs4": 463,
+        "selenium": 463
+      }
+    },
+    {
+      "identifier": "100greatpastasau00grif",
+      "field": "views_all_time",
+      "values": {
+        "api": 296,
+        "bs4": 295,
+        "selenium": 295
+      }
+    },
+    {
+      "identifier": "100perfectgirl0000wann",
+      "field": "views_all_time",
+      "values": {
+        "api": 173,
+        "bs4": 172,
+        "selenium": 172
+      }
+    },
+    {
+      "identifier": "100perfectgirl0003wann",
+      "field": "views_all_time",
+      "values": {
+        "api": 209,
+        "bs4": 207,
+        "selenium": 207
+      }
+    },
+    {
+      "identifier": "100storiesinblac00smit",
+      "field": "views_all_time",
+      "values": {
+        "api": 479,
+        "bs4": 475,
+        "selenium": 475
+      }
+    }
+  ],
+  "records_per_method": {
+    "api": 10,
+    "bs4": 10,
+    "selenium": 10
+  }
+}

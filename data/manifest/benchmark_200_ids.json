@@ -1,0 +1,1229 @@
+{
+  "meta": {
+    "created_at_utc": "2026-11-19T20:45:07Z",
+    "source": "Internet Archive (archive.org)",
+    "pool_query": "collection:americana AND mediatype:texts AND language:eng AND subject:fiction AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500]",
+    "scrape_api_reported_total": 25722,
+    "snapshot_file": "pool_snapshot_20261119.csv.gz",
+    "snapshot_sha256": "95c397b5b71c851e19ee1e9823ceeaf4506a62b8c1628f04f79f5cdc32bac67f",
+    "snapshot_rows": 25722,
+    "ordering": "sha256(\"2026:<identifier>\") ascending",
+    "seed": 2026,
+    "metadata_exclusion_counts": {
+      "language does not include eng": 1
+    },
+    "eligible_after_metadata": 25721,
+    "stream_items_examined": 2002,
+    "group_cap_exclusions": 1,
+    "no_views_data_exclusions": 1,
+    "benchmark_size": 200,
+    "training_size": 2000,
+    "benchmark_group_cap": 1,
+    "training_group_cap": 3,
+    "distinct_work_groups_training": 1959,
+    "views_check_note": "have_data was checked once at created_at_utc; scrapers re-fetch everything later.",
+    "work_group_rule": "main title (before ' : ' ' ; ' ' / '), volume/part/edition markers removed, normalised, + first creator's surname"
+  },
+  "ids": [
+    {
+      "identifier": "missingpersonswhit00whit",
+      "position": 1,
+      "work_group": "missing persons|white",
+      "stream_rank": 1
+    },
+    {
+      "identifier": "americanliterary00walc",
+      "position": 2,
+      "work_group": "american literary naturalism a divided stream|walcutt",
+      "stream_rank": 2
+    },
+    {
+      "identifier": "amongcampsoryoun00pagerich",
+      "position": 3,
+      "work_group": "among the camps or young people s stories of the war|page",
+      "stream_rank": 3
+    },
+    {
+      "identifier": "anne00ofgeiersteinscotrich",
+      "position": 4,
+      "work_group": "anne of geierstein|scott",
+      "stream_rank": 4
+    },
+    {
+      "identifier": "shapeofsand00eccl_0",
+      "position": 5,
+      "work_group": "shape of sand|marjorie eccles",
+      "stream_rank": 5
+    },
+    {
+      "identifier": "gri_33125008988863",
+      "position": 6,
+      "work_group": "fire and frost|cruttwell",
+      "stream_rank": 6
+    },
+    {
+      "identifier": "onesmokestories00aust",
+      "position": 7,
+      "work_group": "one smoke stories|austin",
+      "stream_rank": 7
+    },
+    {
+      "identifier": "sunrisetosunset00adam",
+      "position": 8,
+      "work_group": "sunrise to sunset|adams",
+      "stream_rank": 8
+    },
+    {
+      "identifier": "eleventhcommandm01arch",
+      "position": 9,
+      "work_group": "eleventh commandment|archer",
+      "stream_rank": 9
+    },
+    {
+      "identifier": "packchallenge00shel",
+      "position": 10,
+      "work_group": "pack challenge electronic resource|laurenston",
+      "stream_rank": 10
+    },
+    {
+      "identifier": "eldoradoshuffle00nybe",
+      "position": 11,
+      "work_group": "el dorado shuffle|nyberg",
+      "stream_rank": 11
+    },
+    {
+      "identifier": "workscharlesdic52dickgoog",
+      "position": 12,
+      "work_group": "martin chuzzlewit|dickens",
+      "stream_rank": 12
+    },
+    {
+      "identifier": "showway00wood",
+      "position": 13,
+      "work_group": "show way|jacqueline woodson",
+      "stream_rank": 13
+    },
+    {
+      "identifier": "lovedayshistoryt00guerrich",
+      "position": 14,
+      "work_group": "loveday s history|guernsey",
+      "stream_rank": 14
+    },
+    {
+      "identifier": "falsestarataleo00gashgoog",
+      "position": 15,
+      "work_group": "false star|gash",
+      "stream_rank": 15
+    },
+    {
+      "identifier": "cazzarolaanarchy0000nawr",
+      "position": 16,
+      "work_group": "cazzarola anarchy romani love italy|nawrocki",
+      "stream_rank": 16
+    },
+    {
+      "identifier": "whitefeather00cory",
+      "position": 17,
+      "work_group": "white feather|cory",
+      "stream_rank": 17
+    },
+    {
+      "identifier": "moretotallyherot00shei",
+      "position": 18,
+      "work_group": "more totally herotica|sheiner",
+      "stream_rank": 18
+    },
+    {
+      "identifier": "autobiographyofh00geor",
+      "position": 19,
+      "work_group": "autobiography of henry with notes by his fool will somers|george",
+      "stream_rank": 19
+    },
+    {
+      "identifier": "virtuouswomannov00gibb",
+      "position": 20,
+      "work_group": "virtuous woman|gibbons",
+      "stream_rank": 20
+    },
+    {
+      "identifier": "erietrainboy00alge",
+      "position": 21,
+      "work_group": "erie train boy|alger",
+      "stream_rank": 21
+    },
+    {
+      "identifier": "portalmyer00myer",
+      "position": 22,
+      "work_group": "portal|myers",
+      "stream_rank": 22
+    },
+    {
+      "identifier": "dearjohn00nich",
+      "position": 23,
+      "work_group": "dear john|sparks",
+      "stream_rank": 23
+    },
+    {
+      "identifier": "houseonhoundhill00prin_0",
+      "position": 24,
+      "work_group": "house on hound hill|prince",
+      "stream_rank": 24
+    },
+    {
+      "identifier": "forbiddendesire00roby",
+      "position": 25,
+      "work_group": "forbidden desire|donald",
+      "stream_rank": 25
+    },
+    {
+      "identifier": "newjune00newb",
+      "position": 26,
+      "work_group": "new june|newbolt",
+      "stream_rank": 26
+    },
+    {
+      "identifier": "torchbearersofbo00kryz",
+      "position": 27,
+      "work_group": "torch bearers of bohemia|kryzhanovskaia",
+      "stream_rank": 27
+    },
+    {
+      "identifier": "ramonaherfather00clea",
+      "position": 28,
+      "work_group": "ramona and her father|cleary",
+      "stream_rank": 28
+    },
+    {
+      "identifier": "sun51zava",
+      "position": 29,
+      "work_group": "sun|zavatsky",
+      "stream_rank": 29
+    },
+    {
+      "identifier": "wedbymightywaves00gree",
+      "position": 30,
+      "work_group": "wed by mighty waves a thrilling romance of ill fated galveston|greenleaf",
+      "stream_rank": 30
+    },
+    {
+      "identifier": "herweddingwish00hart",
+      "position": 31,
+      "work_group": "her wedding wish|hart",
+      "stream_rank": 31
+    },
+    {
+      "identifier": "stepsisters00will",
+      "position": 32,
+      "work_group": "stepsisters|william",
+      "stream_rank": 32
+    },
+    {
+      "identifier": "jansvictorystory00bowe",
+      "position": 33,
+      "work_group": "jan s victory|bowen",
+      "stream_rank": 33
+    },
+    {
+      "identifier": "rightattitudetor00mcca",
+      "position": 34,
+      "work_group": "right attitude to rain|mccall smith",
+      "stream_rank": 34
+    },
+    {
+      "identifier": "cu31924014158566",
+      "position": 35,
+      "work_group": "history of henry esmond|thackeray",
+      "stream_rank": 35
+    },
+    {
+      "identifier": "desknabenwunder01crecgoog",
+      "position": 36,
+      "work_group": "american novel since world war ii|ludwig achim arnim",
+      "stream_rank": 36
+    },
+    {
+      "identifier": "manwithoutcountr00hale_3",
+      "position": 37,
+      "work_group": "man without a country|hale",
+      "stream_rank": 37
+    },
+    {
+      "identifier": "1999novelshortst00kuro",
+      "position": 38,
+      "work_group": "1999 novel and short story writer s market|kuroff",
+      "stream_rank": 38
+    },
+    {
+      "identifier": "charlesomalleyi05browgoog",
+      "position": 39,
+      "work_group": "charles o malley the irish dragoon|lever",
+      "stream_rank": 39
+    },
+    {
+      "identifier": "novelscharlesle02unkngoog",
+      "position": 40,
+      "work_group": "novels of charles lever|lever",
+      "stream_rank": 40
+    },
+    {
+      "identifier": "7000clamsnovel00irby",
+      "position": 41,
+      "work_group": "7 000 clams|irby",
+      "stream_rank": 41
+    },
+    {
+      "identifier": "searchforform0000unse",
+      "position": 42,
+      "work_group": "search for form studies in the structure of james s fiction|ward",
+      "stream_rank": 42
+    },
+    {
+      "identifier": "prehistoriclifed00dkpu",
+      "position": 43,
+      "work_group": "visual dictionary of prehistoric life|dk publishing",
+      "stream_rank": 43
+    },
+    {
+      "identifier": "goodbyechickenli00bet_wea",
+      "position": 44,
+      "work_group": "goodbye chicken little|byars",
+      "stream_rank": 44
+    },
+    {
+      "identifier": "stonesawakenovel00bealrich",
+      "position": 45,
+      "work_group": "stones awake|beals",
+      "stream_rank": 45
+    },
+    {
+      "identifier": "timerealitystudi0000unse",
+      "position": 46,
+      "work_group": "time and reality studies in contemporary fiction|church",
+      "stream_rank": 46
+    },
+    {
+      "identifier": "greatnorthern0000rans",
+      "position": 47,
+      "work_group": "great northern|ransome",
+      "stream_rank": 47
+    },
+    {
+      "identifier": "heartbeneathmorg00phil",
+      "position": 48,
+      "work_group": "heart beneath|mckenna",
+      "stream_rank": 48
+    },
+    {
+      "identifier": "samanthaatsarato00holl_2",
+      "position": 49,
+      "work_group": "samantha at saratoga or racin after fashion|holley",
+      "stream_rank": 49
+    },
+    {
+      "identifier": "comealiveat505no00bran",
+      "position": 50,
+      "work_group": "come alive at 505|brancato",
+      "stream_rank": 50
+    },
+    {
+      "identifier": "fivestories00cath",
+      "position": 51,
+      "work_group": "five stories|cather",
+      "stream_rank": 51
+    },
+    {
+      "identifier": "adventuresofjoel00sidn_0",
+      "position": 52,
+      "work_group": "adventures of joel pepper|sidney",
+      "stream_rank": 52
+    },
+    {
+      "identifier": "leavenoflovenove00burn_0",
+      "position": 53,
+      "work_group": "leaven of love|burnham",
+      "stream_rank": 53
+    },
+    {
+      "identifier": "manwholovedchild00chri",
+      "position": 54,
+      "work_group": "man who loved children|stead",
+      "stream_rank": 54
+    },
+    {
+      "identifier": "foundnovel00schm",
+      "position": 55,
+      "work_group": "found|schmutz",
+      "stream_rank": 55
+    },
+    {
+      "identifier": "archaglittlearme00schn",
+      "position": 56,
+      "work_group": "archag the little armenian|schnapps",
+      "stream_rank": 56
+    },
+    {
+      "identifier": "cloudsbeneathsun00ford",
+      "position": 57,
+      "work_group": "clouds beneath the sun|mackenzie ford",
+      "stream_rank": 57
+    },
+    {
+      "identifier": "daddydoesnthavet00thom",
+      "position": 58,
+      "work_group": "daddy doesn t have to be a giant anymore|thomas",
+      "stream_rank": 58
+    },
+    {
+      "identifier": "dayofdolphin00merl",
+      "position": 59,
+      "work_group": "day of the dolphin|merle",
+      "stream_rank": 59
+    },
+    {
+      "identifier": "echohawk00durr_1",
+      "position": 60,
+      "work_group": "echohawk|durrant",
+      "stream_rank": 60
+    },
+    {
+      "identifier": "amandawolo00wolo",
+      "position": 61,
+      "work_group": "amanda|wolo",
+      "stream_rank": 61
+    },
+    {
+      "identifier": "mastersofenglish00burt",
+      "position": 62,
+      "work_group": "masters of the english novel a study of principles and personalities|burton",
+      "stream_rank": 62
+    },
+    {
+      "identifier": "coykendallwebbot00bard",
+      "position": 63,
+      "work_group": "coykendall webb|bardeen",
+      "stream_rank": 63
+    },
+    {
+      "identifier": "lucyarlyn00trowgoog",
+      "position": 64,
+      "work_group": "lucy arlyn|trowbridge",
+      "stream_rank": 64
+    },
+    {
+      "identifier": "tietopast00wise",
+      "position": 65,
+      "work_group": "tie to the past|wiseman",
+      "stream_rank": 65
+    },
+    {
+      "identifier": "claimedbyshadow00chan",
+      "position": 66,
+      "work_group": "claimed by shadow|chance",
+      "stream_rank": 66
+    },
+    {
+      "identifier": "boundtoriseorhar00alge",
+      "position": 67,
+      "work_group": "bound to rise|alger",
+      "stream_rank": 67
+    },
+    {
+      "identifier": "ajacobiteexileb00hardgoog",
+      "position": 68,
+      "work_group": "jacobite exile being the adventures of a young englishman in the service of charles xii of sweden|henty",
+      "stream_rank": 68
+    },
+    {
+      "identifier": "isbn_9781402236532_0",
+      "position": 69,
+      "work_group": "lady of the storm|kennedy",
+      "stream_rank": 69
+    },
+    {
+      "identifier": "cu31924011124520",
+      "position": 70,
+      "work_group": "on the irrawaddy|henty",
+      "stream_rank": 70
+    },
+    {
+      "identifier": "warriorgap00kingrich",
+      "position": 71,
+      "work_group": "warrior gap a story of the sioux outbreak of 68|king",
+      "stream_rank": 71
+    },
+    {
+      "identifier": "shadowplayclay00clay",
+      "position": 72,
+      "work_group": "shadowplay|clayton",
+      "stream_rank": 72
+    },
+    {
+      "identifier": "mademoisellebole00maxw",
+      "position": 73,
+      "work_group": "mademoiselle boleyn|maxwell",
+      "stream_rank": 73
+    },
+    {
+      "identifier": "cu31924026930093",
+      "position": 74,
+      "work_group": "literary chapters|george",
+      "stream_rank": 74
+    },
+    {
+      "identifier": "otherside00bany_0",
+      "position": 75,
+      "work_group": "other side|istvan banyai",
+      "stream_rank": 75
+    },
+    {
+      "identifier": "faceoflovefemini00lamb",
+      "position": 76,
+      "work_group": "face of love|lambert",
+      "stream_rank": 76
+    },
+    {
+      "identifier": "floodof64stories00long",
+      "position": 77,
+      "work_group": "flood of 64|long",
+      "stream_rank": 77
+    },
+    {
+      "identifier": "notinourstars0000jeff",
+      "position": 78,
+      "work_group": "not in our stars|swycaffer",
+      "stream_rank": 78
+    },
+    {
+      "identifier": "poolruet00ruet",
+      "position": 79,
+      "work_group": "pool|rue",
+      "stream_rank": 79
+    },
+    {
+      "identifier": "lookingbackward200bell_6",
+      "position": 80,
+      "work_group": "looking backward 2000 1887|bellamy",
+      "stream_rank": 80
+    },
+    {
+      "identifier": "kidinredjacket00park_0",
+      "position": 81,
+      "work_group": "kid in the red jacket|barbara park",
+      "stream_rank": 81
+    },
+    {
+      "identifier": "surpriseoftheirl00wils",
+      "position": 82,
+      "work_group": "surprise of their lives|wilson",
+      "stream_rank": 82
+    },
+    {
+      "identifier": "coilssabe00sabe",
+      "position": 83,
+      "work_group": "coils|saberhagen",
+      "stream_rank": 83
+    },
+    {
+      "identifier": "novelsstoriesofw08cath",
+      "position": 84,
+      "work_group": "novels and stories of willa cather|cather",
+      "stream_rank": 84
+    },
+    {
+      "identifier": "killingemperors00edwa",
+      "position": 85,
+      "work_group": "killing the emperors|edwards",
+      "stream_rank": 85
+    },
+    {
+      "identifier": "byinheritance00octa",
+      "position": 86,
+      "work_group": "by inheritance|octave thanet",
+      "stream_rank": 86
+    },
+    {
+      "identifier": "hallmonitor00auer",
+      "position": 87,
+      "work_group": "hall monitor|auerbach",
+      "stream_rank": 87
+    },
+    {
+      "identifier": "olympedeclvesar00jacogoog",
+      "position": 88,
+      "work_group": "olympe de cleves|dumas",
+      "stream_rank": 88
+    },
+    {
+      "identifier": "bountyhunterguar00burk",
+      "position": 89,
+      "work_group": "bounty hunter guardian|diane burke",
+      "stream_rank": 89
+    },
+    {
+      "identifier": "nightingalelega000coul",
+      "position": 90,
+      "work_group": "nightingale legacy|coulter",
+      "stream_rank": 90
+    },
+    {
+      "identifier": "newhistoryofspan0001unse",
+      "position": 91,
+      "work_group": "new history of spanish american fiction|schwartz",
+      "stream_rank": 91
+    },
+    {
+      "identifier": "kingoffields00singrich",
+      "position": 92,
+      "work_group": "king of the fields|singer",
+      "stream_rank": 92
+    },
+    {
+      "identifier": "peoplesmartyrleg00stew",
+      "position": 93,
+      "work_group": "people s martyr a legend of canterbury|stewart",
+      "stream_rank": 93
+    },
+    {
+      "identifier": "cimarron0000ferb_a4t5",
+      "position": 94,
+      "work_group": "cimarron|ferber",
+      "stream_rank": 94
+    },
+    {
+      "identifier": "dhlawrence0000unse_q8d5",
+      "position": 95,
+      "work_group": "d h lawrence|draper",
+      "stream_rank": 95
+    },
+    {
+      "identifier": "MorrowLincLostSpeech",
+      "position": 96,
+      "work_group": "lost speech of abraham lincoln a story|morrow",
+      "stream_rank": 96
+    },
+    {
+      "identifier": "lonelylittlelady00wyll",
+      "position": 97,
+      "work_group": "lonely little lady|wyllarde",
+      "stream_rank": 97
+    },
+    {
+      "identifier": "hollowlands00moor",
+      "position": 98,
+      "work_group": "hollow lands|moorcock",
+      "stream_rank": 98
+    },
+    {
+      "identifier": "countrystories00mitfrich",
+      "position": 99,
+      "work_group": "country stories|mitford",
+      "stream_rank": 99
+    },
+    {
+      "identifier": "houseofnire00kita",
+      "position": 100,
+      "work_group": "house of nire|kita",
+      "stream_rank": 100
+    },
+    {
+      "identifier": "skystarswilderne00bass_1",
+      "position": 101,
+      "work_group": "sky the stars the wilderness|bass",
+      "stream_rank": 101
+    },
+    {
+      "identifier": "scarletcitynove00haas",
+      "position": 102,
+      "work_group": "scarlet city|haasse",
+      "stream_rank": 102
+    },
+    {
+      "identifier": "mantrapped0000weld",
+      "position": 103,
+      "work_group": "mantrapped|weldon",
+      "stream_rank": 103
+    },
+    {
+      "identifier": "separatestar0000erdm",
+      "position": 104,
+      "work_group": "separate star|erdman",
+      "stream_rank": 104
+    },
+    {
+      "identifier": "nameofrose00ecou",
+      "position": 105,
+      "work_group": "name of the rose|eco",
+      "stream_rank": 105
+    },
+    {
+      "identifier": "guyswriteforguys00jons",
+      "position": 106,
+      "work_group": "guys write for guys read|scieszka",
+      "stream_rank": 106
+    },
+    {
+      "identifier": "deadmansmirror00chri",
+      "position": 107,
+      "work_group": "dead man s mirror|christie",
+      "stream_rank": 107
+    },
+    {
+      "identifier": "woodbournenovelo00mayoiala",
+      "position": 108,
+      "work_group": "woodbourne|mayo",
+      "stream_rank": 108
+    },
+    {
+      "identifier": "bodylanguage00suza",
+      "position": 109,
+      "work_group": "body language|brockmann",
+      "stream_rank": 109
+    },
+    {
+      "identifier": "beautifulbirdwit00pete",
+      "position": 110,
+      "work_group": "beautiful bird without a name or a true kentucky girl|peterson",
+      "stream_rank": 110
+    },
+    {
+      "identifier": "dangerwizardatwo0000mcmu",
+      "position": 111,
+      "work_group": "danger wizard at work|mcmullan",
+      "stream_rank": 111
+    },
+    {
+      "identifier": "pocketeditionwo03meregoog",
+      "position": 112,
+      "work_group": "pocket edition of the works of george meredith|meredith",
+      "stream_rank": 112
+    },
+    {
+      "identifier": "familyoffoxes0000dill",
+      "position": 113,
+      "work_group": "family of foxes|dillon",
+      "stream_rank": 113
+    },
+    {
+      "identifier": "magicmeadow00daul",
+      "position": 114,
+      "work_group": "magic meadow|d aulaire",
+      "stream_rank": 114
+    },
+    {
+      "identifier": "globish00robe",
+      "position": 115,
+      "work_group": "globish|mccrum",
+      "stream_rank": 115
+    },
+    {
+      "identifier": "shenspigtailothe00cros",
+      "position": 116,
+      "work_group": "shen s pigtail and other cues of anglo china life|croskey",
+      "stream_rank": 116
+    },
+    {
+      "identifier": "allisvanity00schw",
+      "position": 117,
+      "work_group": "all is vanity|schwarz",
+      "stream_rank": 117
+    },
+    {
+      "identifier": "encyclopediahorr00geej",
+      "position": 118,
+      "work_group": "encyclopedia horrifica|joshua gee",
+      "stream_rank": 118
+    },
+    {
+      "identifier": "breastroth00roth",
+      "position": 119,
+      "work_group": "breast|roth",
+      "stream_rank": 119
+    },
+    {
+      "identifier": "godandtheking00boweiala",
+      "position": 120,
+      "work_group": "god and the king|bowen",
+      "stream_rank": 120
+    },
+    {
+      "identifier": "startrekprimedir00reev",
+      "position": 121,
+      "work_group": "star trek prime directive|reeves stevens",
+      "stream_rank": 121
+    },
+    {
+      "identifier": "drivinglessons00edmc",
+      "position": 122,
+      "work_group": "driving lessons|mcbain",
+      "stream_rank": 122
+    },
+    {
+      "identifier": "sinsoffatherroma0000dixo",
+      "position": 123,
+      "work_group": "sins of the father a romance of the south|dixon",
+      "stream_rank": 123
+    },
+    {
+      "identifier": "menbeyondlaw00maxb_0",
+      "position": 124,
+      "work_group": "men beyond the law|brand",
+      "stream_rank": 124
+    },
+    {
+      "identifier": "melvinmoosechild0000unse",
+      "position": 125,
+      "work_group": "melvin|slobodkin",
+      "stream_rank": 125
+    },
+    {
+      "identifier": "senatorssonalas00victgoog",
+      "position": 126,
+      "work_group": "senator s son|victor",
+      "stream_rank": 126
+    },
+    {
+      "identifier": "boycaptiveofold00smit",
+      "position": 127,
+      "work_group": "boy captive of old deerfield|smith",
+      "stream_rank": 127
+    },
+    {
+      "identifier": "masterofhouse00hall",
+      "position": 128,
+      "work_group": "master of the house|hall",
+      "stream_rank": 128
+    },
+    {
+      "identifier": "farfaraway0000mcne",
+      "position": 129,
+      "work_group": "far far away|mcneal",
+      "stream_rank": 129
+    },
+    {
+      "identifier": "diagnosis00lucy",
+      "position": 130,
+      "work_group": "diagnosis amnesia|clark",
+      "stream_rank": 130
+    },
+    {
+      "identifier": "brat00sand",
+      "position": 131,
+      "work_group": "brat|lynsay sands",
+      "stream_rank": 131
+    },
+    {
+      "identifier": "hughpinegoodplac00vand_0",
+      "position": 132,
+      "work_group": "hugh pine and the good place|van de wetering",
+      "stream_rank": 132
+    },
+    {
+      "identifier": "crownward00boyd_1",
+      "position": 133,
+      "work_group": "crown ward|boyd",
+      "stream_rank": 133
+    },
+    {
+      "identifier": "engagingbodyguar00donn_0",
+      "position": 134,
+      "work_group": "engaging bodyguard|young",
+      "stream_rank": 134
+    },
+    {
+      "identifier": "amyfallsdownnove00will",
+      "position": 135,
+      "work_group": "amy falls down|willett",
+      "stream_rank": 135
+    },
+    {
+      "identifier": "sorrowsanthem00kory",
+      "position": 136,
+      "work_group": "sorrow s anthem|michael koryta",
+      "stream_rank": 136
+    },
+    {
+      "identifier": "songofsilentharp00hoff",
+      "position": 137,
+      "work_group": "song of the silent harp|hoff",
+      "stream_rank": 137
+    },
+    {
+      "identifier": "catchcalico00aaro",
+      "position": 138,
+      "work_group": "catch calico|aaron",
+      "stream_rank": 138
+    },
+    {
+      "identifier": "blackwatch01pick",
+      "position": 139,
+      "work_group": "black watch|picken",
+      "stream_rank": 139
+    },
+    {
+      "identifier": "invisiblelifenov1994harr",
+      "position": 140,
+      "work_group": "invisible life|harris",
+      "stream_rank": 140
+    },
+    {
+      "identifier": "americanmysticno00guri",
+      "position": 141,
+      "work_group": "american mystic|gurian",
+      "stream_rank": 141
+    },
+    {
+      "identifier": "bridgemano00mano",
+      "position": 142,
+      "work_group": "bridge|mano",
+      "stream_rank": 142
+    },
+    {
+      "identifier": "missingstin00stin",
+      "position": 143,
+      "work_group": "missing|stine",
+      "stream_rank": 143
+    },
+    {
+      "identifier": "harvesthome0000unse",
+      "position": 144,
+      "work_group": "harvest home|tryon",
+      "stream_rank": 144
+    },
+    {
+      "identifier": "scarlettsnewfrie00shie",
+      "position": 145,
+      "work_group": "scarlett s new friend|gillian shields",
+      "stream_rank": 145
+    },
+    {
+      "identifier": "vanishingacts00jodi",
+      "position": 146,
+      "work_group": "vanishing acts|picoult",
+      "stream_rank": 146
+    },
+    {
+      "identifier": "talltalesfromtex00boat",
+      "position": 147,
+      "work_group": "tall tales from texas|boatright",
+      "stream_rank": 147
+    },
+    {
+      "identifier": "ashesinwind0000wood",
+      "position": 148,
+      "work_group": "ashes in the wind|woodiwiss",
+      "stream_rank": 148
+    },
+    {
+      "identifier": "trainman00deut_0",
+      "position": 149,
+      "work_group": "train man|peter t deutermann",
+      "stream_rank": 149
+    },
+    {
+      "identifier": "loyalistshistori02west",
+      "position": 150,
+      "work_group": "loyalists an historical novel|west",
+      "stream_rank": 150
+    },
+    {
+      "identifier": "liverpoolannie00leem",
+      "position": 151,
+      "work_group": "liverpool annie|lee",
+      "stream_rank": 151
+    },
+    {
+      "identifier": "spectaclesforlit00land",
+      "position": 152,
+      "work_group": "spectacles for little eyes|lander",
+      "stream_rank": 152
+    },
+    {
+      "identifier": "sunnyholiday00para",
+      "position": 153,
+      "work_group": "sunny holiday|paratore",
+      "stream_rank": 153
+    },
+    {
+      "identifier": "maryerskinefranc00abbo_0",
+      "position": 154,
+      "work_group": "mary erskine|abbott",
+      "stream_rank": 154
+    },
+    {
+      "identifier": "creativitybookyo00nanc",
+      "position": 155,
+      "work_group": "creativity book|rue",
+      "stream_rank": 155
+    },
+    {
+      "identifier": "jewishcharacters00levi",
+      "position": 156,
+      "work_group": "jewish characters in fiction english literature|levi",
+      "stream_rank": 156
+    },
+    {
+      "identifier": "jazztonimorrison0000unse_2",
+      "position": 157,
+      "work_group": "jazz|morrison",
+      "stream_rank": 157
+    },
+    {
+      "identifier": "toogoodforhim01marr",
+      "position": 158,
+      "work_group": "too good for him|marryat",
+      "stream_rank": 158
+    },
+    {
+      "identifier": "cattlekilling00wide_1",
+      "position": 159,
+      "work_group": "cattle killing|wideman",
+      "stream_rank": 159
+    },
+    {
+      "identifier": "firebrand00wigg",
+      "position": 160,
+      "work_group": "firebrand|wiggs",
+      "stream_rank": 160
+    },
+    {
+      "identifier": "robertgrahamnove00hent",
+      "position": 161,
+      "work_group": "robert graham|hentz",
+      "stream_rank": 161
+    },
+    {
+      "identifier": "powderpatchthetr00geor",
+      "position": 162,
+      "work_group": "powder and patch the transformation of philip jettan|heyer",
+      "stream_rank": 162
+    },
+    {
+      "identifier": "siciliansdefiant00jane",
+      "position": 163,
+      "work_group": "sicilian s defiant mistress|porter",
+      "stream_rank": 164
+    },
+    {
+      "identifier": "sunalsorises0000hemi_m8x1",
+      "position": 164,
+      "work_group": "sun also rises|hemingway",
+      "stream_rank": 165
+    },
+    {
+      "identifier": "gotchagotchaback00krul",
+      "position": 165,
+      "work_group": "gotcha gotcha back|nancy e krulik",
+      "stream_rank": 166
+    },
+    {
+      "identifier": "gwynettofthornha00haye",
+      "position": 166,
+      "work_group": "gwynett of thornhaugh a romance|hayes",
+      "stream_rank": 167
+    },
+    {
+      "identifier": "angelsvisitstomy00gold",
+      "position": 167,
+      "work_group": "angels visits to my farm in florida|golden light",
+      "stream_rank": 168
+    },
+    {
+      "identifier": "compartmenteastl00rm",
+      "position": 168,
+      "work_group": "compartment east|remy",
+      "stream_rank": 169
+    },
+    {
+      "identifier": "happybirthdaymal00frie",
+      "position": 169,
+      "work_group": "happy birthday mallory|laurie b friedman",
+      "stream_rank": 170
+    },
+    {
+      "identifier": "scmasterhumphrey02dickrich",
+      "position": 170,
+      "work_group": "master humphrey s clock|dickens",
+      "stream_rank": 171
+    },
+    {
+      "identifier": "rebelsorbostonbe00chil",
+      "position": 171,
+      "work_group": "rebels|child",
+      "stream_rank": 172
+    },
+    {
+      "identifier": "guidetohistorica00bake",
+      "position": 172,
+      "work_group": "guide to historical fiction|baker",
+      "stream_rank": 173
+    },
+    {
+      "identifier": "cu31924013577576",
+      "position": 173,
+      "work_group": "children of the ghetto a study of a pecular people|zangwill",
+      "stream_rank": 174
+    },
+    {
+      "identifier": "poorbadger00peyt",
+      "position": 174,
+      "work_group": "poor badger|k m peyton",
+      "stream_rank": 175
+    },
+    {
+      "identifier": "eondragoneyerebo00good",
+      "position": 175,
+      "work_group": "eon|alison goodman",
+      "stream_rank": 176
+    },
+    {
+      "identifier": "doomsdayworld00cart",
+      "position": 176,
+      "work_group": "doomsday world|carter",
+      "stream_rank": 177
+    },
+    {
+      "identifier": "michiganinnovel10000beas",
+      "position": 177,
+      "work_group": "michigan in the novel 1816 1996|beasecker",
+      "stream_rank": 178
+    },
+    {
+      "identifier": "thomas0000harr",
+      "position": 178,
+      "work_group": "thomas|harris",
+      "stream_rank": 179
+    },
+    {
+      "identifier": "missminervaonold00samp",
+      "position": 179,
+      "work_group": "miss minerva on the old plantation|sampson",
+      "stream_rank": 180
+    },
+    {
+      "identifier": "teachingnovelinp0000unse",
+      "position": 180,
+      "work_group": "teaching the novel in paperback|ryan",
+      "stream_rank": 181
+    },
+    {
+      "identifier": "comradedoncamill0000unse",
+      "position": 181,
+      "work_group": "comrade don camillo|guareschi",
+      "stream_rank": 182
+    },
+    {
+      "identifier": "sagaofhocking00byro",
+      "position": 182,
+      "work_group": "saga of the hocking|byron",
+      "stream_rank": 183
+    },
+    {
+      "identifier": "deadlysinscardin00asim",
+      "position": 183,
+      "work_group": "deadly sins and cardinal virtues of science fiction|asimov",
+      "stream_rank": 184
+    },
+    {
+      "identifier": "greektycoonslove00jacq",
+      "position": 184,
+      "work_group": "greek tycoon s love child|baird",
+      "stream_rank": 185
+    },
+    {
+      "identifier": "gearsofwar00kare",
+      "position": 185,
+      "work_group": "gears of war|traviss",
+      "stream_rank": 186
+    },
+    {
+      "identifier": "treasureofkha00cuss",
+      "position": 186,
+      "work_group": "treasure of khan|cussler",
+      "stream_rank": 187
+    },
+    {
+      "identifier": "fivechildrenandd00regg",
+      "position": 187,
+      "work_group": "five children and a dog|reggiani",
+      "stream_rank": 188
+    },
+    {
+      "identifier": "mariecaptainsmis00gail",
+      "position": 188,
+      "work_group": "marie the captain s mistress|gaillard",
+      "stream_rank": 189
+    },
+    {
+      "identifier": "onionjohn0000krum",
+      "position": 189,
+      "work_group": "onion john|krumgold",
+      "stream_rank": 190
+    },
+    {
+      "identifier": "greatson0000unse",
+      "position": 190,
+      "work_group": "great son|ferber",
+      "stream_rank": 191
+    },
+    {
+      "identifier": "glasshammer00jete",
+      "position": 191,
+      "work_group": "glass hammer|jeter",
+      "stream_rank": 192
+    },
+    {
+      "identifier": "rocketrescue00hala",
+      "position": 192,
+      "work_group": "rocket rescue|halacy",
+      "stream_rank": 193
+    },
+    {
+      "identifier": "whiskeyroadloves00sipl",
+      "position": 193,
+      "work_group": "whiskey road|karen v siplin",
+      "stream_rank": 194
+    },
+    {
+      "identifier": "capitalcrimes00sand",
+      "position": 194,
+      "work_group": "capital crimes|sanders",
+      "stream_rank": 195
+    },
+    {
+      "identifier": "minniemoogotomoo00den_4l4",
+      "position": 195,
+      "work_group": "minnie and moo go to the moon|cazet",
+      "stream_rank": 196
+    },
+    {
+      "identifier": "infestation00pere",
+      "position": 196,
+      "work_group": "infestation|peretti",
+      "stream_rank": 197
+    },
+    {
+      "identifier": "honourableestate0000brit",
+      "position": 197,
+      "work_group": "honourable estate|brittain",
+      "stream_rank": 198
+    },
+    {
+      "identifier": "overoveryou00amym",
+      "position": 198,
+      "work_group": "over and over you|mcauley",
+      "stream_rank": 199
+    },
+    {
+      "identifier": "peverilofpeak01scot_0",
+      "position": 199,
+      "work_group": "peveril of the peak|scott",
+      "stream_rank": 200
+    },
+    {
+      "identifier": "ninjismagic00maci",
+      "position": 200,
+      "work_group": "ninji s magic|macintyre",
+      "stream_rank": 201
+    }
+  ]
+}

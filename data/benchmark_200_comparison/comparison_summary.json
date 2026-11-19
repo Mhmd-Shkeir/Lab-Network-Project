@@ -1,0 +1,1852 @@
+{
+  "ids_expected": 200,
+  "per_method": {
+    "api": {
+      "rows": 200,
+      "status_counts": {
+        "ok": 200
+      },
+      "ids_not_in_csv": 0,
+      "extra_ids_not_in_manifest": 0
+    },
+    "bs4": {
+      "rows": 200,
+      "status_counts": {
+        "ok": 200
+      },
+      "ids_not_in_csv": 0,
+      "extra_ids_not_in_manifest": 0
+    },
+    "selenium": {
+      "rows": 200,
+      "status_counts": {
+        "ok": 200
+      },
+      "ids_not_in_csv": 0,
+      "extra_ids_not_in_manifest": 0
+    }
+  },
+  "fields": {
+    "title": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "creators": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "first_creator": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "publication_year": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "subjects": {
+      "compared": 200,
+      "equal": 199,
+      "differ": 1,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "language": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "addeddate": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "scanned_page_count": {
+      "compared": 200,
+      "equal": 200,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "views_all_time": {
+      "compared": 200,
+      "equal": 5,
+      "differ": 195,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    }
+  },
+  "views_differences": [
+    {
+      "identifier": "missingpersonswhit00whit",
+      "api": 84,
+      "bs4": 83,
+      "selenium": 83,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "americanliterary00walc",
+      "api": 381,
+      "bs4": 380,
+      "selenium": 380,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "amongcampsoryoun00pagerich",
+      "api": 1148,
+      "bs4": 1139,
+      "selenium": 1139,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "anne00ofgeiersteinscotrich",
+      "api": 1988,
+      "bs4": 1976,
+      "selenium": 1976,
+      "api_minus_bs4": 12,
+      "api_minus_selenium": 12,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "shapeofsand00eccl_0",
+      "api": 65,
+      "bs4": 62,
+      "selenium": 62,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "gri_33125008988863",
+      "api": 245,
+      "bs4": 238,
+      "selenium": 238,
+      "api_minus_bs4": 7,
+      "api_minus_selenium": 7,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sunrisetosunset00adam",
+      "api": 260,
+      "bs4": 258,
+      "selenium": 258,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "eleventhcommandm01arch",
+      "api": 286,
+      "bs4": 285,
+      "selenium": 285,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "packchallenge00shel",
+      "api": 979,
+      "bs4": 978,
+      "selenium": 978,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "eldoradoshuffle00nybe",
+      "api": 67,
+      "bs4": 65,
+      "selenium": 65,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "workscharlesdic52dickgoog",
+      "api": 601,
+      "bs4": 600,
+      "selenium": 600,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "showway00wood",
+      "api": 440,
+      "bs4": 436,
+      "selenium": 436,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "lovedayshistoryt00guerrich",
+      "api": 770,
+      "bs4": 765,
+      "selenium": 765,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "falsestarataleo00gashgoog",
+      "api": 437,
+      "bs4": 431,
+      "selenium": 431,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cazzarolaanarchy0000nawr",
+      "api": 27,
+      "bs4": 26,
+      "selenium": 26,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "whitefeather00cory",
+      "api": 475,
+      "bs4": 464,
+      "selenium": 464,
+      "api_minus_bs4": 11,
+      "api_minus_selenium": 11,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "moretotallyherot00shei",
+      "api": 1133,
+      "bs4": 1127,
+      "selenium": 1127,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "autobiographyofh00geor",
+      "api": 206,
+      "bs4": 205,
+      "selenium": 205,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "virtuouswomannov00gibb",
+      "api": 212,
+      "bs4": 211,
+      "selenium": 211,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "erietrainboy00alge",
+      "api": 1861,
+      "bs4": 1853,
+      "selenium": 1853,
+      "api_minus_bs4": 8,
+      "api_minus_selenium": 8,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "portalmyer00myer",
+      "api": 146,
+      "bs4": 141,
+      "selenium": 141,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "dearjohn00nich",
+      "api": 494,
+      "bs4": 492,
+      "selenium": 492,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "houseonhoundhill00prin_0",
+      "api": 39,
+      "bs4": 38,
+      "selenium": 38,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "forbiddendesire00roby",
+      "api": 1537,
+      "bs4": 1531,
+      "selenium": 1531,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "newjune00newb",
+      "api": 575,
+      "bs4": 564,
+      "selenium": 564,
+      "api_minus_bs4": 11,
+      "api_minus_selenium": 11,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "torchbearersofbo00kryz",
+      "api": 90,
+      "bs4": 71,
+      "selenium": 71,
+      "api_minus_bs4": 19,
+      "api_minus_selenium": 19,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sun51zava",
+      "api": 7,
+      "bs4": 5,
+      "selenium": 5,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "wedbymightywaves00gree",
+      "api": 428,
+      "bs4": 412,
+      "selenium": 412,
+      "api_minus_bs4": 16,
+      "api_minus_selenium": 16,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "herweddingwish00hart",
+      "api": 238,
+      "bs4": 237,
+      "selenium": 237,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "stepsisters00will",
+      "api": 347,
+      "bs4": 345,
+      "selenium": 345,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "jansvictorystory00bowe",
+      "api": 73,
+      "bs4": 72,
+      "selenium": 72,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "rightattitudetor00mcca",
+      "api": 314,
+      "bs4": 312,
+      "selenium": 312,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cu31924014158566",
+      "api": 1435,
+      "bs4": 1417,
+      "selenium": 1417,
+      "api_minus_bs4": 18,
+      "api_minus_selenium": 18,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "desknabenwunder01crecgoog",
+      "api": 2583,
+      "bs4": 2577,
+      "selenium": 2577,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "manwithoutcountr00hale_3",
+      "api": 273,
+      "bs4": 269,
+      "selenium": 269,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "1999novelshortst00kuro",
+      "api": 118,
+      "bs4": 116,
+      "selenium": 116,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "charlesomalleyi05browgoog",
+      "api": 845,
+      "bs4": 840,
+      "selenium": 840,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "novelscharlesle02unkngoog",
+      "api": 610,
+      "bs4": 604,
+      "selenium": 604,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "7000clamsnovel00irby",
+      "api": 77,
+      "bs4": 76,
+      "selenium": 76,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "searchforform0000unse",
+      "api": 39,
+      "bs4": 38,
+      "selenium": 38,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "goodbyechickenli00bet_wea",
+      "api": 82,
+      "bs4": 79,
+      "selenium": 79,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "stonesawakenovel00bealrich",
+      "api": 1159,
+      "bs4": 1152,
+      "selenium": 1152,
+      "api_minus_bs4": 7,
+      "api_minus_selenium": 7,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "timerealitystudi0000unse",
+      "api": 94,
+      "bs4": 93,
+      "selenium": 93,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "greatnorthern0000rans",
+      "api": 222,
+      "bs4": 220,
+      "selenium": 220,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "heartbeneathmorg00phil",
+      "api": 158,
+      "bs4": 157,
+      "selenium": 157,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "samanthaatsarato00holl_2",
+      "api": 434,
+      "bs4": 422,
+      "selenium": 422,
+      "api_minus_bs4": 12,
+      "api_minus_selenium": 12,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "comealiveat505no00bran",
+      "api": 44,
+      "bs4": 42,
+      "selenium": 42,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "fivestories00cath",
+      "api": 241,
+      "bs4": 240,
+      "selenium": 240,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "adventuresofjoel00sidn_0",
+      "api": 57,
+      "bs4": 56,
+      "selenium": 56,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "leavenoflovenove00burn_0",
+      "api": 173,
+      "bs4": 168,
+      "selenium": 168,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "manwholovedchild00chri",
+      "api": 243,
+      "bs4": 241,
+      "selenium": 241,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "foundnovel00schm",
+      "api": 77,
+      "bs4": 76,
+      "selenium": 76,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "archaglittlearme00schn",
+      "api": 1577,
+      "bs4": 1573,
+      "selenium": 1573,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cloudsbeneathsun00ford",
+      "api": 65,
+      "bs4": 64,
+      "selenium": 64,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "daddydoesnthavet00thom",
+      "api": 36,
+      "bs4": 34,
+      "selenium": 34,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "dayofdolphin00merl",
+      "api": 446,
+      "bs4": 442,
+      "selenium": 442,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "echohawk00durr_1",
+      "api": 16,
+      "bs4": 14,
+      "selenium": 14,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "amandawolo00wolo",
+      "api": 419,
+      "bs4": 416,
+      "selenium": 416,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "mastersofenglish00burt",
+      "api": 1265,
+      "bs4": 1259,
+      "selenium": 1259,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "coykendallwebbot00bard",
+      "api": 255,
+      "bs4": 252,
+      "selenium": 252,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "lucyarlyn00trowgoog",
+      "api": 556,
+      "bs4": 553,
+      "selenium": 553,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "tietopast00wise",
+      "api": 14,
+      "bs4": 13,
+      "selenium": 13,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "claimedbyshadow00chan",
+      "api": 282,
+      "bs4": 279,
+      "selenium": 279,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "boundtoriseorhar00alge",
+      "api": 712,
+      "bs4": 710,
+      "selenium": 710,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "ajacobiteexileb00hardgoog",
+      "api": 448,
+      "bs4": 445,
+      "selenium": 445,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "isbn_9781402236532_0",
+      "api": 85,
+      "bs4": 83,
+      "selenium": 83,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cu31924011124520",
+      "api": 2642,
+      "bs4": 2633,
+      "selenium": 2633,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "warriorgap00kingrich",
+      "api": 855,
+      "bs4": 836,
+      "selenium": 836,
+      "api_minus_bs4": 19,
+      "api_minus_selenium": 19,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "shadowplayclay00clay",
+      "api": 174,
+      "bs4": 172,
+      "selenium": 172,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "mademoisellebole00maxw",
+      "api": 199,
+      "bs4": 198,
+      "selenium": 198,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cu31924026930093",
+      "api": 764,
+      "bs4": 758,
+      "selenium": 758,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "otherside00bany_0",
+      "api": 647,
+      "bs4": 643,
+      "selenium": 643,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "faceoflovefemini00lamb",
+      "api": 167,
+      "bs4": 166,
+      "selenium": 166,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "floodof64stories00long",
+      "api": 81,
+      "bs4": 80,
+      "selenium": 80,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "notinourstars0000jeff",
+      "api": 204,
+      "bs4": 203,
+      "selenium": 203,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "poolruet00ruet",
+      "api": 158,
+      "bs4": 157,
+      "selenium": 157,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "lookingbackward200bell_6",
+      "api": 1420,
+      "bs4": 1373,
+      "selenium": 1373,
+      "api_minus_bs4": 47,
+      "api_minus_selenium": 47,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "kidinredjacket00park_0",
+      "api": 840,
+      "bs4": 837,
+      "selenium": 837,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "surpriseoftheirl00wils",
+      "api": 84,
+      "bs4": 82,
+      "selenium": 82,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "coilssabe00sabe",
+      "api": 178,
+      "bs4": 177,
+      "selenium": 177,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "novelsstoriesofw08cath",
+      "api": 28,
+      "bs4": 27,
+      "selenium": 27,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "killingemperors00edwa",
+      "api": 59,
+      "bs4": 58,
+      "selenium": 58,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "byinheritance00octa",
+      "api": 20,
+      "bs4": 12,
+      "selenium": 12,
+      "api_minus_bs4": 8,
+      "api_minus_selenium": 8,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "olympedeclvesar00jacogoog",
+      "api": 474,
+      "bs4": 471,
+      "selenium": 471,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "bountyhunterguar00burk",
+      "api": 162,
+      "bs4": 160,
+      "selenium": 160,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "nightingalelega000coul",
+      "api": 941,
+      "bs4": 940,
+      "selenium": 940,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "newhistoryofspan0001unse",
+      "api": 19,
+      "bs4": 17,
+      "selenium": 17,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "kingoffields00singrich",
+      "api": 106,
+      "bs4": 105,
+      "selenium": 105,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "peoplesmartyrleg00stew",
+      "api": 363,
+      "bs4": 358,
+      "selenium": 358,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cimarron0000ferb_a4t5",
+      "api": 231,
+      "bs4": 222,
+      "selenium": 222,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "dhlawrence0000unse_q8d5",
+      "api": 99,
+      "bs4": 98,
+      "selenium": 98,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "MorrowLincLostSpeech",
+      "api": 92,
+      "bs4": 91,
+      "selenium": 91,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "lonelylittlelady00wyll",
+      "api": 455,
+      "bs4": 448,
+      "selenium": 448,
+      "api_minus_bs4": 7,
+      "api_minus_selenium": 7,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "hollowlands00moor",
+      "api": 110,
+      "bs4": 108,
+      "selenium": 108,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "countrystories00mitfrich",
+      "api": 1033,
+      "bs4": 1025,
+      "selenium": 1025,
+      "api_minus_bs4": 8,
+      "api_minus_selenium": 8,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "houseofnire00kita",
+      "api": 321,
+      "bs4": 319,
+      "selenium": 319,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "skystarswilderne00bass_1",
+      "api": 37,
+      "bs4": 36,
+      "selenium": 36,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "scarletcitynove00haas",
+      "api": 206,
+      "bs4": 204,
+      "selenium": 204,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "mantrapped0000weld",
+      "api": 58,
+      "bs4": 57,
+      "selenium": 57,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "separatestar0000erdm",
+      "api": 129,
+      "bs4": 128,
+      "selenium": 128,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "nameofrose00ecou",
+      "api": 1148,
+      "bs4": 1132,
+      "selenium": 1132,
+      "api_minus_bs4": 16,
+      "api_minus_selenium": 16,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "guyswriteforguys00jons",
+      "api": 230,
+      "bs4": 228,
+      "selenium": 228,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "deadmansmirror00chri",
+      "api": 975,
+      "bs4": 972,
+      "selenium": 972,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "woodbournenovelo00mayoiala",
+      "api": 1362,
+      "bs4": 1352,
+      "selenium": 1352,
+      "api_minus_bs4": 10,
+      "api_minus_selenium": 10,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "bodylanguage00suza",
+      "api": 391,
+      "bs4": 390,
+      "selenium": 390,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "beautifulbirdwit00pete",
+      "api": 275,
+      "bs4": 271,
+      "selenium": 271,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "dangerwizardatwo0000mcmu",
+      "api": 121,
+      "bs4": 119,
+      "selenium": 119,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "pocketeditionwo03meregoog",
+      "api": 673,
+      "bs4": 671,
+      "selenium": 671,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "familyoffoxes0000dill",
+      "api": 85,
+      "bs4": 83,
+      "selenium": 83,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "magicmeadow00daul",
+      "api": 353,
+      "bs4": 352,
+      "selenium": 352,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "globish00robe",
+      "api": 692,
+      "bs4": 688,
+      "selenium": 688,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "shenspigtailothe00cros",
+      "api": 305,
+      "bs4": 302,
+      "selenium": 302,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "allisvanity00schw",
+      "api": 100,
+      "bs4": 99,
+      "selenium": 99,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "breastroth00roth",
+      "api": 639,
+      "bs4": 635,
+      "selenium": 635,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "godandtheking00boweiala",
+      "api": 1976,
+      "bs4": 1960,
+      "selenium": 1960,
+      "api_minus_bs4": 16,
+      "api_minus_selenium": 16,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "startrekprimedir00reev",
+      "api": 541,
+      "bs4": 537,
+      "selenium": 537,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "drivinglessons00edmc",
+      "api": 122,
+      "bs4": 120,
+      "selenium": 120,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sinsoffatherroma0000dixo",
+      "api": 330,
+      "bs4": 325,
+      "selenium": 325,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "menbeyondlaw00maxb_0",
+      "api": 106,
+      "bs4": 104,
+      "selenium": 104,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "melvinmoosechild0000unse",
+      "api": 44,
+      "bs4": 41,
+      "selenium": 41,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "senatorssonalas00victgoog",
+      "api": 1284,
+      "bs4": 1278,
+      "selenium": 1278,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "boycaptiveofold00smit",
+      "api": 619,
+      "bs4": 603,
+      "selenium": 603,
+      "api_minus_bs4": 16,
+      "api_minus_selenium": 16,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "masterofhouse00hall",
+      "api": 54,
+      "bs4": 53,
+      "selenium": 53,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "farfaraway0000mcne",
+      "api": 132,
+      "bs4": 131,
+      "selenium": 131,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "diagnosis00lucy",
+      "api": 381,
+      "bs4": 379,
+      "selenium": 379,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "brat00sand",
+      "api": 1240,
+      "bs4": 1239,
+      "selenium": 1239,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "hughpinegoodplac00vand_0",
+      "api": 23,
+      "bs4": 21,
+      "selenium": 21,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "crownward00boyd_1",
+      "api": 117,
+      "bs4": 108,
+      "selenium": 108,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "engagingbodyguar00donn_0",
+      "api": 204,
+      "bs4": 201,
+      "selenium": 201,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "amyfallsdownnove00will",
+      "api": 65,
+      "bs4": 64,
+      "selenium": 64,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sorrowsanthem00kory",
+      "api": 134,
+      "bs4": 133,
+      "selenium": 133,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "songofsilentharp00hoff",
+      "api": 77,
+      "bs4": 76,
+      "selenium": 76,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "catchcalico00aaro",
+      "api": 46,
+      "bs4": 45,
+      "selenium": 45,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "blackwatch01pick",
+      "api": 737,
+      "bs4": 728,
+      "selenium": 728,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "invisiblelifenov1994harr",
+      "api": 336,
+      "bs4": 330,
+      "selenium": 330,
+      "api_minus_bs4": 6,
+      "api_minus_selenium": 6,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "americanmysticno00guri",
+      "api": 143,
+      "bs4": 142,
+      "selenium": 142,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "bridgemano00mano",
+      "api": 314,
+      "bs4": 313,
+      "selenium": 313,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "missingstin00stin",
+      "api": 1933,
+      "bs4": 1929,
+      "selenium": 1929,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "harvesthome0000unse",
+      "api": 1420,
+      "bs4": 1407,
+      "selenium": 1407,
+      "api_minus_bs4": 13,
+      "api_minus_selenium": 13,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "scarlettsnewfrie00shie",
+      "api": 83,
+      "bs4": 80,
+      "selenium": 80,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "vanishingacts00jodi",
+      "api": 215,
+      "bs4": 212,
+      "selenium": 212,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "talltalesfromtex00boat",
+      "api": 723,
+      "bs4": 695,
+      "selenium": 695,
+      "api_minus_bs4": 28,
+      "api_minus_selenium": 28,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "ashesinwind0000wood",
+      "api": 310,
+      "bs4": 307,
+      "selenium": 307,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "trainman00deut_0",
+      "api": 111,
+      "bs4": 108,
+      "selenium": 108,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "loyalistshistori02west",
+      "api": 762,
+      "bs4": 758,
+      "selenium": 758,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "liverpoolannie00leem",
+      "api": 345,
+      "bs4": 344,
+      "selenium": 344,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "spectaclesforlit00land",
+      "api": 604,
+      "bs4": 601,
+      "selenium": 601,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sunnyholiday00para",
+      "api": 42,
+      "bs4": 39,
+      "selenium": 39,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "maryerskinefranc00abbo_0",
+      "api": 267,
+      "bs4": 260,
+      "selenium": 260,
+      "api_minus_bs4": 7,
+      "api_minus_selenium": 7,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "creativitybookyo00nanc",
+      "api": 112,
+      "bs4": 111,
+      "selenium": 111,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "jewishcharacters00levi",
+      "api": 303,
+      "bs4": 299,
+      "selenium": 299,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "jazztonimorrison0000unse_2",
+      "api": 690,
+      "bs4": 685,
+      "selenium": 685,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "toogoodforhim01marr",
+      "api": 734,
+      "bs4": 723,
+      "selenium": 723,
+      "api_minus_bs4": 11,
+      "api_minus_selenium": 11,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cattlekilling00wide_1",
+      "api": 22,
+      "bs4": 21,
+      "selenium": 21,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "firebrand00wigg",
+      "api": 208,
+      "bs4": 206,
+      "selenium": 206,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "robertgrahamnove00hent",
+      "api": 779,
+      "bs4": 776,
+      "selenium": 776,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "powderpatchthetr00geor",
+      "api": 727,
+      "bs4": 725,
+      "selenium": 725,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "siciliansdefiant00jane",
+      "api": 2798,
+      "bs4": 2794,
+      "selenium": 2794,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sunalsorises0000hemi_m8x1",
+      "api": 469,
+      "bs4": 465,
+      "selenium": 465,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "gotchagotchaback00krul",
+      "api": 104,
+      "bs4": 101,
+      "selenium": 101,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "gwynettofthornha00haye",
+      "api": 370,
+      "bs4": 361,
+      "selenium": 361,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "angelsvisitstomy00gold",
+      "api": 309,
+      "bs4": 301,
+      "selenium": 301,
+      "api_minus_bs4": 8,
+      "api_minus_selenium": 8,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "compartmenteastl00rm",
+      "api": 84,
+      "bs4": 83,
+      "selenium": 83,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "happybirthdaymal00frie",
+      "api": 121,
+      "bs4": 119,
+      "selenium": 119,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "scmasterhumphrey02dickrich",
+      "api": 1797,
+      "bs4": 1782,
+      "selenium": 1782,
+      "api_minus_bs4": 15,
+      "api_minus_selenium": 15,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "rebelsorbostonbe00chil",
+      "api": 1132,
+      "bs4": 1121,
+      "selenium": 1121,
+      "api_minus_bs4": 11,
+      "api_minus_selenium": 11,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "guidetohistorica00bake",
+      "api": 17700,
+      "bs4": 17618,
+      "selenium": 17618,
+      "api_minus_bs4": 82,
+      "api_minus_selenium": 82,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "cu31924013577576",
+      "api": 1409,
+      "bs4": 1392,
+      "selenium": 1392,
+      "api_minus_bs4": 17,
+      "api_minus_selenium": 17,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "poorbadger00peyt",
+      "api": 89,
+      "bs4": 87,
+      "selenium": 87,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "eondragoneyerebo00good",
+      "api": 1610,
+      "bs4": 1599,
+      "selenium": 1599,
+      "api_minus_bs4": 11,
+      "api_minus_selenium": 11,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "doomsdayworld00cart",
+      "api": 281,
+      "bs4": 278,
+      "selenium": 278,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "michiganinnovel10000beas",
+      "api": 198,
+      "bs4": 197,
+      "selenium": 197,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "thomas0000harr",
+      "api": 88,
+      "bs4": 85,
+      "selenium": 85,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "missminervaonold00samp",
+      "api": 353,
+      "bs4": 329,
+      "selenium": 329,
+      "api_minus_bs4": 24,
+      "api_minus_selenium": 24,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "teachingnovelinp0000unse",
+      "api": 22,
+      "bs4": 21,
+      "selenium": 21,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "comradedoncamill0000unse",
+      "api": 85,
+      "bs4": 84,
+      "selenium": 84,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sagaofhocking00byro",
+      "api": 1189,
+      "bs4": 1180,
+      "selenium": 1180,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "deadlysinscardin00asim",
+      "api": 420,
+      "bs4": 418,
+      "selenium": 418,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "greektycoonslove00jacq",
+      "api": 3675,
+      "bs4": 3671,
+      "selenium": 3671,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "gearsofwar00kare",
+      "api": 248,
+      "bs4": 239,
+      "selenium": 239,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "treasureofkha00cuss",
+      "api": 1934,
+      "bs4": 1929,
+      "selenium": 1929,
+      "api_minus_bs4": 5,
+      "api_minus_selenium": 5,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "fivechildrenandd00regg",
+      "api": 80,
+      "bs4": 78,
+      "selenium": 78,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "mariecaptainsmis00gail",
+      "api": 135,
+      "bs4": 133,
+      "selenium": 133,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "onionjohn0000krum",
+      "api": 338,
+      "bs4": 336,
+      "selenium": 336,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "greatson0000unse",
+      "api": 31,
+      "bs4": 30,
+      "selenium": 30,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "glasshammer00jete",
+      "api": 361,
+      "bs4": 358,
+      "selenium": 358,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "rocketrescue00hala",
+      "api": 105,
+      "bs4": 104,
+      "selenium": 104,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "whiskeyroadloves00sipl",
+      "api": 56,
+      "bs4": 55,
+      "selenium": 55,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "capitalcrimes00sand",
+      "api": 155,
+      "bs4": 152,
+      "selenium": 152,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "minniemoogotomoo00den_4l4",
+      "api": 203,
+      "bs4": 199,
+      "selenium": 199,
+      "api_minus_bs4": 4,
+      "api_minus_selenium": 4,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "infestation00pere",
+      "api": 114,
+      "bs4": 113,
+      "selenium": 113,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "honourableestate0000brit",
+      "api": 164,
+      "bs4": 163,
+      "selenium": 163,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "overoveryou00amym",
+      "api": 49,
+      "bs4": 47,
+      "selenium": 47,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "peverilofpeak01scot_0",
+      "api": 169,
+      "bs4": 145,
+      "selenium": 145,
+      "api_minus_bs4": 24,
+      "api_minus_selenium": 24,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "ninjismagic00maci",
+      "api": 83,
+      "bs4": 82,
+      "selenium": 82,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    }
+  ],
+  "ids_ok_in_all_three": 200
+}

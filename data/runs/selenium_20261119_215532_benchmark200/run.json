@@ -1,0 +1,49 @@
+{
+  "run_id": "selenium_20261119_215532_benchmark200",
+  "method": "selenium",
+  "ids_file": "/mnt/d/Downloads/semester 9/lab network/project/data/manifest/benchmark_200_ids.json",
+  "ids_requested": 200,
+  "records_saved": 200,
+  "status_counts": {
+    "ok": 200
+  },
+  "attempts_logged_total": 200,
+  "retry_attempts_total": 0,
+  "attempt_seconds": {
+    "n": 200,
+    "mean": 1.615,
+    "median": 1.208,
+    "max": 7.92
+  },
+  "decoded_body_bytes_total": 0,
+  "delay_seconds_setting": 3.0,
+  "user_agent": "LabNetProject/1.0 (university networking lab project; code written with claude-sonnet-5-5)",
+  "resumed": false,
+  "segments": [
+    {
+      "started_at_utc": "2026-11-19T21:55:32Z",
+      "ended_at_utc": "2026-11-19T22:11:18Z",
+      "total_s": 945.835,
+      "pacing_sleep_s": 366.04,
+      "backoff_sleep_s": 0.0,
+      "browser_startup_s": 14.225,
+      "active_s_estimate": 579.795,
+      "aborted": null
+    }
+  ],
+  "notes": "Timings are pilot/collection timings, not the final network comparison. decoded_body_bytes_total is decoded response body size, not wire bandwidth.",
+  "environment": {
+    "python": "3.14.4",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "requests": "2.34.2",
+    "bs4": "4.15.0",
+    "selenium": "4.52.0"
+  },
+  "page_load_strategy": "normal",
+  "headless": false,
+  "chrome_binary": "/home/mhmd2/chrome_for_testing/chrome-linux64/chrome",
+  "chromedriver": "/home/mhmd2/chrome_for_testing/chromedriver-linux64/chromedriver",
+  "browser_version": "157.0.8103.78",
+  "driver_version": "157.0.8103.78 (4b3d0dabb8250b6f152d2d85d"
+}

@@ -1,0 +1,178 @@
+{
+  "ids_expected": 10,
+  "per_method": {
+    "api": {
+      "rows": 10,
+      "status_counts": {
+        "ok": 10
+      },
+      "ids_not_in_csv": 0,
+      "extra_ids_not_in_manifest": 0
+    },
+    "bs4": {
+      "rows": 10,
+      "status_counts": {
+        "ok": 10
+      },
+      "ids_not_in_csv": 0,
+      "extra_ids_not_in_manifest": 0
+    },
+    "selenium": {
+      "rows": 10,
+      "status_counts": {
+        "ok": 10
+      },
+      "ids_not_in_csv": 0,
+      "extra_ids_not_in_manifest": 0
+    }
+  },
+  "fields": {
+    "title": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "creators": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "first_creator": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "publication_year": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "subjects": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "language": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "addeddate": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "scanned_page_count": {
+      "compared": 10,
+      "equal": 10,
+      "differ": 0,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    },
+    "views_all_time": {
+      "compared": 10,
+      "equal": 1,
+      "differ": 9,
+      "differ_same_items_other_order": 0,
+      "missing_in_a_method": 0
+    }
+  },
+  "views_differences": [
+    {
+      "identifier": "missingpersonswhit00whit",
+      "api": 84,
+      "bs4": 83,
+      "selenium": 83,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "americanliterary00walc",
+      "api": 381,
+      "bs4": 380,
+      "selenium": 380,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "amongcampsoryoun00pagerich",
+      "api": 1148,
+      "bs4": 1139,
+      "selenium": 1139,
+      "api_minus_bs4": 9,
+      "api_minus_selenium": 9,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "anne00ofgeiersteinscotrich",
+      "api": 1988,
+      "bs4": 1976,
+      "selenium": 1976,
+      "api_minus_bs4": 12,
+      "api_minus_selenium": 12,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "shapeofsand00eccl_0",
+      "api": 65,
+      "bs4": 62,
+      "selenium": 62,
+      "api_minus_bs4": 3,
+      "api_minus_selenium": 3,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "gri_33125008988863",
+      "api": 245,
+      "bs4": 238,
+      "selenium": 238,
+      "api_minus_bs4": 7,
+      "api_minus_selenium": 7,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "sunrisetosunset00adam",
+      "api": 260,
+      "bs4": 258,
+      "selenium": 258,
+      "api_minus_bs4": 2,
+      "api_minus_selenium": 2,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "eleventhcommandm01arch",
+      "api": 286,
+      "bs4": 285,
+      "selenium": 285,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    },
+    {
+      "identifier": "packchallenge00shel",
+      "api": 979,
+      "bs4": 978,
+      "selenium": 978,
+      "api_minus_bs4": 1,
+      "api_minus_selenium": 1,
+      "bs4_minus_selenium": 0
+    }
+  ],
+  "ids_ok_in_all_three": 10
+}

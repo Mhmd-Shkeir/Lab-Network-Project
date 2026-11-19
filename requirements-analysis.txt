@@ -1,0 +1,6 @@
+# Cleaning, EDA and ML notebooks (not needed for the scrapers)
+pandas
+matplotlib
+seaborn
+scikit-learn
+jupyter

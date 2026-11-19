@@ -1,0 +1,366 @@
+{
+  "manifest": {
+    "created_at_utc": "2026-11-19T20:45:07Z",
+    "pool_query": "collection:americana AND mediatype:texts AND language:eng AND subject:fiction AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500]",
+    "snapshot_file": "pool_snapshot_20261119.csv.gz",
+    "snapshot_sha256": "95c397b5b71c851e19ee1e9823ceeaf4506a62b8c1628f04f79f5cdc32bac67f",
+    "snapshot_rows": 25722,
+    "seed": 2026
+  },
+  "benchmark": {
+    "api": {
+      "run_folder": "api_20261119_205103_benchmark200",
+      "rows": 200,
+      "unique_ids": 200,
+      "ids_missing_from_run": [],
+      "status_counts": {
+        "ok": 200
+      },
+      "field_non_empty": {
+        "identifier": 200,
+        "title": 200,
+        "creators": 200,
+        "first_creator": 200,
+        "publication_year": 200,
+        "subjects": 200,
+        "language": 200,
+        "addeddate": 200,
+        "scanned_page_count": 200,
+        "views_all_time": 200
+      },
+      "zero_view_rows": 0,
+      "attempts_logged": 8,
+      "retry_attempts": 0,
+      "collection_timing_pilot_only": [
+        {
+          "started_at_utc": "2026-11-19T20:51:03Z",
+          "ended_at_utc": "2026-11-19T20:51:34Z",
+          "total_s": 31.676,
+          "pacing_sleep_s": 17.666,
+          "backoff_sleep_s": 0.0,
+          "browser_startup_s": null,
+          "active_s_estimate": 14.01,
+          "aborted": null
+        }
+      ]
+    },
+    "bs4": {
+      "run_folder": "bs4_20261119_214031_benchmark200",
+      "rows": 200,
+      "unique_ids": 200,
+      "ids_missing_from_run": [],
+      "status_counts": {
+        "ok": 200
+      },
+      "field_non_empty": {
+        "identifier": 200,
+        "title": 200,
+        "creators": 200,
+        "first_creator": 200,
+        "publication_year": 200,
+        "subjects": 200,
+        "language": 200,
+        "addeddate": 200,
+        "scanned_page_count": 200,
+        "views_all_time": 200
+      },
+      "zero_view_rows": 0,
+      "attempts_logged": 200,
+      "retry_attempts": 0,
+      "collection_timing_pilot_only": [
+        {
+          "started_at_utc": "2026-11-19T21:40:31Z",
+          "ended_at_utc": "2026-11-19T21:55:12Z",
+          "total_s": 880.828,
+          "pacing_sleep_s": 576.834,
+          "backoff_sleep_s": 0.0,
+          "browser_startup_s": null,
+          "active_s_estimate": 303.994,
+          "aborted": null
+        }
+      ]
+    },
+    "selenium": {
+      "run_folder": "selenium_20261119_215532_benchmark200",
+      "rows": 200,
+      "unique_ids": 200,
+      "ids_missing_from_run": [],
+      "status_counts": {
+        "ok": 200
+      },
+      "field_non_empty": {
+        "identifier": 200,
+        "title": 200,
+        "creators": 200,
+        "first_creator": 200,
+        "publication_year": 200,
+        "subjects": 200,
+        "language": 200,
+        "addeddate": 200,
+        "scanned_page_count": 200,
+        "views_all_time": 200
+      },
+      "zero_view_rows": 0,
+      "attempts_logged": 200,
+      "retry_attempts": 0,
+      "collection_timing_pilot_only": [
+        {
+          "started_at_utc": "2026-11-19T21:55:32Z",
+          "ended_at_utc": "2026-11-19T22:11:18Z",
+          "total_s": 945.835,
+          "pacing_sleep_s": 366.04,
+          "backoff_sleep_s": 0.0,
+          "browser_startup_s": 14.225,
+          "active_s_estimate": 579.795,
+          "aborted": null
+        }
+      ]
+    }
+  },
+  "training": {
+    "run_folder": "api_20261119_213317_training2000",
+    "ids_in_manifest": 2000,
+    "usable_rows": 2000,
+    "not_usable_rows": 0,
+    "duplicate_identifiers": 0,
+    "distinct_work_groups": 1947,
+    "max_items_per_work_group": 3,
+    "benchmark_ids_in_training_csv": 200,
+    "field_non_empty": {
+      "identifier": 2000,
+      "title": 2000,
+      "creators": 2000,
+      "first_creator": 2000,
+      "publication_year": 2000,
+      "subjects": 2000,
+      "language": 2000,
+      "addeddate": 2000,
+      "scanned_page_count": 2000,
+      "views_all_time": 2000
+    },
+    "zero_view_rows_kept": 0,
+    "views_all_time": {
+      "min": 7,
+      "median": 282.0,
+      "max": 184689,
+      "mean": 798.38
+    },
+    "publication_year": {
+      "min": 1800,
+      "median": 1993.0,
+      "max": 2017,
+      "mean": 1985.75
+    },
+    "scanned_page_count": {
+      "min": 50,
+      "median": 288.0,
+      "max": 1434,
+      "mean": 305.51
+    },
+    "views_snapshot_window_utc": [
+      "2026-11-19T21:33:22Z",
+      "2026-11-19T21:38:39Z"
+    ],
+    "collection_timing_pilot_only": [
+      {
+        "started_at_utc": "2026-11-19T21:33:17Z",
+        "ended_at_utc": "2026-11-19T21:38:40Z",
+        "total_s": 322.602,
+        "pacing_sleep_s": 196.626,
+        "backoff_sleep_s": 0.0,
+        "browser_startup_s": null,
+        "active_s_estimate": 125.976,
+        "aborted": null
+      }
+    ],
+    "exclusions_before_collection": {
+      "metadata_exclusion_counts": {
+        "language does not include eng": 1
+      },
+      "group_cap_exclusions": 1,
+      "no_views_data_exclusions": 1,
+      "stream_items_examined": 2002
+    },
+    "benchmark_api_vs_training_api_views_changed": [],
+    "rows_per_stratum": {
+      "benchmark_random_fiction": 200,
+      "science_fiction": 600,
+      "fantasy": 600,
+      "mystery_thriller": 600
+    },
+    "manifest_ids_per_stratum": {
+      "benchmark_random_fiction": 200,
+      "science_fiction": 600,
+      "fantasy": 600,
+      "mystery_thriller": 600
+    },
+    "genre_rule_mismatch_vs_manifest": 0,
+    "rows_matching_several_genres": 126,
+    "views_percentiles": {
+      "p10": 82,
+      "p25": 139,
+      "p33": 178,
+      "p50": 282,
+      "p66": 461,
+      "p75": 623,
+      "p90": 1362,
+      "p99": 7125
+    },
+    "tercile_cutoffs_all_rows": {
+      "low_max": 178,
+      "high_min": 461
+    },
+    "views_bins_by_stratum": {
+      "benchmark_random_fiction": {
+        "0": 0,
+        "1-9": 1,
+        "10-99": 49,
+        "100-999": 119,
+        "1000-9999": 30,
+        "10000+": 1
+      },
+      "science_fiction": {
+        "0": 0,
+        "1-9": 0,
+        "10-99": 41,
+        "100-999": 465,
+        "1000-9999": 89,
+        "10000+": 5
+      },
+      "fantasy": {
+        "0": 0,
+        "1-9": 0,
+        "10-99": 69,
+        "100-999": 404,
+        "1000-9999": 122,
+        "10000+": 5
+      },
+      "mystery_thriller": {
+        "0": 0,
+        "1-9": 0,
+        "10-99": 130,
+        "100-999": 414,
+        "1000-9999": 55,
+        "10000+": 1
+      }
+    },
+    "tercile_share_by_stratum": {
+      "benchmark_random_fiction": {
+        "low": 81,
+        "medium": 57,
+        "high": 62
+      },
+      "science_fiction": {
+        "low": 154,
+        "medium": 249,
+        "high": 197
+      },
+      "fantasy": {
+        "low": 164,
+        "medium": 186,
+        "high": 250
+      },
+      "mystery_thriller": {
+        "low": 269,
+        "medium": 173,
+        "high": 158
+      }
+    }
+  },
+  "benchmark_comparison": {
+    "ids_expected": 200,
+    "per_method": {
+      "api": {
+        "rows": 200,
+        "status_counts": {
+          "ok": 200
+        },
+        "ids_not_in_csv": 0,
+        "extra_ids_not_in_manifest": 0
+      },
+      "bs4": {
+        "rows": 200,
+        "status_counts": {
+          "ok": 200
+        },
+        "ids_not_in_csv": 0,
+        "extra_ids_not_in_manifest": 0
+      },
+      "selenium": {
+        "rows": 200,
+        "status_counts": {
+          "ok": 200
+        },
+        "ids_not_in_csv": 0,
+        "extra_ids_not_in_manifest": 0
+      }
+    },
+    "fields": {
+      "title": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "creators": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "first_creator": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "publication_year": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "subjects": {
+        "compared": 200,
+        "equal": 199,
+        "differ": 1,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "language": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "addeddate": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "scanned_page_count": {
+        "compared": 200,
+        "equal": 200,
+        "differ": 0,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      },
+      "views_all_time": {
+        "compared": 200,
+        "equal": 5,
+        "differ": 195,
+        "differ_same_items_other_order": 0,
+        "missing_in_a_method": 0
+      }
+    },
+    "views_differences": "195 ids, see views_differences.csv",
+    "ids_ok_in_all_three": 200
+  }
+}

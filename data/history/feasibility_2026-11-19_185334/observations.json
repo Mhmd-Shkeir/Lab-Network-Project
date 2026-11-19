@@ -1,0 +1,180 @@
+{
+  "date_beirut": "2026-11-19_185334",
+  "scope": "10-work feasibility pilot, not a formal network benchmark",
+  "api": [
+    {
+      "requested_url": "https://openlibrary.org/subjects/science_fiction.json?limit=50&offset=0&published_in=1950-2020",
+      "final_url": "https://openlibrary.org/subjects/science_fiction.json?limit=50&offset=0&published_in=1950-2020",
+      "status": 200,
+      "elapsed_seconds": 10.516,
+      "response_body_bytes": 107758,
+      "http_responses_including_redirects": 1
+    },
+    {
+      "requested_url": "https://openlibrary.org/subjects/science_fiction.json?limit=50&offset=50&published_in=1950-2020",
+      "final_url": "https://openlibrary.org/subjects/science_fiction.json?limit=50&offset=50&published_in=1950-2020",
+      "status": 200,
+      "elapsed_seconds": 1.122,
+      "response_body_bytes": 86998,
+      "http_responses_including_redirects": 1
+    }
+  ],
+  "bs4": [
+    {
+      "requested_url": "https://openlibrary.org/works/OL5960415W",
+      "final_url": "https://openlibrary.org/verify_human?next=/works/OL5960415W",
+      "status": 200,
+      "elapsed_seconds": 0.437,
+      "response_body_bytes": 43491,
+      "http_responses_including_redirects": 2,
+      "page_title": "Human Verification | Open Library",
+      "verification_page": true,
+      "work_id": "OL5960415W"
+    },
+    {
+      "requested_url": "https://openlibrary.org/works/OL103123W",
+      "final_url": "https://openlibrary.org/verify_human?next=/works/OL103123W",
+      "status": 200,
+      "elapsed_seconds": 0.456,
+      "response_body_bytes": 43489,
+      "http_responses_including_redirects": 2,
+      "page_title": "Human Verification | Open Library",
+      "verification_page": true,
+      "work_id": "OL103123W"
+    }
+  ],
+  "selenium": [],
+  "notes": [
+    "Science-fiction subject; retained first publication years 1950-2020. English-edition filtering is not established by this Subjects API pilot. Sample uses the API default order and is not representative.",
+    "Stopped independent BS4 after two consecutive verification pages or a connection/access failure. Remaining target works were not attempted by BS4.",
+    "Selenium interrupted: Message: no such element: Unable to locate element: {\"method\":\"tag name\",\"selector\":\"body\"}",
+    "Retried Selenium after fixing a transient missing-body page-loading error. Existing API and BS4 evidence retained.",
+    "Stopped the resumed Selenium process after an observed connection error and one failed ordinary reload. No verification screen was reached in that retry. Screenshot and failure details saved separately."
+  ],
+  "summary": {
+    "target_records": 10,
+    "api_records": 10,
+    "independent_bs4_records": 0,
+    "selenium_records": 0,
+    "supplemental_bs4_browser_snapshot_records": 0,
+    "differences": [
+      {
+        "method": "bs4",
+        "work_id": "OL5960415W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL103123W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL675783W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL893414W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL261794W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL5735363W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL98459W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL103134W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL257943W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "bs4",
+        "work_id": "OL2163649W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL5960415W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL103123W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL675783W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL893414W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL261794W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL5735363W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL98459W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL103134W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL257943W",
+        "issue": "record not collected"
+      },
+      {
+        "method": "selenium",
+        "work_id": "OL2163649W",
+        "issue": "record not collected"
+      }
+    ],
+    "bs4_attempted_records": 2,
+    "bs4_unattempted_records": 8,
+    "selenium_retry_attempted_records": 1,
+    "selenium_retry_unattempted_records": 9,
+    "all_three_matching_records": 0,
+    "network_benchmark_complete": false
+  },
+  "selenium_retry": {
+    "requested_url": "https://openlibrary.org/works/OL5960415W",
+    "final_url": "https://openlibrary.org/works/OL5960415W",
+    "title": "openlibrary.org",
+    "visible_page_text": "This site can’t be reached\n\nopenlibrary.org refused to connect.\n\nTry:\n\nChecking the connection\nChecking the proxy and the firewall\nERR_CONNECTION_REFUSED\nReload\nDetails",
+    "outcome": "connection_error",
+    "ordinary_reload_attempts": 1,
+    "reload_error": "net::ERR_CONNECTION_REFUSED",
+    "verification_was_not_reached_in_this_retry": true,
+    "successful_records": 0
+  }
+}

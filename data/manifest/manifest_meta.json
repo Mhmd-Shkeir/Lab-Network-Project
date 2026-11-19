@@ -1,0 +1,25 @@
+{
+  "created_at_utc": "2026-11-19T20:45:07Z",
+  "source": "Internet Archive (archive.org)",
+  "pool_query": "collection:americana AND mediatype:texts AND language:eng AND subject:fiction AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500]",
+  "scrape_api_reported_total": 25722,
+  "snapshot_file": "pool_snapshot_20261119.csv.gz",
+  "snapshot_sha256": "95c397b5b71c851e19ee1e9823ceeaf4506a62b8c1628f04f79f5cdc32bac67f",
+  "snapshot_rows": 25722,
+  "ordering": "sha256(\"2026:<identifier>\") ascending",
+  "seed": 2026,
+  "metadata_exclusion_counts": {
+    "language does not include eng": 1
+  },
+  "eligible_after_metadata": 25721,
+  "stream_items_examined": 2002,
+  "group_cap_exclusions": 1,
+  "no_views_data_exclusions": 1,
+  "benchmark_size": 200,
+  "training_size": 2000,
+  "benchmark_group_cap": 1,
+  "training_group_cap": 3,
+  "distinct_work_groups_training": 1959,
+  "views_check_note": "have_data was checked once at created_at_utc; scrapers re-fetch everything later.",
+  "work_group_rule": "main title (before ' : ' ' ; ' ' / '), volume/part/edition markers removed, normalised, + first creator's surname"
+}

@@ -1,0 +1,11 @@
+﻿identifier,navigation_seconds,requests,encoded_bytes,failed_requests,document_status,hosts
+missingpersonswhit00whit,11.774,51,3269318,0,200,"{""archive.org"": 36, ""athena.archive.org"": 5, ""apollo.archive.org"": 1, ""ia600707.us.archive.org"": 7, ""sink.archive.org"": 1, ""openlibrary.org"": 1}"
+americanliterary00walc,1.171,49,129118,0,200,"{""archive.org"": 34, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia800503.us.archive.org"": 7, ""openlibrary.org"": 1}"
+amongcampsoryoun00pagerich,1.273,46,185643,0,200,"{""archive.org"": 31, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia802800.us.archive.org"": 7, ""openlibrary.org"": 1}"
+anne00ofgeiersteinscotrich,4.007,47,136302,0,200,"{""archive.org"": 32, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia801804.us.archive.org"": 7, ""openlibrary.org"": 1}"
+shapeofsand00eccl_0,1.204,52,147420,0,200,"{""archive.org"": 37, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia801903.us.archive.org"": 7, ""openlibrary.org"": 1}"
+gri_33125008988863,1.159,45,109231,0,200,"{""archive.org"": 31, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia601500.us.archive.org"": 7}"
+onesmokestories00aust,1.182,60,189357,0,200,"{""archive.org"": 35, ""apollo.archive.org"": 1, ""sink.archive.org"": 3, ""athena.archive.org"": 7, ""ia800107.us.archive.org"": 13, ""openlibrary.org"": 1}"
+sunrisetosunset00adam,2.261,49,143688,0,200,"{""archive.org"": 34, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia801604.us.archive.org"": 7, ""openlibrary.org"": 1}"
+eleventhcommandm01arch,1.423,50,88419,0,200,"{""archive.org"": 35, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia601904.us.archive.org"": 7, ""openlibrary.org"": 1}"
+packchallenge00shel,1.574,50,86112,0,200,"{""archive.org"": 35, ""apollo.archive.org"": 1, ""sink.archive.org"": 1, ""athena.archive.org"": 5, ""ia800404.us.archive.org"": 7, ""openlibrary.org"": 1}"

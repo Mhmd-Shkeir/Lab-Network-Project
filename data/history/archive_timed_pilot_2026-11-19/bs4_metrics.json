@@ -1,0 +1,81 @@
+{
+  "method": "bs4",
+  "started_at": "2026-11-19T19:44:44.026083+00:00",
+  "seconds": 75.397952789,
+  "records": 10,
+  "deliberate_delay_seconds": 3.0,
+  "startup_seconds": null,
+  "requests": [
+    {
+      "url": "https://archive.org/details/02713411.5992.emory.edu",
+      "status": 200,
+      "seconds": 2.0941985910000014,
+      "decoded_body_bytes": 218149,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/02713411.5993.emory.edu",
+      "status": 200,
+      "seconds": 2.1861085859999996,
+      "decoded_body_bytes": 238293,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/02lastmohicans00cooprich",
+      "status": 200,
+      "seconds": 3.2114846680000007,
+      "decoded_body_bytes": 266059,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/10000days00royc",
+      "status": 200,
+      "seconds": 1.2834775809999996,
+      "decoded_body_bytes": 218142,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/100booksforgirls00dods",
+      "status": 200,
+      "seconds": 1.703244748000003,
+      "decoded_body_bytes": 232034,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/100crookedlittle00robe",
+      "status": 200,
+      "seconds": 2.8081335769999995,
+      "decoded_body_bytes": 229545,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/100greatpastasau00grif",
+      "status": 200,
+      "seconds": 3.6639684549999956,
+      "decoded_body_bytes": 226925,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/100perfectgirl0000wann",
+      "status": 200,
+      "seconds": 23.690520701000004,
+      "decoded_body_bytes": 226799,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/100perfectgirl0003wann",
+      "status": 200,
+      "seconds": 2.2975680020000055,
+      "decoded_body_bytes": 226588,
+      "redirects": 0
+    },
+    {
+      "url": "https://archive.org/details/100storiesinblac00smit",
+      "status": 200,
+      "seconds": 4.395595076999996,
+      "decoded_body_bytes": 265564,
+      "redirects": 0
+    }
+  ],
+  "errors": []
+}

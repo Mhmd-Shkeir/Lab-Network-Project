@@ -1,0 +1,11 @@
+﻿run_id,method,context,attempt,started_at_utc,elapsed_s,url,status,decoded_bytes,final_url,error,navigation_timeout,browser_requests_so_far,outcome
+selenium_20261119_204838_validation,selenium,missingpersonswhit00whit,1,2026-11-19T20:48:40Z,11.7742,https://archive.org/details/missingpersonswhit00whit,200,,https://archive.org/details/missingpersonswhit00whit,,False,29,ok
+selenium_20261119_204838_validation,selenium,americanliterary00walc,1,2026-11-19T20:48:55Z,1.1708,https://archive.org/details/americanliterary00walc,200,,https://archive.org/details/americanliterary00walc,,False,27,ok
+selenium_20261119_204838_validation,selenium,amongcampsoryoun00pagerich,1,2026-11-19T20:48:59Z,1.2731,https://archive.org/details/amongcampsoryoun00pagerich,200,,https://archive.org/details/amongcampsoryoun00pagerich,,False,26,ok
+selenium_20261119_204838_validation,selenium,anne00ofgeiersteinscotrich,1,2026-11-19T20:49:03Z,4.007,https://archive.org/details/anne00ofgeiersteinscotrich,200,,https://archive.org/details/anne00ofgeiersteinscotrich,,False,27,ok
+selenium_20261119_204838_validation,selenium,shapeofsand00eccl_0,1,2026-11-19T20:49:10Z,1.2041,https://archive.org/details/shapeofsand00eccl_0,200,,https://archive.org/details/shapeofsand00eccl_0,,False,30,ok
+selenium_20261119_204838_validation,selenium,gri_33125008988863,1,2026-11-19T20:49:14Z,1.1591,https://archive.org/details/gri_33125008988863,200,,https://archive.org/details/gri_33125008988863,,False,26,ok
+selenium_20261119_204838_validation,selenium,onesmokestories00aust,1,2026-11-19T20:49:19Z,1.1822,https://archive.org/details/onesmokestories00aust,200,,https://archive.org/details/onesmokestories00aust,,False,28,ok
+selenium_20261119_204838_validation,selenium,sunrisetosunset00adam,1,2026-11-19T20:49:23Z,2.2607,https://archive.org/details/sunrisetosunset00adam,200,,https://archive.org/details/sunrisetosunset00adam,,False,27,ok
+selenium_20261119_204838_validation,selenium,eleventhcommandm01arch,1,2026-11-19T20:49:28Z,1.4231,https://archive.org/details/eleventhcommandm01arch,200,,https://archive.org/details/eleventhcommandm01arch,,False,28,ok
+selenium_20261119_204838_validation,selenium,packchallenge00shel,1,2026-11-19T20:49:33Z,1.5743,https://archive.org/details/packchallenge00shel,200,,https://archive.org/details/packchallenge00shel,,False,28,ok

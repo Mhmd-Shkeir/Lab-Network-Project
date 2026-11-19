@@ -1,0 +1,71 @@
+{
+  "method": "selenium",
+  "started_at": "2026-11-19T19:46:02.460404+00:00",
+  "seconds": 67.90833485599998,
+  "records": 10,
+  "deliberate_delay_seconds": 3.0,
+  "startup_seconds": 1.8001565779999993,
+  "requests": [
+    {
+      "url": "https://archive.org/details/02713411.5992.emory.edu",
+      "seconds": 25.593952098999992,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/02713411.5993.emory.edu",
+      "seconds": 1.7887750009999905,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/02lastmohicans00cooprich",
+      "seconds": 1.4311748769999895,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/10000days00royc",
+      "seconds": 1.229059804000002,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/100booksforgirls00dods",
+      "seconds": 1.220127419999983,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/100crookedlittle00robe",
+      "seconds": 1.6370077169999888,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/100greatpastasau00grif",
+      "seconds": 1.2447527330000128,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/100perfectgirl0000wann",
+      "seconds": 1.0921575760000053,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/100perfectgirl0003wann",
+      "seconds": 1.417662512000021,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    },
+    {
+      "url": "https://archive.org/details/100storiesinblac00smit",
+      "seconds": 1.4159844540000108,
+      "kind": "browser_navigation",
+      "note": "Subresource requests/bytes not counted here"
+    }
+  ],
+  "errors": []
+}

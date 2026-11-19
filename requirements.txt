@@ -1,8 +1,4 @@
+# Scrapers (everything needed to run scrapers/*.py)
 requests
 beautifulsoup4
-selenium
-pandas
-matplotlib
-seaborn
-scikit-learn
-jupyter
+selenium>=4.11

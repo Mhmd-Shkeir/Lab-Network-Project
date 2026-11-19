@@ -1,0 +1,103 @@
+{
+  "pool_query": "collection:americana AND mediatype:texts AND language:eng AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500] AND (subject:\"science fiction\" OR subject:fantasy OR subject:(\"detective and mystery stories\" OR \"mystery fiction\" OR \"detective fiction\" OR thriller OR thrillers OR \"suspense fiction\" OR \"spy stories\" OR \"crime fiction\"))",
+  "snapshot_rows": 6050,
+  "per_genre_target": 600,
+  "genres": {
+    "science_fiction": {
+      "rows_matching_rule_any_priority": 1880,
+      "assigned_primary_rows_after_rules": 1880,
+      "excluded_by_stage": {
+        "nonfiction_rule": 64,
+        "benchmark": 14
+      },
+      "candidates_after_all_rules": 1802,
+      "distinct_work_groups": 1675,
+      "candidates_after_group_cap_3_estimate": 1797,
+      "before_views_check_enough": true
+    },
+    "fantasy": {
+      "rows_matching_rule_any_priority": 1666,
+      "assigned_primary_rows_after_rules": 1343,
+      "excluded_by_stage": {
+        "nonfiction_rule": 57,
+        "benchmark": 2
+      },
+      "candidates_after_all_rules": 1284,
+      "distinct_work_groups": 1166,
+      "candidates_after_group_cap_3_estimate": 1267,
+      "before_views_check_enough": true
+    },
+    "mystery_thriller": {
+      "rows_matching_rule_any_priority": 2854,
+      "assigned_primary_rows_after_rules": 2805,
+      "excluded_by_stage": {
+        "nonfiction_rule": 69,
+        "benchmark": 5
+      },
+      "candidates_after_all_rules": 2731,
+      "distinct_work_groups": 2535,
+      "candidates_after_group_cap_3_estimate": 2707,
+      "before_views_check_enough": true
+    }
+  },
+  "overlap_rows": {
+    "science_fiction+fantasy": 311,
+    "science_fiction+mystery_thriller": 33,
+    "fantasy+mystery_thriller": 26,
+    "all_three": 10
+  },
+  "exclusion_reasons_top": [
+    [
+      "subject tag history and criticism",
+      51
+    ],
+    [
+      "subject tag authors,",
+      38
+    ],
+    [
+      "subject tag psycholog",
+      19
+    ],
+    [
+      "title contains guide to",
+      14
+    ],
+    [
+      "title contains magazine",
+      10
+    ],
+    [
+      "subject tag encyclop",
+      8
+    ],
+    [
+      "subject tag biography",
+      8
+    ],
+    [
+      "subject tag authorship",
+      5
+    ],
+    [
+      "subject tag bibliograph",
+      4
+    ],
+    [
+      "title contains handbook",
+      4
+    ],
+    [
+      "subject tag catalog",
+      3
+    ],
+    [
+      "title contains Encyclopedia of",
+      2
+    ]
+  ],
+  "created_at_utc": "2026-11-19T21:30:45Z",
+  "snapshot_file": "genre_pool_snapshot_20261119.csv.gz",
+  "snapshot_sha256": "7ae143dd340de3207a1800aa0e9c585a56fcf0f84ebb8acf1d229020fd13568d",
+  "scrape_api_reported_total": 6050
+}

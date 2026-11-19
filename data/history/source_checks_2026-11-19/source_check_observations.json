@@ -1,0 +1,54 @@
+{
+  "date_beirut": "2026-11-19",
+  "openlibrary_final_independent_test": {
+    "requested_url": "https://openlibrary.org/works/OL5960415W",
+    "final_url": "https://openlibrary.org/verify_human?next=/works/OL5960415W",
+    "status": 200,
+    "title": "Human Verification | Open Library",
+    "book_heading_present": false,
+    "elapsed_seconds": 5.091,
+    "retries": 0,
+    "browser_cookies_reused": false
+  },
+  "librivox_api_observed": {
+    "url": "https://librivox.org/api/feed/audiobooks/?id=47&format=json",
+    "status": 200,
+    "recording_id": "47",
+    "title": "Count of Monte Cristo",
+    "author": "Alexandre Dumas",
+    "num_sections": 128,
+    "total_time_seconds": 178995
+  },
+  "librivox_size_probe": {
+    "url": "https://librivox.org/api/feed/audiobooks/?format=json&limit=1&offset=200",
+    "status": 200,
+    "records_returned": 1,
+    "record_id": "289",
+    "title": "Short Poetry Collection 010"
+  },
+  "open_textbook_library_api_observed": {
+    "url": "https://open.umn.edu/opentextbooks/textbooks/4.json",
+    "status": 200,
+    "id": 4,
+    "title": "Accounting in the Finance World",
+    "copyright_year": 2016,
+    "rating": 4,
+    "review_count": 7,
+    "contributors": [],
+    "publisher": "University of Minnesota Libraries Publishing"
+  },
+  "catalog_and_policy_observations": {
+    "librivox_ai_train_signal": "no",
+    "open_textbook_library_record_license": "CC0 per discovery page",
+    "open_textbook_library_crawl_delay_seconds": 120,
+    "dbooks_search_queries": [
+      "data",
+      "java",
+      "python"
+    ],
+    "dbooks_unique_ids_observed": 278,
+    "dbooks_ids_saved": false
+  },
+  "project_selection_changed": false,
+  "model_trained": false
+}

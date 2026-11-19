@@ -1,80 +1,73 @@
-# Networks Lab Project: Open Library (Mohammad Ali + Issa)
+# Networks Lab Project: checklist (Internet Archive) — Mohammad Ali + Issa
 
-Deadline: **Wed 25 Nov 2026** (PDF). Dates below are a suggestion (DS project is due 24 Nov).
-Rule from the earlier labs: only put numbers you measured in the report.
+Deadline: **Wed 25 Nov 2026** (PDF); team target to finish **Mon 23 Nov**. DS project is due Tue 24 Nov.
+Rule: only numbers we measured go in the report; label every statement as measured / explanation / estimate.
+Owners: **M** = Mohammad (scrapers, data collection) · **I** = Issa (networking) · **Both** = cleaning, EDA, ML, report, presentation.
+Full plan and reasoning: `docs/IMPLEMENTATION_PLAN.md`; PDF requirement audit: `docs/PDF_REQUIREMENTS_AUDIT_2026-11-19.md`.
+The PDF does **not** require Open Library, K-Means, 200 or 2,000 records; those are our choices.
 
-## M1: Setup and target (15-16 Nov)
-- [x] Deadline: the end is between 23 and 25 Nov (PDF says Wed 25 Nov), so plan to finish by 23 Nov
-- [ ] Fix row 6 text: add security (ufw, rate limiting, threads) and the tool names (ss, iftop, tcpdump, Wireshark)
-- [ ] Define the fields: title, author, first_publish_year, edition_count
-- [ ] Define the query/subject and the sample size (e.g. 500-1000 books, same set for all 3 methods)
-- [ ] Create the repo and folders: scrapers/, data/, captures/, screenshots/, notebooks/, report/
-- [ ] Set up WSL Ubuntu: venv, tshark, ss, iftop, nload, ufw, Chrome + chromedriver (Selenium failed here last time)
-- [ ] Check Open Library rules (robots.txt, rate limits) and send a proper User-Agent
+## M0 Decisions and migration (M)
+- [x] Source: Internet Archive, Americana collection (archive.org HTML pages, search/metadata API, official Views API)
+- [x] Earlier experiments kept as history (`HISTORY.md`): Open Library, dBooks, LibriVox, 10-record IA pilot
+- [x] README, `scrapers/config.py`, checklist, data dictionary migrated to Internet Archive
+- [x] Filters, sampling, duplicate rules fixed and documented (`data/manifest/manifest_meta.json`, plan §3)
+- [ ] Tell the instructor/lab doctor about the switch from Open Library to Internet Archive and update row 6 of the spreadsheet (team)
 
-## M2: Build and validate the three scrapers (17-18 Nov)
-Methods: Selenium, BeautifulSoup, Open Library Search API.
-CSV columns (same for all): `work_id`, `title`, `author`, `first_publish_year`, `edition_count`.
-`work_id` is the key used to match rows across the three CSVs.
+## M1 Scrapers and data collection (M)
+- [x] Three separate scrapers: `ia_api_scraper.py`, `ia_bs4_scraper.py`, `ia_selenium_scraper.py` (+ `ia_common.py`)
+- [x] Pacing (3 s gap), retries with exponential backoff + jitter, Retry-After, adaptive slow-down, circuit breaker, checkpoint/resume, per-attempt logs
+- [x] Reproducible benchmark manifest: snapshot of the pool, seeded order, 200 distinct works, exclusions recorded
+- [x] 10-book validation of all three scrapers (fields identical; view counts differ, API higher)
+- [x] 200 books collected independently by all three methods (200/200 ok each); per-method CSVs; comparison tables.
+      First HTML run had parser defects (c1920 dates, microsecond timestamps, language names): fixed, re-collected, first run kept in `data/history/`
+- [x] Genre training manifest: availability + preview checked, explicit subject rules (`scrapers/genres.py`), 600 science fiction + 600 fantasy + 600 mystery/thriller,
+      overlap rule, criticism/teaching/bibliography exclusions, no popularity-based selection, at most 3 per work group
+- [x] 2,000 training records collected through the API (200 benchmark + 1,800 genre books, all ok); `training_api.csv`
+- [x] Data dictionary, completeness report, checksums, sampling/exclusion records
+- [x] Portable Selenium setup (no hard-coded browser paths) + `check_selenium_env.py`; Ubuntu VM instructions
+- [x] Networking handoff for Issa (`docs/HANDOFF_NETWORKING_ISSA.md`)
+- [ ] Not implemented in the scrapers: multithreading option, rate-limit comparison, proxy (see M3)
 
-**Step A: 10-book pilot (then STOP and review with the team)**
-- [ ] Pick one fixed search: query, filters and sort order written down
-- [ ] 10 distinct works, same search for all three methods
-- [ ] Each scraper exports its own CSV independently
-- [ ] Comparison report: works retrieved per method, works matched in all three, missing or different fields
-- [ ] If results differ: check query, filters, sort order first
-- [ ] Any unresolved mismatch goes back to the team before scaling up
-- [ ] Hand-off: 3 pilot scripts, 3 CSVs, comparison, any errors seen
-
-**Step B: 200 works (only after the pilot is reviewed)**
-- [ ] Fixed query, filters and sort order (same as the pilot)
-- [ ] 200 distinct works per method
-- [ ] Verify all three methods cover the same works
-- [ ] If fewer than 200 comparable records: show how many match and explain why, before changing the target
-- [ ] Rate limiting and error handling (429/403, retries, timeouts)
-
-## M3: Benchmark the final 200-work sample (19-21 Nov)
-**Baseline benchmark**
-- [ ] Each method runs 3 times on the same 200 works, same network and cache conditions
-- [ ] Per run record: total runtime, bytes transferred, HTTP request count, average request latency, successful records
-- [ ] Keep the raw results (one row per run) and report the **median runtime** per method
-- [ ] HTTP request count and latency come from client request logs
-- [ ] Network evidence: `tcpdump`, `ss`, and `iftop` or `nload`
-- [ ] Open the captures in Wireshark and save screenshots for the notebook
-
-**Kept separate from the baseline (never mixed into the comparison table)**
-- [ ] Multithreading test (sequential vs threads vs threads with rate limit)
-- [ ] ufw: `deny out 443`, show the scraper failing, delete only that rule, show it working again (prove the rule was active)
-- [ ] Proxy (Squid/Tor): optional, only if time allows
-
-**Output**
+## M2 Network measurements (I) — must re-run the scrapers under capture
+- [ ] Set up Ubuntu VM, run `python scrapers/check_selenium_env.py` (ARM/Apple-silicon browser may need the alternative in `docs/SETUP_UBUNTU_VM.md`)
+- [ ] tcpdump / ss / iftop / nload / tshark work; capture interface chosen and written down
+- [ ] 3 runs × 3 methods on `data/manifest/benchmark_200_ids.json`, rotated order, one pcap each, same pacing
+- [ ] Metrics table: Method, bandwidth (KB, from pcap), time (s) with total / sleep / active, #requests (+ Selenium sub-requests), avg latency (ms) with definition
+- [ ] Outliers kept; one row per run, median and mean/min/max per method
+- [ ] Wireshark screenshots (conversations, IO graph, TCP RTT, TLS hosts), `ss` logs, iftop/nload screenshots
 - [ ] Networking notebook with charts and screenshots
 
-## M4: Data cleaning and ML (21-22 Nov)
-- [ ] Input: one verified CSV from the final 200-work collection
-- [ ] Remove duplicate `work_id`s
-- [ ] Document every missing value that was excluded during cleaning (how many, which field)
-- [ ] Features for K-Means: `first_publish_year` and `edition_count` only
-- [ ] Check odd years and types
-- [ ] EDA with pandas/matplotlib/seaborn (year histogram, edition-count distribution)
-- [ ] K-Means on publication year + edition count (log-scale edition count, standardize)
-- [ ] Pick k with elbow + silhouette; visualize the clusters
-- [ ] Describe each cluster in plain words
+## M3 Security and responsible use (I, with M if code is needed)
+- [ ] ufw: deny out 443 → show failure and retry/backoff in the logs → delete only that rule → show recovery; prove the rule was active
+- [ ] Rate limiting: effect of the delay setting and of `Retry-After` handling (no unthrottled tests against archive.org)
+- [ ] Multithreading: shared global pacer; sequential vs threads; needs a small addition to the scrapers (decide who writes it)
+- [ ] Proxy (Squid/Tor): optional, last
+
+## M4 Cleaning, EDA and ML (Both)
+- [ ] Install analysis packages (`requirements-analysis.txt`) in Colab or a local Python (not needed on the VM)
+- [ ] Clean `data/training_api.csv`: types, implausible values, duplicates, exclusions; keep raw files untouched
+- [ ] EDA with pandas/matplotlib/seaborn (views raw + log, year, pages, item age, subjects, API-vs-page view differences)
+- [ ] Targets: log1p(views) for regression; low/medium/high from training-set terciles for classification
+- [ ] Use `sampling_stratum` / genre columns for EDA and as features or stratification, keep the 200 benchmark books flagged (`in_benchmark`)
+- [ ] Split by `work_group` (grouped train/test), fit transformers/thresholds on training data only, baselines, models, metrics
+- [ ] Never use last-30/7-day views or any views-derived column as an input
+- [ ] K-Means on year + log(pages) as an additional exploratory analysis (optional)
 - [ ] ML notebook (Jupyter or Colab)
 
-## M5: Conclusion, report and presentation (23-24 Nov)
-- [ ] Final report PDF
-- [ ] 10-minute presentation: performance charts, network trace visuals, ML results
-- [ ] Repo complete: 3 scrapers, networking notebook, ML notebook, report PDF
-- [ ] Rehearse under 10 minutes, both of you speak
+## M5 Report and presentation (Both)
+- [ ] Final report PDF following the PDF sections; measured / explanation / estimate labels; limitations
+- [ ] 10-minute presentation: performance charts, visualized network traces, ML results; both speak; rehearse
+- [ ] Repository complete: 3 scrapers, networking notebook, ML notebook, report PDF
 
 ## The conclusion (what it must contain)
-The PDF goal 5: "recommend the best scraping strategy for efficiency and stability".
-- [ ] One clear winner, stated first (expected: API)
-- [ ] Evidence table from M3: time, bandwidth, requests, latency per method
-- [ ] Efficiency: why (structured JSON vs full HTML vs a full browser loading scripts/images)
-- [ ] Stability: failures seen, 429s, ufw block behavior, effect of threads and rate limiting
-- [ ] When each method is still the right choice (BS4 with no API, Selenium for JS-heavy pages)
-- [ ] Best settings: threads, delay between requests, retries
-- [ ] ML link: what K-Means showed about the books, and that the data collected is the same whichever method was used
-- [ ] Limitations: sample size, single runs, one network, anything not tested (say so honestly)
+- [ ] Best method for efficiency **and** stability, stated first, with the evidence table from M2 (not decided in advance; API was fastest in the pilot only)
+- [ ] Stability evidence: failures, retries, 429s, ufw behaviour, effect of delay/threads
+- [ ] When each method is still the right choice (BS4 without an API, Selenium for JS-heavy pages)
+- [ ] Best settings found (delay, retries, threads, batch size)
+- [ ] ML results versus baselines, and what views do/do not mean (one archived copy, not worldwide popularity or sales)
+- [ ] Limitations: one site, one network, one snapshot, API-vs-page view-count difference, pilot timings are not the final comparison
+
+## Known open points
+- Views API vs page counter differ for most books (API higher); cause not verified.
+- `subject:fiction` also matches some non-fiction books about fiction.
+- Instructor/lab doctor has not been told about the source change (team decision).

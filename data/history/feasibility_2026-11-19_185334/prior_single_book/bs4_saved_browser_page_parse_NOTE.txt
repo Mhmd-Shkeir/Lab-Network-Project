@@ -1,0 +1,1 @@
+Supplemental local parser check on HTML previously captured by Selenium after manual verification. This did not make a live Requests/BS4 request and is not independent BS4 scraping success.

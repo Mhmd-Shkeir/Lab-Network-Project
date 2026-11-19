@@ -1,0 +1,18 @@
+{
+  "independent_session": true,
+  "browser_cookies_reused": false,
+  "events": [
+    {
+      "work_id": "OL5960415W",
+      "requested_url": "https://openlibrary.org/works/OL5960415W",
+      "final_url": "https://openlibrary.org/verify_human?next=/works/OL5960415W",
+      "status": 200,
+      "page_title": "Human Verification | Open Library",
+      "verification_page": true,
+      "elapsed_seconds": 7.156,
+      "http_responses_including_redirects": 2,
+      "response_body_bytes": 43539
+    }
+  ],
+  "records_collected": 0
+}

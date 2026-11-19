@@ -1,0 +1,41 @@
+{
+  "run_id": "build_log",
+  "method": "manifest",
+  "ids_file": null,
+  "ids_requested": 0,
+  "records_saved": 0,
+  "status_counts": {},
+  "attempts_logged_total": 52,
+  "retry_attempts_total": 4,
+  "attempt_seconds": {
+    "n": 52,
+    "mean": 2.855,
+    "median": 0.475,
+    "max": 26.726
+  },
+  "decoded_body_bytes_total": 5378020,
+  "delay_seconds_setting": 3.0,
+  "user_agent": "LabNetProject/1.0 (university networking lab project; code written with claude-sonnet-5-5)",
+  "resumed": false,
+  "segments": [
+    {
+      "started_at_utc": "2026-11-19T20:45:07Z",
+      "ended_at_utc": "2026-11-19T20:47:28Z",
+      "total_s": 140.979,
+      "pacing_sleep_s": 119.637,
+      "backoff_sleep_s": 0.0,
+      "browser_startup_s": null,
+      "active_s_estimate": 21.342,
+      "aborted": null
+    }
+  ],
+  "notes": "Timings are pilot/collection timings, not the final network comparison. decoded_body_bytes_total is decoded response body size, not wire bandwidth.",
+  "environment": {
+    "python": "3.14.4",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "requests": "2.34.2",
+    "bs4": "4.15.0",
+    "selenium": "4.52.0"
+  }
+}

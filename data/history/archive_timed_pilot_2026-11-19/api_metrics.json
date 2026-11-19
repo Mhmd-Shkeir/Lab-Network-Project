@@ -1,0 +1,25 @@
+{
+  "method": "api",
+  "started_at": "2026-11-19T19:44:35.476461+00:00",
+  "seconds": 5.502624818000001,
+  "records": 10,
+  "deliberate_delay_seconds": 3.0,
+  "startup_seconds": null,
+  "requests": [
+    {
+      "url": "https://archive.org/advancedsearch.php?q=identifier%3A%28%2202713411.5992.emory.edu%22+OR+%2202713411.5993.emory.edu%22+OR+%2202lastmohicans00cooprich%22+OR+%2210000days00royc%22+OR+%22100booksforgirls00dods%22+OR+%22100crookedlittle00robe%22+OR+%22100greatpastasau00grif%22+OR+%22100perfectgirl0000wann%22+OR+%22100perfectgirl0003wann%22+OR+%22100storiesinblac00smit%22%29&rows=10&output=json&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=creator&fl%5B%5D=year&fl%5B%5D=subject&fl%5B%5D=language&fl%5B%5D=addeddate&fl%5B%5D=imagecount",
+      "status": 200,
+      "seconds": 1.8311192739999997,
+      "decoded_body_bytes": 4276,
+      "redirects": 0
+    },
+    {
+      "url": "https://be-api.us.archive.org/views/v1/short/02713411.5992.emory.edu,02713411.5993.emory.edu,02lastmohicans00cooprich,10000days00royc,100booksforgirls00dods,100crookedlittle00robe,100greatpastasau00grif,100perfectgirl0000wann,100perfectgirl0003wann,100storiesinblac00smit",
+      "status": 200,
+      "seconds": 0.6709435030000002,
+      "decoded_body_bytes": 884,
+      "redirects": 0
+    }
+  ],
+  "errors": []
+}
