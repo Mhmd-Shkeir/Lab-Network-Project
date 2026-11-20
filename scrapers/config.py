@@ -55,6 +55,9 @@ BACKOFF_CAP = 60.0
 MAX_RETRY_AFTER = 120.0          # longer Retry-After than this stops the run instead of waiting
 RETRY_STATUSES = {408, 429, 500, 502, 503, 504}
 BREAKER_CONSECUTIVE_FAILURES = 5  # stop the run after this many failed records in a row
+MAX_WORKERS = 8                  # hard cap for --workers (API / BS4)
+MAX_WORKERS_SELENIUM = 4         # one Chrome per worker, so a lower cap
+MIN_ALLOWED_INTERVAL = 0.5       # --min-interval below this is refused (no unthrottled runs); total cap = 1 / interval
 SLOWDOWN_MAX_INTERVAL = 30.0     # delay doubles on 429/503 up to this value
 SLOWDOWN_RECOVER_AFTER = 50      # clean requests before the delay halves again
 

@@ -25,7 +25,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 ### Mohammad
 
 - [ ] Help resolve scraper/setup issues from Issa's smoke checks.
-- [ ] Add a bounded `--workers` mode for the threading experiment. Test a genuinely shared global request limit locally; the current sequential pacer is not sufficient to guarantee that limit across workers.
+- [x] Bounded `--workers` / `--min-interval` mode in all three scrapers with ONE global start-to-start request limit shared by all workers (retries included, 429/503 pauses everyone); 24 offline tests pass; not run against archive.org. Issa's commands are in the networking handoff.
 - [ ] Begin the ML notebook: load `training_api.csv`, validate types and groups, inspect distributions and define the prediction task.
 
 ### Both

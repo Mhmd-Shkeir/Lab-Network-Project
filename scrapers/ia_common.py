@@ -11,6 +11,7 @@ import email.utils
 import hashlib
 import json
 import platform
+import queue
 import random
 import re
 import statistics
@@ -149,6 +150,63 @@ class Pacer:
                 self.interval = max(self.base, self.interval / 2)
                 self._clean = 0
 
+    def hold(self, seconds):
+        """No-op: a single sequential client simply sleeps itself (see SharedRateLimiter.hold)."""
+
+
+class SharedRateLimiter(Pacer):
+    """GLOBAL request limit shared by every worker thread: request starts are at least `interval` seconds apart.
+
+    Each attempt (first tries and retries, any worker) reserves the next free start slot under one lock,
+    then sleeps until that slot. So the total request rate is <= 1 / interval no matter how many workers run;
+    more workers only overlap the waiting for slow responses. The sequential Pacer (end-to-start gap) does NOT
+    give this guarantee with several threads.
+
+    A 429/503 doubles the shared interval and `hold()` pushes the next slot out, so all workers pause
+    (Retry-After is honoured globally).
+    """
+
+    def __init__(self, min_interval):
+        super().__init__(min_interval)
+        self._next_slot = 0.0
+        self._hold_until = 0.0
+
+    def wait(self):
+        while True:
+            with self._lock:
+                now = time.monotonic()
+                slot = max(now, self._next_slot, self._hold_until)
+                self._next_slot = slot + self.interval
+                delay = slot - now
+            if delay > 0:
+                time.sleep(delay)
+                with self._lock:
+                    self.pacing_sleep_s += delay      # summed over all workers (thread-seconds)
+            with self._lock:
+                if time.monotonic() >= self._hold_until:
+                    return                            # no pause was requested while we slept
+            # a 429/503 hold arrived while this worker slept: reserve a fresh slot after the hold
+
+    def done(self):
+        """Nothing to record: spacing is between request STARTS, not from the previous end."""
+
+    def hold(self, seconds):
+        """Pause every worker for `seconds` (also those that already reserved a slot)."""
+        with self._lock:
+            until = time.monotonic() + max(0.0, seconds)
+            self._hold_until = max(self._hold_until, until)
+            self._next_slot = max(self._next_slot, self._hold_until)
+
+
+def validate_rate_args(workers, min_interval, max_workers=None):
+    """Bounds for the threaded mode (raises ValueError with a clear message)."""
+    cap = max_workers or config.MAX_WORKERS
+    if not (1 <= workers <= cap):
+        raise ValueError(f"--workers must be between 1 and {cap}")
+    if min_interval < config.MIN_ALLOWED_INTERVAL:
+        raise ValueError(f"--min-interval must be at least {config.MIN_ALLOWED_INTERVAL} s "
+                         "(no unthrottled requests against archive.org)")
+
 
 # ----------------------------------------------------------------------------- run folder
 def load_ids(path, limit=None):
@@ -196,6 +254,8 @@ class Run:
         self.resumed = bool(resume)
         self._lock = threading.Lock()
         self.pacer = Pacer()
+        self.workers = 1
+        self.rate_mode = "sequential_gap"        # or "shared_start_interval" (threaded option)
         self.browser_startup_s = None
         self.ids_path = str(ids_path) if ids_path else None
         if resume:
@@ -208,8 +268,21 @@ class Run:
             if meta.exists():
                 self.segments = json.loads(meta.read_text(encoding="utf-8")).get("segments", [])
 
+    # -- threaded mode
+    def use_shared_limiter(self, workers, min_interval, max_workers=None):
+        """Switch to the global start-to-start limiter shared by `workers` threads."""
+        validate_rate_args(workers, min_interval, max_workers)
+        self.pacer = SharedRateLimiter(min_interval)
+        self.workers = workers
+        self.rate_mode = "shared_start_interval"
+
+    def add_browser_startup(self, seconds):
+        with self._lock:
+            self.browser_startup_s = (self.browser_startup_s or 0) + seconds
+
     # -- logging
     def log_attempt(self, entry):
+        entry.setdefault("worker", threading.current_thread().name)
         entry = {"run_id": self.run_id, "method": self.method, **entry}
         with self._lock, open(self.attempts_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(entry, ensure_ascii=False, default=str) + "\n")
@@ -255,13 +328,17 @@ class Run:
         for r in ordered:
             statuses[r.get("status", "")] = statuses.get(r.get("status", ""), 0) + 1
         elapsed = [a["elapsed_s"] for a in attempts if isinstance(a.get("elapsed_s"), (int, float))]
+        threaded = self.workers > 1
         segment = {
             "started_at_utc": self.started_at, "ended_at_utc": iso(),
             "total_s": round(total, 3),
             "pacing_sleep_s": round(self.pacer.pacing_sleep_s, 3),
             "backoff_sleep_s": round(self.pacer.backoff_sleep_s, 3),
             "browser_startup_s": None if self.browser_startup_s is None else round(self.browser_startup_s, 3),
-            "active_s_estimate": round(total - self.pacer.pacing_sleep_s - self.pacer.backoff_sleep_s, 3),
+            # with several workers the sleeps are summed over threads, so wall-clock active time cannot be derived
+            "active_s_estimate": None if threaded else round(
+                total - self.pacer.pacing_sleep_s - self.pacer.backoff_sleep_s, 3),
+            "sleep_totals_are_summed_over_workers": threaded,
             "aborted": aborted,
         }
         self.segments.append(segment)
@@ -277,6 +354,8 @@ class Run:
             },
             "decoded_body_bytes_total": sum(a.get("decoded_bytes") or 0 for a in attempts),
             "delay_seconds_setting": self.pacer.base, "user_agent": config.USER_AGENT,
+            "rate_limit": {"mode": self.rate_mode, "workers": self.workers, "interval_s": self.pacer.base,
+                           "interval_s_at_end": self.pacer.interval, **observed_rate(attempts)},
             "resumed": self.resumed, "segments": self.segments,
             "notes": "Timings are pilot/collection timings, not the final network comparison. "
                      "decoded_body_bytes_total is decoded response body size, not wire bandwidth.",
@@ -284,6 +363,27 @@ class Run:
         }
         dump_json(self.dir / "run.json", summary)
         return summary
+
+
+def observed_rate(attempts):
+    """What the run actually did, from the attempt log: smallest gap between request STARTS, most attempts in flight
+    at once, and the overall attempt rate. Used to verify a run stayed inside its global limit."""
+    spans = sorted((a["t_start_s"], a["t_end_s"]) for a in attempts
+                   if isinstance(a.get("t_start_s"), (int, float)) and isinstance(a.get("t_end_s"), (int, float)))
+    if not spans:
+        return {"attempts_with_timing": 0}
+    starts = [s for s, _ in spans]
+    gaps = [b - a for a, b in zip(starts, starts[1:])]
+    events = sorted([(s, 1) for s, _ in spans] + [(e, -1) for _, e in spans], key=lambda x: (x[0], x[1]))
+    live = peak = 0
+    for _, delta in events:
+        live += delta
+        peak = max(peak, live)
+    span = (max(e for _, e in spans) - starts[0]) or None
+    return {"attempts_with_timing": len(spans),
+            "min_start_gap_s": round(min(gaps), 4) if gaps else None,
+            "max_requests_in_flight": peak,
+            "attempts_per_second_overall": round(len(spans) / span, 4) if span else None}
 
 
 def environment_info():
@@ -332,10 +432,12 @@ class Client:
                 resp = self.session.get(url, params=params, timeout=(config.CONNECT_TIMEOUT, config.READ_TIMEOUT))
             except self.requests.RequestException as e:
                 exc = e
-            elapsed = time.perf_counter() - t0
+            t_end = time.perf_counter()
+            elapsed = t_end - t0
             self.pacer.done()
             entry = {
                 "context": context, "attempt": attempt, "started_at_utc": started,
+                "t_start_s": round(t0 - self.run.t0, 4), "t_end_s": round(t_end - self.run.t0, 4),
                 "elapsed_s": round(elapsed, 4),
                 "url": (resp.request.url if resp is not None else url)[:300],
                 "status": resp.status_code if resp is not None else None,
@@ -374,6 +476,8 @@ class Client:
                     config.BACKOFF_CAP, config.BACKOFF_BASE * 2 ** (attempt - 1)) + random.uniform(0, 1)
                 entry["outcome"], entry["backoff_wait_s"] = "retry", round(retry_wait, 3)
                 self.run.log_attempt(entry)
+                if resp is not None and resp.status_code in (429, 503):
+                    self.pacer.hold(retry_wait)        # threaded mode: every worker pauses, not just this one
                 self.pacer.backoff(retry_wait)
                 continue
             entry["outcome"] = "failed"
@@ -531,20 +635,112 @@ def add_common_args(parser, default_ids="data/manifest/benchmark_200_ids.json"):
     parser.add_argument("--label", help="suffix for the new run folder name")
     parser.add_argument("--resume", help="resume an existing run folder instead of starting fresh")
     parser.add_argument("--retry-failed", action="store_true", help="with --resume: try failed ids again")
-    parser.add_argument("--delay", type=float, help=f"seconds between requests (default {config.DELAY_SECONDS})")
+    parser.add_argument("--delay", type=float, help="sequential mode: seconds between the END of one request and the "
+                        f"START of the next (default {config.DELAY_SECONDS}); not used with --workers")
+    parser.add_argument("--workers", type=int, help="threaded mode: number of worker threads (1.."
+                        f"{config.MAX_WORKERS}; Selenium 1..{config.MAX_WORKERS_SELENIUM}). All workers share ONE global limit: "
+                        "request starts are at least --min-interval seconds apart. Without this option the run is "
+                        "sequential (unchanged behaviour)")
+    parser.add_argument("--min-interval", type=float, help="with --workers: minimum seconds between request STARTS "
+                        f"across all workers (default {config.DELAY_SECONDS}; minimum {config.MIN_ALLOWED_INTERVAL}). "
+                        "The total request rate is at most 1 / this value, whatever the number of workers")
     parser.add_argument("--final-csv", help="also write the finished CSV to this path")
 
 
-def start_run(method, args, extra=None):
-    """Create the run (fresh folder, or --resume) and apply --delay. Returns (run, id_rows, todo)."""
+def start_run(method, args, extra=None, max_workers=None):
+    """Create the run (fresh folder, or --resume), apply --delay or the threaded limiter. Returns (run, id_rows, todo)."""
+    workers, min_interval = getattr(args, "workers", None), getattr(args, "min_interval", None)
+    if workers is None and min_interval is not None:
+        raise SystemExit("--min-interval needs --workers (sequential mode uses --delay)")
+    if workers is not None and args.delay is not None:
+        raise SystemExit("--delay is for sequential runs; with --workers use --min-interval")
+    if workers is not None:
+        try:
+            validate_rate_args(workers, config.DELAY_SECONDS if min_interval is None else min_interval,
+                               max_workers or config.MAX_WORKERS)
+        except ValueError as exc:
+            raise SystemExit(str(exc))
     id_rows = load_ids(args.ids, args.limit)
     run = Run(method, out_root=args.out_root, resume=args.resume, label=args.label,
               ids_path=args.ids, extra=extra)
-    if args.delay is not None:
+    if workers is not None:
+        run.use_shared_limiter(workers, config.DELAY_SECONDS if min_interval is None else min_interval,
+                               max_workers or config.MAX_WORKERS)
+    elif args.delay is not None:
         run.pacer.base = run.pacer.interval = float(args.delay)
     todo = run.pending(id_rows, retry_failed=args.retry_failed)
-    print(f"[{run.run_id}] {len(id_rows)} ids in manifest, {len(todo)} to collect -> {run.dir}", flush=True)
+    mode = (f"{workers} worker(s), global limit 1 request start per {run.pacer.base:g}s" if workers is not None
+            else f"sequential, {run.pacer.base:g}s gap")
+    print(f"[{run.run_id}] {len(id_rows)} ids in manifest, {len(todo)} to collect, {mode} -> {run.dir}", flush=True)
     return run, id_rows, todo
+
+
+def client_factory(run):
+    """Returns get_client(): one Client (own requests.Session) per thread, all sharing the run's limiter/logging."""
+    local = threading.local()
+
+    def get_client():
+        if not hasattr(local, "client"):
+            local.client = Client(run)
+        return local.client
+    return get_client
+
+
+def run_parallel(items, handler, workers, on_worker_exit=None):
+    """Process `items` with handler(item) on at most `workers` threads (bounded; items are queued, not spawned).
+
+    workers == 1 runs inline in the calling thread (the sequential path). The first Abort (or unexpected
+    exception) in any worker stops the others before they take another item and is re-raised here. Requests
+    already in flight finish. `on_worker_exit()` runs once in each worker thread at the end (cleanup/flush).
+    """
+    if workers <= 1:
+        try:
+            for item in items:
+                handler(item)
+        finally:
+            if on_worker_exit:
+                on_worker_exit()
+        return
+    pending = queue.Queue()
+    for item in items:
+        pending.put(item)
+    stop, errors, lock = threading.Event(), [], threading.Lock()
+
+    def loop(number):
+        threading.current_thread().name = f"worker-{number}"
+        try:
+            while not stop.is_set():
+                try:
+                    item = pending.get_nowait()
+                except queue.Empty:
+                    return
+                handler(item)
+        except BaseException as exc:                      # Abort or a bug: stop everyone
+            with lock:
+                errors.append(exc)
+            stop.set()
+        finally:
+            if on_worker_exit:
+                try:
+                    on_worker_exit()
+                except BaseException as exc:
+                    with lock:
+                        errors.append(exc)
+                    stop.set()
+
+    threads = [threading.Thread(target=loop, args=(n,), daemon=True) for n in range(1, workers + 1)]
+    for t in threads:
+        t.start()
+    try:
+        for t in threads:
+            t.join()
+    except KeyboardInterrupt:
+        stop.set()
+        for t in threads:
+            t.join()
+        raise
+    if errors:
+        raise next((e for e in errors if isinstance(e, Abort)), errors[0])
 
 
 def execute(run, id_rows, args, work):

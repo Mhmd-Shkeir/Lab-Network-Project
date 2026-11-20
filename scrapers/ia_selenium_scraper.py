@@ -16,6 +16,8 @@ Example:
     python scrapers/ia_selenium_scraper.py --limit 10 --label validation
     python scrapers/ia_selenium_scraper.py                # visible browser (needs a desktop session)
     python scrapers/ia_selenium_scraper.py --headless     # no window
+Threaded (optional, heavy: one Chrome per worker, max 4; ONE global limit, starts >= --min-interval apart):
+    python scrapers/ia_selenium_scraper.py --workers 2 --min-interval 3 --label threads2
 """
 import argparse
 import json
@@ -23,14 +25,15 @@ import os
 import shutil
 import sys
 import tempfile
+import threading
 import time
 from collections import Counter
 from urllib.parse import urlparse
 
 import config
 from ia_common import (Abort, add_common_args, clean, execute, failed_row, finalize_row, iso, language_codes,
-                       added_to_iso, looks_like_gate, new_row, start_run, to_int, unique, write_flat_csv,
-                       year_from, _retry_after_seconds)
+                       added_to_iso, looks_like_gate, new_row, run_parallel, start_run, to_int, unique,
+                       write_flat_csv, year_from, _retry_after_seconds)
 
 CHROME_NAMES = ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser"]
 VIEWS_SELECTOR = 'section.item-stats-summary [itemprop="userInteractionCount"]'
@@ -153,43 +156,29 @@ def extract(driver):
     raise RuntimeError("page kept changing while reading it (stale elements)")
 
 
-# ----------------------------------------------------------------------------- main
-def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    add_common_args(parser)
-    parser.add_argument("--chrome-binary", help="path to Chrome/Chromium (else CHROME_BINARY or PATH)")
-    parser.add_argument("--chromedriver", help="path to chromedriver (else CHROMEDRIVER or PATH)")
-    parser.add_argument("--headless", action="store_true", help="run without a window (default: visible)")
-    parser.add_argument("--page-load-strategy", choices=["normal", "eager", "none"], default="normal",
-                        help="normal waits for the load event (default); eager stops at DOMContentLoaded")
-    parser.add_argument("--page-timeout", type=int, default=60, help="page load timeout, seconds")
-    parser.add_argument("--element-timeout", type=int, default=20, help="seconds to wait for the item title")
-    parser.add_argument("--chrome-arg", action="append", help="extra Chrome flag, repeatable")
-    args = parser.parse_args(argv)
+# ----------------------------------------------------------------------------- one browser worker
+class BrowserWorker:
+    """One Chrome instance (own temporary profile) that collects pages. With --workers N there are N of these,
+    each used by exactly one thread; all share the run's global rate limiter and logs."""
 
-    from selenium.common.exceptions import TimeoutException, WebDriverException
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
+    def __init__(self, args, run, page_metrics, metrics_lock):
+        self.args, self.run = args, run
+        self.page_metrics, self.metrics_lock = page_metrics, metrics_lock
+        self.profile_dir = tempfile.mkdtemp(prefix="labnet_chrome_")
+        self.driver, self.pending, self.restarts = None, None, 0
 
-    run, id_rows, todo = start_run("selenium", args, extra={
-        "page_load_strategy": args.page_load_strategy, "headless": args.headless})
-    profile_dir = tempfile.mkdtemp(prefix="labnet_chrome_")
-    state = {"driver": None, "pending": None, "restarts": 0}
-    page_metrics = []
-
-    def start_browser():
+    def start_browser(self):
         t = time.perf_counter()
-        state["driver"], info = build_driver(args, profile_dir)
-        run.browser_startup_s = (run.browser_startup_s or 0) + (time.perf_counter() - t)
-        run.extra.update(info)
+        self.driver, info = build_driver(self.args, self.profile_dir)
+        self.run.add_browser_startup(time.perf_counter() - t)
+        self.run.extra.update(info)
         print(f"  browser {info['browser_version']} ready in {time.perf_counter() - t:.1f}s", flush=True)
 
-    def commit(extra_events):
+    def commit(self, extra_events):
         """Attach late sub-requests to the previous page's record, then checkpoint it."""
-        pending = state["pending"]
-        if pending is None:
+        if self.pending is None:
             return
-        row, events, nav_seconds = pending
+        row, events, nav_seconds = self.pending
         events = events + extra_events
         perf = summarize_perf(events)
         # Counts include every attempt; the document status describes the final attempt.
@@ -197,36 +186,43 @@ def main(argv=None):
             perf["document_status"] = row["http_status"]
         row["browser"] = {k: v for k, v in perf.items() if k != "document_headers"}
         row["browser"]["navigation_seconds"] = nav_seconds
-        page_metrics.append({"identifier": row["identifier"], "navigation_seconds": nav_seconds,
-                             "requests": perf["browser_requests"], "encoded_bytes": perf["browser_encoded_bytes"],
-                             "failed_requests": perf["browser_failed_requests"],
-                             "document_status": perf["document_status"],
-                             "hosts": json.dumps(perf["browser_hosts"])})
-        state["pending"] = None
-        run.save_record(row)
+        with self.metrics_lock:
+            self.page_metrics.append({
+                "identifier": row["identifier"], "navigation_seconds": nav_seconds,
+                "requests": perf["browser_requests"], "encoded_bytes": perf["browser_encoded_bytes"],
+                "failed_requests": perf["browser_failed_requests"], "document_status": perf["document_status"],
+                "hosts": json.dumps(perf["browser_hosts"])})
+        self.pending = None
+        self.run.save_record(row)
         print(f"  {row['identifier']}: {row['status']} views={row['views_all_time']} "
               f"browser_requests={perf['browser_requests']} encoded_bytes={perf['browser_encoded_bytes']}",
               flush=True)
 
-    def collect(position, identifier):
+    def collect(self, position, identifier):
+        from selenium.common.exceptions import TimeoutException, WebDriverException
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support.ui import WebDriverWait
+        run, args = self.run, self.args
+        if self.driver is None:
+            self.start_browser()
         row = new_row(identifier, "selenium", run, position)
         url = config.DETAIL_URL + identifier
         events, error = [], ""
         for attempt in range(1, config.MAX_RETRIES + 2):
             run.pacer.wait()
             if attempt == 1:                      # sub-requests of the previous page finished during the gap
-                commit(drain(state["driver"]))
+                self.commit(drain(self.driver))
             else:
-                events += drain(state["driver"])
+                events += drain(self.driver)
             started, t0 = iso(), time.perf_counter()
             error, timed_out, usable = "", False, False
             try:
-                state["driver"].get(url)
+                self.driver.get(url)
             except TimeoutException:
                 timed_out = True
             except WebDriverException as exc:
                 error = f"{type(exc).__name__}: {str(exc).splitlines()[0][:200]}"
-            driver = state["driver"]
+            driver = self.driver
             if not error:
                 try:
                     WebDriverWait(driver, args.element_timeout).until(
@@ -238,7 +234,8 @@ def main(argv=None):
                         pass
                 except TimeoutException:
                     usable = False
-            elapsed = time.perf_counter() - t0
+            t_end = time.perf_counter()
+            elapsed = t_end - t0
             run.pacer.done()
             attempt_events = drain(driver)
             events += attempt_events
@@ -246,6 +243,7 @@ def main(argv=None):
             attempt_perf = summarize_perf(attempt_events)
             status = attempt_perf["document_status"]
             entry = {"context": identifier, "attempt": attempt, "started_at_utc": started,
+                     "t_start_s": round(t0 - run.t0, 4), "t_end_s": round(t_end - run.t0, 4),
                      "elapsed_s": round(elapsed, 4), "url": url, "status": status, "decoded_bytes": None,
                      "final_url": driver.current_url if not error else None, "error": error or None,
                      "navigation_timeout": timed_out,
@@ -272,7 +270,7 @@ def main(argv=None):
                     row[key] = parsed[key]
                 notes = ["page load timeout; DOM was usable"] if timed_out else []
                 finalize_row(row, notes)
-                state["pending"] = (row, events, round(elapsed, 3))
+                self.pending = (row, events, round(elapsed, 3))
                 return
             wait = None
             if retryable and attempt <= config.MAX_RETRIES:
@@ -289,50 +287,89 @@ def main(argv=None):
                               or "disconnected" in error.lower()):
                     entry["note"] = "browser session lost; restarting browser"
                     run.log_attempt(entry)
-                    state["restarts"] += 1
-                    if state["restarts"] > 3:
+                    self.restarts += 1
+                    if self.restarts > 3:
                         raise Abort("browser kept crashing (4 restarts)")
                     try:
-                        state["driver"].quit()
+                        self.driver.quit()
                     except Exception:
                         pass
-                    start_browser()
+                    self.start_browser()
                     continue
                 run.log_attempt(entry)
+                if status in (429, 503):
+                    run.pacer.hold(wait)               # threaded mode: all workers pause
                 run.pacer.backoff(wait)
                 continue
             entry["outcome"] = "failed"
             run.log_attempt(entry)
             row["attempts"], row["http_status"] = attempt, status or ""
             message = error or f"HTTP {status}" if (error or status) else "item page did not load (no item title)"
-            state["pending"] = (failed_row(row, message, status or ""), events, round(elapsed, 3))
+            self.pending = (failed_row(row, message, status or ""), events, round(elapsed, 3))
             return
         # loop ends only through return/raise above
 
-    def work():
-        start_browser()
+    def finish(self, settle=True):
+        """Flush the last page's late sub-requests, checkpoint it, close the browser, delete the profile."""
         try:
-            for n, (position, identifier, _) in enumerate(todo, 1):
-                collect(position, identifier)
-                print(f"  {n}/{len(todo)} navigated {identifier}", flush=True)
-            run.pacer.wait()                       # let the last page's sub-requests settle
-            commit(drain(state["driver"]))
+            if settle and self.driver is not None and self.pending is not None:
+                self.run.pacer.wait()                  # let the last page's sub-requests settle
+                self.commit(drain(self.driver))
         finally:
             try:
-                commit([])                         # checkpoint a pending record after an abort/interrupt
+                self.commit([])                        # checkpoint a pending record after an abort/interrupt
             except Abort:
                 pass
+            if self.driver is not None:
+                try:
+                    self.driver.quit()
+                except Exception:
+                    pass
+            shutil.rmtree(self.profile_dir, ignore_errors=True)
+
+
+# ----------------------------------------------------------------------------- main
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    add_common_args(parser)
+    parser.add_argument("--chrome-binary", help="path to Chrome/Chromium (else CHROME_BINARY or PATH)")
+    parser.add_argument("--chromedriver", help="path to chromedriver (else CHROMEDRIVER or PATH)")
+    parser.add_argument("--headless", action="store_true", help="run without a window (default: visible)")
+    parser.add_argument("--page-load-strategy", choices=["normal", "eager", "none"], default="normal",
+                        help="normal waits for the load event (default); eager stops at DOMContentLoaded")
+    parser.add_argument("--page-timeout", type=int, default=60, help="page load timeout, seconds")
+    parser.add_argument("--element-timeout", type=int, default=20, help="seconds to wait for the item title")
+    parser.add_argument("--chrome-arg", action="append", help="extra Chrome flag, repeatable")
+    args = parser.parse_args(argv)
+
+    run, id_rows, todo = start_run("selenium", args, extra={
+        "page_load_strategy": args.page_load_strategy, "headless": args.headless},
+        max_workers=config.MAX_WORKERS_SELENIUM)
+    page_metrics, metrics_lock = [], threading.Lock()
+    local, workers, workers_lock = threading.local(), [], threading.Lock()
+
+    def my_worker():
+        if not hasattr(local, "worker"):
+            local.worker = BrowserWorker(args, run, page_metrics, metrics_lock)
+            with workers_lock:
+                workers.append(local.worker)
+        return local.worker
+
+    def handle(item):
+        position, identifier, _ = item
+        my_worker().collect(position, identifier)
+        print(f"  navigated {identifier}", flush=True)
+
+    def worker_exit():
+        if hasattr(local, "worker"):
+            local.worker.finish()
 
     code = 1
     try:
-        code = execute(run, id_rows, args, work)
+        code = execute(run, id_rows, args, lambda: run_parallel(todo, handle, run.workers, worker_exit))
     finally:
-        if state["driver"] is not None:
-            try:
-                state["driver"].quit()
-            except Exception:
-                pass
-        shutil.rmtree(profile_dir, ignore_errors=True)
+        for w in workers:                              # safety net; finish() is idempotent for a closed worker
+            w.finish(settle=False)
         if page_metrics:
             write_flat_csv(run.dir / "page_metrics.csv", page_metrics)
     return code

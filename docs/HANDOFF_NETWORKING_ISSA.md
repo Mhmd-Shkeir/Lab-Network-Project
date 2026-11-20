@@ -71,7 +71,50 @@ In Wireshark, identify hosts using DNS/TLS information, then inspect entire corr
 
 Keep experiments separate from the baseline. Record `sudo ufw status verbose` and the initial rules. In an isolated VM, verify ufw is active, then demonstrate working HTTPS, add a temporary outbound port-443 deny rule, observe failure, remove only that rule and demonstrate recovery. Restore the original state. Use a small workload; shorter retry/timeouts can be set in that terminal with `LABNET_MAX_RETRIES=1`, `LABNET_CONNECT_TIMEOUT=5` and `LABNET_READ_TIMEOUT=5`. Restore ordinary settings before baseline measurements. Preserve captures and screenshots proving each state.
 
-**Multithreading is still to be implemented**, with Mohammad's code support. The existing sequential pacer does not guarantee a global limit when multiple workers call it concurrently. Add/test a bounded workers option and shared rate limiter locally first; then compare workers 1/2/4 with the same total request cap. Do not run an unthrottled experiment on archive.org. Rate-limit comparisons are also pending; proxy setup is optional.
+### Multithreading and rate limiting (`--workers`, `--min-interval`)
+
+Implemented and tested **offline only** (local fake servers; 24 offline tests pass on Windows and Linux/WSL); it has not been run against archive.org.
+
+How it works:
+- `--workers N` runs N worker threads (API: batches in parallel; BS4: one page per task; Selenium: one Chrome per worker). The number of workers is bounded: 1–8, Selenium 1–4.
+- All workers share **one global limit**: request **starts** (first tries *and* retries) are at least `--min-interval` seconds apart, so the total rate is at most 1 / `--min-interval` whatever N is. More workers only overlap the waiting for slow responses. `--min-interval` below 0.5 s is refused.
+- A 429/503 doubles the shared interval and pauses **all** workers for `Retry-After`; HTTP 403, a verification page or 5 failed records in a row stop every worker.
+- Without `--workers` the scrapers behave exactly as before (sequential, `--delay` seconds between the *end* of one request and the *start* of the next). The two modes are **not** the same limiter: for a fair sequential-versus-threaded comparison use `--workers 1` as the control, so every run uses the same start-to-start limiter.
+- Each worker has its own connection (`requests.Session` / Chrome), so `ss` shows up to N connections.
+
+Smoke check first (a few requests only):
+```bash
+python scrapers/ia_bs4_scraper.py --workers 2 --min-interval 1 --limit 6 --out-root measurements/runs --label thr_smoke
+```
+
+Threading experiment (separate from the baseline; BS4 is the suggested method; same 200 ids, same cap for every worker count):
+```bash
+# cap = 1 request start per second for the whole program, control then 2 and 4 workers
+python scrapers/ia_bs4_scraper.py --workers 1 --min-interval 1 --out-root measurements/runs --label thr_w1_i1_run1
+python scrapers/ia_bs4_scraper.py --workers 2 --min-interval 1 --out-root measurements/runs --label thr_w2_i1_run1
+python scrapers/ia_bs4_scraper.py --workers 4 --min-interval 1 --out-root measurements/runs --label thr_w4_i1_run1
+# same again with the baseline cap of 3 s (expect little difference, see below)
+python scrapers/ia_bs4_scraper.py --workers 1 --min-interval 3 --out-root measurements/runs --label thr_w1_i3_run1
+python scrapers/ia_bs4_scraper.py --workers 2 --min-interval 3 --out-root measurements/runs --label thr_w2_i3_run1
+python scrapers/ia_bs4_scraper.py --workers 4 --min-interval 3 --out-root measurements/runs --label thr_w4_i3_run1
+```
+Optional: `ia_api_scraper.py --workers 2 --min-interval 3 --batch-size 10 ...` (use `--batch-size 10` so there are enough batches to share) and `ia_selenium_scraper.py --workers 2 --min-interval 3 ...` (heavy, one Chrome per worker). Repeat each setting (the team protocol uses three runs), start the packet capture first as above, and do not go below `--min-interval 1` on archive.org without agreeing it with Mohammad.
+
+Rate-limit comparison: run the same `--workers 1` command with different `--min-interval` values (for example 3 and 1) and compare `total_s`, `pacing_sleep_s`, retries and any 429/503.
+
+Check each run in `run.json` → `rate_limit`:
+
+| Field | Meaning |
+|---|---|
+| `mode`, `workers`, `interval_s` | settings used (`shared_start_interval`; sequential runs show `sequential_gap`) |
+| `min_start_gap_s` | smallest gap between any two request starts; should be about `interval_s` or larger (small timer jitter is possible) |
+| `max_requests_in_flight` | most requests running at once; must be ≤ `workers` |
+| `attempts_per_second_overall` | attempts / observed span; must stay below 1 / `interval_s` |
+| `interval_s_at_end` | larger than `interval_s` if a 429/503 made the run slow down |
+
+`attempts.csv` now also has `t_start_s`, `t_end_s` (seconds since the run began) and `worker`, so you can plot concurrency over time. With several workers the sleep totals in `run.json` are summed over threads and `active_s_estimate` is `null`; compare `total_s` instead.
+
+What to expect (hypotheses, **not results**): the collection run had a median BS4 request time of about 1.2 s. With a 3 s cap the limiter, not the latency, sets the speed, so 1, 2 and 4 workers should take about the same total time; with a 1 s cap one worker is limited by the 1.2 s latency and two or more workers should approach the cap. Report what you actually measure, including any increase in per-request latency or failures with more workers. Proxy setup is optional.
 
 ## Outputs to return
 

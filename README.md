@@ -57,14 +57,25 @@ The default input is the fixed 200-book manifest. Use `--limit 3` for an initial
 | `data/manifest/` | Frozen benchmark/training IDs, snapshots, genre rules evidence and exclusions |
 | `data/runs/` | Four final collection runs: raw checkpoints, attempts and summaries; identical benchmark CSV copies are omitted |
 | `docs/` | Setup, networking handoff, data dictionary and assignment requirements |
-| `tests/` | Offline HTTP-client, parser, median and simulated browser-retry tests |
+| `tests/` | Offline HTTP-client, parser, median, simulated browser-retry and threading/global-limit tests (24 tests) |
 | `notebooks/`, `captures/`, `screenshots/`, `report/` | Destinations for the remaining assignment deliverables |
 
 Analysis packages are in `requirements-analysis.txt`. Run offline tests with `python -B -m unittest discover -s tests -v`; they use a local fake server and a simulated browser, without archive.org requests.
 
+## Threaded mode (bounded, one global request limit)
+
+All three scrapers accept `--workers N` (1–8; Selenium 1–4, one Chrome per worker) and `--min-interval S` (at least 0.5). Request **starts** (including retries) from
+all workers share one limiter and are at least `S` seconds apart, so the total rate is at most 1/`S` whatever `N` is; a 429/503 slows and pauses every worker, and
+a 403 or verification page stops them all. Without `--workers` the scrapers stay sequential (3 s after the end of each request). Offline tests use local fake servers;
+the option has **not** been run against archive.org. Commands and what to check in `run.json` are in the networking handoff.
+
+```bash
+python scrapers/ia_bs4_scraper.py --workers 4 --min-interval 1 --out-root measurements/runs --label thr_w4_i1_run1
+```
+
 ## Remaining implementation
 
-Multithreading and its globally paced comparison are still required; the current scrapers are sequential. Implement and test that option before the threading experiment. A proxy is optional. Ubuntu ARM browser setup remains untested; confirm the local browser check before collecting measurements.
+The live threading and rate-limit experiments, and a proxy (optional), are Issa's. Ubuntu ARM browser setup remains untested; confirm the local browser check before collecting measurements.
 
 Use the project's identifying User-Agent, three-second pacing and bounded retry/backoff. Respect `Retry-After`; a long wait stops the run. Keep failures and source differences visible. Browser request-event totals and client-call durations have distinct meanings explained in the networking handoff.
 

@@ -10,13 +10,15 @@ Example (validation on 10 books, then the benchmark list):
     python scrapers/ia_api_scraper.py
 Training list (about 2,000 ids):
     python scrapers/ia_api_scraper.py --ids data/manifest/training_ids.json --label training
+Threaded (batches in parallel; ONE global limit for all calls, starts >= --min-interval apart):
+    python scrapers/ia_api_scraper.py --workers 2 --min-interval 3 --batch-size 10 --label threads2
 """
 import argparse
 import sys
 
 import config
-from ia_common import (Client, RequestFailed, add_common_args, execute, failed_row, finalize_row,
-                       iso, new_row, start_run, to_int, unique)
+from ia_common import (RequestFailed, add_common_args, client_factory, execute, failed_row, finalize_row,
+                       iso, new_row, run_parallel, start_run, to_int, unique)
 
 SEARCH_FIELDS = ["identifier", "title", "creator", "year", "subject", "language", "addeddate", "imagecount"]
 
@@ -98,15 +100,15 @@ def main(argv=None):
                         help=f"ids per search+views call pair (default {config.API_BATCH_SIZE})")
     args = parser.parse_args(argv)
     run, id_rows, todo = start_run("api", args, extra={"batch_size": args.batch_size})
-    client = Client(run)
-    batches = list(chunks(todo, args.batch_size))
+    get_client = client_factory(run)
+    batches = list(enumerate(chunks(todo, args.batch_size), 1))
 
-    def work():
-        for n, batch in enumerate(batches, 1):
-            collect_batch(run, client, batch, n, len(batches))
-            print(f"  batch {n}/{len(batches)} done ({len(run.records)} records)", flush=True)
+    def handle(item):
+        n, batch = item
+        collect_batch(run, get_client(), batch, n, len(batches))
+        print(f"  batch {n}/{len(batches)} done ({len(run.records)} records)", flush=True)
 
-    return execute(run, id_rows, args, work)
+    return execute(run, id_rows, args, lambda: run_parallel(batches, handle, run.workers))
 
 
 if __name__ == "__main__":
