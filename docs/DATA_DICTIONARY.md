@@ -11,7 +11,7 @@ Tip for Excel: open via *Data → From Text/CSV* and keep `identifier` as **Text
 | `data/benchmark_200_api.csv` | 200 | Same 200 manifest books collected with the API method (search metadata + Views API) |
 | `data/benchmark_200_bs4.csv` | 200 | Same 200 books, independent Requests + BeautifulSoup on `archive.org/details/<id>` |
 | `data/benchmark_200_selenium.csv` | 200 | Same 200 books, Selenium/Chrome on the same pages (fields read with WebDriver locators) |
-| `data/training_api.csv` | ≈2,000 | Training records collected through the API only; usable rows (`status = ok`): the 200 benchmark books + 600 science fiction + 600 fantasy + 600 mystery/thriller |
+| `data/training_api.csv` | 5,600 | Training records collected through the API only; usable rows (`status = ok`): the 200 benchmark books + 1,800 science fiction + 1,800 fantasy + 1,800 mystery/thriller (each genre: 600 Americana + 1,200 from other English texts) |
 | `data/training_api_not_usable.csv` | few | Training ids whose row was partial/failed, with the reason |
 | `data/benchmark_200_comparison/` | – | Field-by-field and view-count differences between the three methods |
 | `data/manifest/` | – | Pool snapshot, `benchmark_200_ids.json`, `training_ids.json`, genre pool snapshot, `genre_availability.json`, `genre_preview.csv`, exclusions (`exclusions.csv`, `genre_exclusions.csv`), views eligibility checks, sampling metadata |
@@ -55,7 +55,8 @@ Rows are never filled from another method. An empty cell means that method did n
 
 | Column | Meaning |
 |---|---|
-| `sampling_stratum` | How the book was sampled: `benchmark_random_fiction` (the 200 benchmark books, random Americana fiction), or `science_fiction` / `fantasy` / `mystery_thriller` (600 each, drawn in sha256 order, **not** ordered by views or downloads) |
+| `sampling_stratum` | How the book was sampled: `benchmark_random_fiction` (the 200 benchmark books, random Americana fiction), or `science_fiction` / `fantasy` / `mystery_thriller` (1,800 each, drawn in sha256 order, **not** ordered by views or downloads) |
+| `in_americana` | `True` for the 200 benchmark books and the first 600 books per genre (Americana collection); `False` for the 1,200 per genre added later from the wider English-text pool. Views are much lower for `False` (median 97 vs 285) |
 | `genre_primary` | One genre per book by the rules in `scrapers/genres.py`, precedence science_fiction > fantasy > mystery_thriller; `none` if no rule matched (possible for benchmark books) |
 | `genre_science_fiction`, `genre_fantasy`, `genre_mystery_thriller` | `True`/`False`: every genre rule the subject tags match. Books matching several genres have several `True` and one `genre_primary` |
 | `work_group` | Normalised main title + first creator's surname. Copies, volumes and editions of one work share a group (at most 3 items per group). **Split train/test by this column** to avoid leakage |

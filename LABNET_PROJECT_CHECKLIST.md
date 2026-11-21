@@ -6,7 +6,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 
 - [x] Three separate Internet Archive scrapers with shared configuration, pacing, retry/backoff and checkpoints.
 - [x] Same 200 benchmark IDs collected independently by API, BS4 and Selenium, all rows `ok`.
-- [x] Training API dataset: 2,000 complete rows, comprising 200 benchmark books and 600 additional books per genre.
+- [x] Training API dataset: 5,600 complete rows = 200 benchmark books + 1,800 books per genre (600 Americana + 1,200 from the wider English-text pool, flagged `in_americana`); the first 2,000 rows are unchanged.
 - [x] Genre rules, frozen manifests, sampling/exclusion records and source differences documented.
 - [x] Final CSVs, completeness report, comparison and checksums.
 - [x] Publication-year, timestamp and language parsing corrections; corrected HTML collections retained.

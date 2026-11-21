@@ -42,36 +42,38 @@ Field agreement between the three methods (rows complete in all three):
 
 ## Training set (API)
 
-- usable rows (status ok): **2000** of 2000 manifest ids; not usable: 0
-- distinct work groups: 1947 (max 3 items per group)
+- usable rows (status ok): **5600** of 5600 manifest ids; not usable: 0
+- distinct work groups: 5391 (max 3 items per group)
 - benchmark ids inside the training CSV: 200
 - genuine zero-view rows kept: 0
-- views_all_time: {'min': 7, 'median': 282.0, 'max': 184689, 'mean': 798.38}
-- publication_year: {'min': 1800, 'median': 1993.0, 'max': 2017, 'mean': 1985.75}
-- scanned_page_count: {'min': 50, 'median': 288.0, 'max': 1434, 'mean': 305.51}
-- views snapshot window (UTC): ['2026-11-19T21:33:22Z', '2026-11-19T21:38:39Z']
+- views_all_time: {'min': 4, 'median': 147.0, 'max': 184689, 'mean': 479.46}
+- publication_year: {'min': 1800, 'median': 2002.0, 'max': 2020, 'mean': 1996.22}
+- scanned_page_count: {'min': 50, 'median': 294.0, 'max': 1434, 'mean': 310.11}
+- views snapshot window (UTC): ['2026-11-19T21:33:22Z', '2026-11-21T17:32:23Z']
 - benchmark ids whose API views changed between the benchmark run and the training run: 0
-- usable rows per sampling stratum: {'benchmark_random_fiction': 200, 'science_fiction': 600, 'fantasy': 600, 'mystery_thriller': 600} (manifest: {'benchmark_random_fiction': 200, 'science_fiction': 600, 'fantasy': 600, 'mystery_thriller': 600})
-- rows matching more than one genre rule: 126; genre flags differing from the manifest: 0
-- views percentiles (all usable rows): {'p10': 82, 'p25': 139, 'p33': 178, 'p50': 282, 'p66': 461, 'p75': 623, 'p90': 1362, 'p99': 7125}
-- tercile cut-offs of all rows: low <= 178, high >= 461 (illustration only; thresholds must be fitted on the training split)
+- usable rows per sampling stratum: {'benchmark_random_fiction': 200, 'science_fiction': 1800, 'fantasy': 1800, 'mystery_thriller': 1800} (manifest: {'benchmark_random_fiction': 200, 'science_fiction': 1800, 'fantasy': 1800, 'mystery_thriller': 1800})
+- of which in the Americana collection: {'benchmark_random_fiction': 200, 'science_fiction': 600, 'fantasy': 600, 'mystery_thriller': 600}
+- rows of the previous training_api.csv (2000): changed 0, missing now 0
+- rows matching more than one genre rule: 359; genre flags differing from the manifest: 0
+- views percentiles (all usable rows): {'p10': 38, 'p25': 66, 'p33': 87, 'p50': 147, 'p66': 259, 'p75': 370, 'p90': 923, 'p99': 4897}
+- tercile cut-offs of all rows: low <= 87, high >= 259 (illustration only; thresholds must be fitted on the training split)
 
 Rows per views range and stratum:
 
 | Stratum | 0 | 1-9 | 10-99 | 100-999 | 1000-9999 | 10000+ |
 |---|---:|---:|---:|---:|---:|---:|
 | benchmark_random_fiction | 0 | 1 | 49 | 119 | 30 | 1 |
-| science_fiction | 0 | 0 | 41 | 465 | 89 | 5 |
-| fantasy | 0 | 0 | 69 | 404 | 122 | 5 |
-| mystery_thriller | 0 | 0 | 130 | 414 | 55 | 1 |
+| science_fiction | 0 | 4 | 572 | 1060 | 156 | 8 |
+| fantasy | 0 | 1 | 654 | 914 | 224 | 7 |
+| mystery_thriller | 0 | 1 | 839 | 881 | 78 | 1 |
 
 Share of each stratum in the low / medium / high terciles of all rows:
 
 | Stratum | low | medium | high |
 |---|---:|---:|---:|
-| benchmark_random_fiction | 81 | 57 | 62 |
-| science_fiction | 154 | 249 | 197 |
-| fantasy | 164 | 186 | 250 |
-| mystery_thriller | 269 | 173 | 158 |
+| benchmark_random_fiction | 44 | 56 | 100 |
+| science_fiction | 503 | 648 | 649 |
+| fantasy | 581 | 556 | 663 |
+| mystery_thriller | 755 | 582 | 463 |
 
 Timings in the run folders are pilot/collection timings (including deliberate waits); the final network comparison is produced separately by re-running the scrapers under packet capture.

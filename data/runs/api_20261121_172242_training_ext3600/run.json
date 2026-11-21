@@ -1,0 +1,55 @@
+{
+  "run_id": "api_20261121_172242_training_ext3600",
+  "method": "api",
+  "ids_file": "data/manifest/training_ids_extension_ids.json",
+  "ids_requested": 3600,
+  "records_saved": 3600,
+  "status_counts": {
+    "ok": 3600
+  },
+  "attempts_logged_total": 144,
+  "retry_attempts_total": 0,
+  "attempt_seconds": {
+    "n": 144,
+    "mean": 1.009,
+    "median": 0.889,
+    "max": 5.411
+  },
+  "decoded_body_bytes_total": 1883820,
+  "delay_seconds_setting": 3.0,
+  "user_agent": "LabNetProject/1.0 (university networking lab project; code written with claude-sonnet-5-5)",
+  "rate_limit": {
+    "mode": "sequential_gap",
+    "workers": 1,
+    "interval_s": 3.0,
+    "interval_s_at_end": 3.0,
+    "attempts_with_timing": 144,
+    "min_start_gap_s": 3.2941,
+    "max_requests_in_flight": 1,
+    "attempts_per_second_overall": 0.2504
+  },
+  "resumed": false,
+  "segments": [
+    {
+      "started_at_utc": "2026-11-21T17:22:42Z",
+      "ended_at_utc": "2026-11-21T17:32:25Z",
+      "total_s": 583.023,
+      "pacing_sleep_s": 346.531,
+      "backoff_sleep_s": 0.0,
+      "browser_startup_s": null,
+      "active_s_estimate": 236.492,
+      "sleep_totals_are_summed_over_workers": false,
+      "aborted": null
+    }
+  ],
+  "notes": "Timings are pilot/collection timings, not the final network comparison. decoded_body_bytes_total is decoded response body size, not wire bandwidth.",
+  "environment": {
+    "python": "3.14.4",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "requests": "2.34.2",
+    "bs4": "4.15.0",
+    "selenium": "4.52.0"
+  },
+  "batch_size": 50
+}

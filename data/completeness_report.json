@@ -118,48 +118,51 @@
     }
   },
   "training": {
-    "run_folder": "api_20261119_213317_training2000",
-    "ids_in_manifest": 2000,
-    "usable_rows": 2000,
+    "run_folders": [
+      "api_20261119_213317_training2000",
+      "api_20261121_172242_training_ext3600"
+    ],
+    "ids_in_manifest": 5600,
+    "usable_rows": 5600,
     "not_usable_rows": 0,
     "duplicate_identifiers": 0,
-    "distinct_work_groups": 1947,
+    "distinct_work_groups": 5391,
     "max_items_per_work_group": 3,
     "benchmark_ids_in_training_csv": 200,
     "field_non_empty": {
-      "identifier": 2000,
-      "title": 2000,
-      "creators": 2000,
-      "first_creator": 2000,
-      "publication_year": 2000,
-      "subjects": 2000,
-      "language": 2000,
-      "addeddate": 2000,
-      "scanned_page_count": 2000,
-      "views_all_time": 2000
+      "identifier": 5600,
+      "title": 5600,
+      "creators": 5600,
+      "first_creator": 5600,
+      "publication_year": 5600,
+      "subjects": 5600,
+      "language": 5600,
+      "addeddate": 5600,
+      "scanned_page_count": 5600,
+      "views_all_time": 5600
     },
     "zero_view_rows_kept": 0,
     "views_all_time": {
-      "min": 7,
-      "median": 282.0,
+      "min": 4,
+      "median": 147.0,
       "max": 184689,
-      "mean": 798.38
+      "mean": 479.46
     },
     "publication_year": {
       "min": 1800,
-      "median": 1993.0,
-      "max": 2017,
-      "mean": 1985.75
+      "median": 2002.0,
+      "max": 2020,
+      "mean": 1996.22
     },
     "scanned_page_count": {
       "min": 50,
-      "median": 288.0,
+      "median": 294.0,
       "max": 1434,
-      "mean": 305.51
+      "mean": 310.11
     },
     "views_snapshot_window_utc": [
       "2026-11-19T21:33:22Z",
-      "2026-11-19T21:38:39Z"
+      "2026-11-21T17:32:23Z"
     ],
     "collection_timing_pilot_only": [
       {
@@ -171,9 +174,20 @@
         "browser_startup_s": null,
         "active_s_estimate": 125.976,
         "aborted": null
+      },
+      {
+        "started_at_utc": "2026-11-21T17:22:42Z",
+        "ended_at_utc": "2026-11-21T17:32:25Z",
+        "total_s": 583.023,
+        "pacing_sleep_s": 346.531,
+        "backoff_sleep_s": 0.0,
+        "browser_startup_s": null,
+        "active_s_estimate": 236.492,
+        "sleep_totals_are_summed_over_workers": false,
+        "aborted": null
       }
     ],
-    "exclusions_before_collection": {
+    "exclusions_before_collection_benchmark_manifest": {
       "metadata_exclusion_counts": {
         "language does not include eng": 1
       },
@@ -181,34 +195,70 @@
       "no_views_data_exclusions": 1,
       "stream_items_examined": 2002
     },
+    "training_manifest_meta": {
+      "created_at_utc": "2026-11-21T17:17:34Z",
+      "pool_query": "mediatype:texts AND language:eng AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500] AND (subject:\"science fiction\" OR subject:fantasy OR subject:(\"detective and mystery stories\" OR \"mystery fiction\" OR \"detective fiction\" OR thriller OR thrillers OR \"suspense fiction\" OR \"spy stories\" OR \"crime fiction\"))",
+      "scope": "all_texts",
+      "snapshot_file": "genre_pool_snapshot_all_texts_20261121.csv.gz",
+      "snapshot_sha256": "881775988fc6f4abfbfc0a8d1aaeb1cf70084a6a39f56ca128a811e6bd0d6587",
+      "snapshot_rows": 49181,
+      "scrape_api_reported_total": 49181,
+      "benchmark_books": 200,
+      "per_genre_target_total": 1800,
+      "extends": "training_ids_v1_2000.json",
+      "accepted_per_stratum": {
+        "benchmark_random_fiction": 200,
+        "science_fiction": 1800,
+        "fantasy": 1800,
+        "mystery_thriller": 1800
+      },
+      "new_ids_in_this_build": 3600,
+      "total_training_ids": 5600,
+      "shortages": {},
+      "genre_rules": "scrapers/genres.py",
+      "assignment": "primary genre by precedence science_fiction > fantasy > mystery_thriller",
+      "ordering": "sha256(\"2026:<identifier>\") ascending within each genre (not by views/downloads)",
+      "group_cap": 3,
+      "views_check_note": "have_data checked once at build time",
+      "in_americana_note": "v1 books are all Americana; new books carry their own flag"
+    },
     "benchmark_api_vs_training_api_views_changed": [],
     "rows_per_stratum": {
       "benchmark_random_fiction": 200,
-      "science_fiction": 600,
-      "fantasy": 600,
-      "mystery_thriller": 600
+      "science_fiction": 1800,
+      "fantasy": 1800,
+      "mystery_thriller": 1800
     },
     "manifest_ids_per_stratum": {
+      "benchmark_random_fiction": 200,
+      "science_fiction": 1800,
+      "fantasy": 1800,
+      "mystery_thriller": 1800
+    },
+    "genre_rule_mismatch_vs_manifest": 0,
+    "rows_matching_several_genres": 359,
+    "americana_rows_per_stratum": {
       "benchmark_random_fiction": 200,
       "science_fiction": 600,
       "fantasy": 600,
       "mystery_thriller": 600
     },
-    "genre_rule_mismatch_vs_manifest": 0,
-    "rows_matching_several_genres": 126,
+    "previous_csv_rows": 2000,
+    "previous_csv_rows_changed": 0,
+    "previous_csv_rows_missing_now": 0,
     "views_percentiles": {
-      "p10": 82,
-      "p25": 139,
-      "p33": 178,
-      "p50": 282,
-      "p66": 461,
-      "p75": 623,
-      "p90": 1362,
-      "p99": 7125
+      "p10": 38,
+      "p25": 66,
+      "p33": 87,
+      "p50": 147,
+      "p66": 259,
+      "p75": 370,
+      "p90": 923,
+      "p99": 4897
     },
     "tercile_cutoffs_all_rows": {
-      "low_max": 178,
-      "high_min": 461
+      "low_max": 87,
+      "high_min": 259
     },
     "views_bins_by_stratum": {
       "benchmark_random_fiction": {
@@ -221,49 +271,49 @@
       },
       "science_fiction": {
         "0": 0,
-        "1-9": 0,
-        "10-99": 41,
-        "100-999": 465,
-        "1000-9999": 89,
-        "10000+": 5
+        "1-9": 4,
+        "10-99": 572,
+        "100-999": 1060,
+        "1000-9999": 156,
+        "10000+": 8
       },
       "fantasy": {
         "0": 0,
-        "1-9": 0,
-        "10-99": 69,
-        "100-999": 404,
-        "1000-9999": 122,
-        "10000+": 5
+        "1-9": 1,
+        "10-99": 654,
+        "100-999": 914,
+        "1000-9999": 224,
+        "10000+": 7
       },
       "mystery_thriller": {
         "0": 0,
-        "1-9": 0,
-        "10-99": 130,
-        "100-999": 414,
-        "1000-9999": 55,
+        "1-9": 1,
+        "10-99": 839,
+        "100-999": 881,
+        "1000-9999": 78,
         "10000+": 1
       }
     },
     "tercile_share_by_stratum": {
       "benchmark_random_fiction": {
-        "low": 81,
-        "medium": 57,
-        "high": 62
+        "low": 44,
+        "medium": 56,
+        "high": 100
       },
       "science_fiction": {
-        "low": 154,
-        "medium": 249,
-        "high": 197
+        "low": 503,
+        "medium": 648,
+        "high": 649
       },
       "fantasy": {
-        "low": 164,
-        "medium": 186,
-        "high": 250
+        "low": 581,
+        "medium": 556,
+        "high": 663
       },
       "mystery_thriller": {
-        "low": 269,
-        "medium": 173,
-        "high": 158
+        "low": 755,
+        "medium": 582,
+        "high": 463
       }
     }
   },

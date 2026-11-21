@@ -1,6 +1,6 @@
 # Internet Archive book scraping project
 
-Compare API, Requests/BeautifulSoup and Selenium collection of the same 200 Internet Archive books. Use a separate 2,000-record API dataset for exploratory analysis and estimating existing archived-item engagement.
+Compare API, Requests/BeautifulSoup and Selenium collection of the same 200 Internet Archive books. Use a separate 5,600-record API dataset for exploratory analysis and estimating existing archived-item engagement.
 
 Mohammad owns the scrapers and collection. Issa owns networking measurements. Both own cleaning, ML, the final report and presentation. The assignment deadline is **25 November 2026**.
 
@@ -17,9 +17,13 @@ Mohammad owns the scrapers and collection. Issa owns networking measurements. Bo
 | `benchmark_200_api.csv` | 200 | API collection of the fixed benchmark books |
 | `benchmark_200_bs4.csv` | 200 | Independent HTML collection of the same books |
 | `benchmark_200_selenium.csv` | 200 | Browser collection of the same books |
-| `training_api.csv` | 2,000 | 200 benchmark books plus 600 science fiction, 600 fantasy and 600 mystery/thriller records |
+| `training_api.csv` | 5,600 | 200 benchmark books plus 1,800 science fiction, 1,800 fantasy and 1,800 mystery/thriller records (each genre: 600 from Americana + 1,200 from other English texts on archive.org) |
 
-All rows have collection status `ok`. This means the required fields were obtained; source metadata and genre labels still need analysis. There are 1,947 training work groups, with at most three archived items per group. Split training and evaluation by `work_group`.
+All rows have collection status `ok`. This means the required fields were obtained; source metadata and genre labels still need analysis. There are 5,391 training work groups, with at most three archived items per group. Split training and evaluation by `work_group`.
+
+**Two sources inside the training set:** the first 2,000 rows are Americana books (published earlier, unchanged); the other 3,600 come from the wider English-text pool on archive.org, because Americana alone could supply only about 1,280 fantasy books. They are flagged by `in_americana`. Their views are much lower (median 97 views versus 285 for the Americana genre books), so this flag matters for EDA and modelling; check it in a train/test split and by genre. Genre labels are rule-based on subject tags and a few non-genre items remain (for example a cross-stitch pattern book tagged fantasy).
+
+**Adding more later (a fourth genre, or more per genre):** add the genre to `scrapers/genres.py`, then `python scrapers/build_training_manifest.py --extend --scope all_texts --per-genre N` and collect only the new ids with `ia_api_scraper.py --ids data/manifest/training_ids_extension_ids.json`; existing rows are kept.
 
 The benchmark is a reproducible sample from Americana's broad English-fiction pool; the additional training records use explicit genre rules. Selection metadata, frozen ID lists, compressed pool snapshots and exclusions are in `data/manifest/`. Do not rebuild the benchmark for networking runs.
 

@@ -1,0 +1,65 @@
+{
+  "snapshot_rows": 49181,
+  "new_books_wanted_per_genre": {
+    "science_fiction": 1200,
+    "fantasy": 1200,
+    "mystery_thriller": 1200
+  },
+  "genres": {
+    "science_fiction": {
+      "rows_matching_rule_any_priority": 14091,
+      "excluded_by_stage": {
+        "nonfiction_rule": 883,
+        "already_selected": 614,
+        "metadata": 11
+      },
+      "candidates_after_all_rules": 12583,
+      "of_which_americana": 1202,
+      "distinct_work_groups": 10494,
+      "candidates_after_group_cap_3_estimate": 12338,
+      "new_books_wanted": 1200,
+      "enough_before_views_check": true
+    },
+    "fantasy": {
+      "rows_matching_rule_any_priority": 16094,
+      "excluded_by_stage": {
+        "nonfiction_rule": 791,
+        "already_selected": 602,
+        "metadata": 5
+      },
+      "candidates_after_all_rules": 12504,
+      "of_which_americana": 684,
+      "distinct_work_groups": 9876,
+      "candidates_after_group_cap_3_estimate": 12004,
+      "new_books_wanted": 1200,
+      "enough_before_views_check": true
+    },
+    "mystery_thriller": {
+      "rows_matching_rule_any_priority": 20659,
+      "excluded_by_stage": {
+        "nonfiction_rule": 1022,
+        "already_selected": 605,
+        "metadata": 4
+      },
+      "candidates_after_all_rules": 18415,
+      "of_which_americana": 2131,
+      "distinct_work_groups": 15160,
+      "candidates_after_group_cap_3_estimate": 17993,
+      "new_books_wanted": 1200,
+      "enough_before_views_check": true
+    }
+  },
+  "overlap_rows": {
+    "science_fiction+fantasy": 1923,
+    "science_fiction+mystery_thriller": 352,
+    "fantasy+mystery_thriller": 298,
+    "all_three": 74
+  },
+  "created_at_utc": "2026-11-21T17:17:34Z",
+  "pool_query": "mediatype:texts AND language:eng AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500] AND (subject:\"science fiction\" OR subject:fantasy OR subject:(\"detective and mystery stories\" OR \"mystery fiction\" OR \"detective fiction\" OR thriller OR thrillers OR \"suspense fiction\" OR \"spy stories\" OR \"crime fiction\"))",
+  "scope": "all_texts",
+  "snapshot_file": "genre_pool_snapshot_all_texts_20261121.csv.gz",
+  "snapshot_sha256": "881775988fc6f4abfbfc0a8d1aaeb1cf70084a6a39f56ca128a811e6bd0d6587",
+  "scrape_api_reported_total": 49181,
+  "existing_rows_kept": 2000
+}

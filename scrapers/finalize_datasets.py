@@ -10,7 +10,8 @@ Reads the run folders (never the web), writes:
   data/checksums.sha256
 
 Usage:
-  python scrapers/finalize_datasets.py --api RUN --bs4 RUN --selenium RUN --training RUN
+  python scrapers/finalize_datasets.py --api RUN --bs4 RUN --selenium RUN --training RUN [RUN ...]
+(several --training runs are merged: the first 2,000-id run plus the extension run)
 """
 import argparse
 import hashlib
@@ -25,8 +26,8 @@ import genres
 from ia_common import read_csv, write_records_csv
 
 TRAIN_FIELDS = config.DATA_FIELDS + [
-    "sampling_stratum", "genre_primary", "genre_science_fiction", "genre_fantasy", "genre_mystery_thriller",
-    "work_group", "in_benchmark"] + config.PROVENANCE_FIELDS
+    "sampling_stratum", "genre_primary"] + [f"genre_{g}" for g in genres.GENRE_ORDER] + [
+    "in_americana", "work_group", "in_benchmark"] + config.PROVENANCE_FIELDS
 
 
 def load_run(path):
@@ -59,7 +60,7 @@ def main(argv=None):
     p.add_argument("--api", required=True)
     p.add_argument("--bs4", required=True)
     p.add_argument("--selenium", required=True)
-    p.add_argument("--training", required=True)
+    p.add_argument("--training", required=True, nargs="+", help="one or more training run folders")
     args = p.parse_args(argv)
     data = config.DATA_DIR
     manifest = json.loads((config.MANIFEST_DIR / "benchmark_200_ids.json").read_text(encoding="utf-8"))
@@ -98,7 +99,14 @@ def main(argv=None):
     report["benchmark_comparison"]["views_differences"] = f"{len(report['benchmark_comparison']['views_differences'])} ids, see views_differences.csv"
 
     # ---- training CSV
-    records, run_json = load_run(args.training)
+    records, segments, run_names = {}, [], []
+    for folder in args.training:
+        recs, rj = load_run(folder)
+        records.update(recs)
+        segments += rj["segments"]
+        run_names.append(Path(folder).name)
+    run_json = {"segments": segments}
+    previous = {r["identifier"]: r for r in read_csv(data / "training_api.csv")} if (data / "training_api.csv").exists() else {}
     meta_by_id = {x["identifier"]: x for x in training_manifest["ids"]}
     usable, unusable = [], []
     for ident in (x["identifier"] for x in training_manifest["ids"]):
@@ -110,14 +118,14 @@ def main(argv=None):
         row = {**row, "work_group": meta_by_id[ident]["work_group"], "in_benchmark": meta_by_id[ident]["in_benchmark"],
                "sampling_stratum": meta_by_id[ident]["stratum"],
                "genre_primary": genres.primary_genre(flags) or "none",
-               "genre_science_fiction": flags["science_fiction"], "genre_fantasy": flags["fantasy"],
-               "genre_mystery_thriller": flags["mystery_thriller"]}
+               "in_americana": meta_by_id[ident].get("in_americana", True),
+               **{f"genre_{g}": flags[g] for g in genres.GENRE_ORDER}}
         (usable if row["status"] == "ok" else unusable).append(row)
     write_records_csv(data / "training_api.csv", usable, TRAIN_FIELDS)
     write_records_csv(data / "training_api_not_usable.csv", unusable, TRAIN_FIELDS)
     views = [r["views_all_time"] for r in usable]
     report["training"] = {
-        "run_folder": Path(args.training).name, "ids_in_manifest": len(training_manifest["ids"]),
+        "run_folders": run_names, "ids_in_manifest": len(training_manifest["ids"]),
         "usable_rows": len(usable), "not_usable_rows": len(unusable),
         "duplicate_identifiers": len(usable) - len({r["identifier"] for r in usable}),
         "distinct_work_groups": len({r["work_group"] for r in usable}),
@@ -131,9 +139,10 @@ def main(argv=None):
         "views_snapshot_window_utc": [min(r["retrieved_at_utc"] for r in usable),
                                       max(r["retrieved_at_utc"] for r in usable)] if usable else None,
         "collection_timing_pilot_only": run_json["segments"],
-        "exclusions_before_collection": {k: manifest["meta"][k] for k in (
+        "exclusions_before_collection_benchmark_manifest": {k: manifest["meta"][k] for k in (
             "metadata_exclusion_counts", "group_cap_exclusions", "no_views_data_exclusions",
             "stream_items_examined")},
+        "training_manifest_meta": training_manifest["meta"],
     }
     # benchmark ids that are ok in training CSV vs API benchmark: consistency of the same ids/different runs
     api_bench = {r["identifier"]: r for r in read_csv(data / "benchmark_200_api.csv")}
@@ -155,7 +164,16 @@ def main(argv=None):
         if x.get("genre_flags") and x["identifier"] in usable_by_id
         and x["genre_flags"] != {g: usable_by_id[x["identifier"]][f"genre_{g}"] for g in genres.GENRE_ORDER})
     t["rows_matching_several_genres"] = sum(1 for r in usable if sum(
-        [r["genre_science_fiction"], r["genre_fantasy"], r["genre_mystery_thriller"]]) > 1)
+        bool(r[f"genre_{g}"]) for g in genres.GENRE_ORDER) > 1)
+    t["americana_rows_per_stratum"] = {s: sum(1 for r in usable if r["sampling_stratum"] == s and r["in_americana"])
+                                       for s in strata}
+    # rows already published in the previous training_api.csv must be unchanged (the file only grows)
+    changed = [i for i, old in previous.items() if i in usable_by_id and any(
+        str(usable_by_id[i].get(f, "") if not isinstance(usable_by_id[i].get(f), list) else
+            config.LIST_SEPARATOR.join(usable_by_id[i][f])) != old[f] for f in config.DATA_FIELDS)]
+    t["previous_csv_rows"] = len(previous)
+    t["previous_csv_rows_changed"] = len(changed)
+    t["previous_csv_rows_missing_now"] = sum(1 for i in previous if i not in usable_by_id)
     srt = sorted(views)
     pct = lambda q: srt[min(len(srt) - 1, int(q * len(srt)))] if srt else None
     t["views_percentiles"] = {f"p{int(q * 100)}": pct(q) for q in (0.1, 0.25, 1 / 3, 0.5, 2 / 3, 0.75, 0.9, 0.99)}
@@ -204,6 +222,9 @@ def main(argv=None):
           f"- benchmark ids whose API views changed between the benchmark run and the training run: "
           f"{len(drift)}",
           f"- usable rows per sampling stratum: {t['rows_per_stratum']} (manifest: {t['manifest_ids_per_stratum']})",
+          f"- of which in the Americana collection: {t['americana_rows_per_stratum']}",
+          f"- rows of the previous training_api.csv ({t['previous_csv_rows']}): changed {t['previous_csv_rows_changed']}, "
+          f"missing now {t['previous_csv_rows_missing_now']}",
           f"- rows matching more than one genre rule: {t['rows_matching_several_genres']}; "
           f"genre flags differing from the manifest: {t['genre_rule_mismatch_vs_manifest']}",
           f"- views percentiles (all usable rows): {t['views_percentiles']}",

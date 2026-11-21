@@ -21,6 +21,16 @@ GENRE_PHRASES = {
 # ... or EQUALS one of these whole tags
 GENRE_EXACT = {"mystery_thriller": {"mystery", "mysteries", "suspense"}}
 
+# Internet Archive search clause that finds the candidates of each genre (the rules above then decide the label).
+# TO ADD A GENRE LATER: append its name to GENRE_ORDER (lowest precedence), add GENRE_PHRASES / GENRE_QUERY entries here,
+# then run build_training_manifest.py --extend (see README); existing rows keep their labels.
+GENRE_QUERY = {
+    "science_fiction": 'subject:"science fiction"',
+    "fantasy": "subject:fantasy",
+    "mystery_thriller": ('subject:("detective and mystery stories" OR "mystery fiction" OR "detective fiction" OR '
+                         'thriller OR thrillers OR "suspense fiction" OR "spy stories" OR "crime fiction")'),
+}
+
 # --- exclusions -------------------------------------------------------------------------------
 # STRONG: a tag containing one of these marks non-fiction/reference/teaching material (any tag)
 EXCLUDE_STRONG = ["study and teaching", "bibliograph", "handbook", "dictionar", "encyclop", "catalog", "reading list",
