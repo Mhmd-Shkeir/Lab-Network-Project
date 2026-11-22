@@ -67,7 +67,7 @@ Published CSVs are stored byte-for-byte using `.gitattributes`, so Git does not 
 
 `python scrapers/prepare_popularity_dataset.py` builds `data/popularity_training_clean.csv` offline, retaining 17,727 rows / 16,666 works and all 37 columns from the full linked export. It excludes 2,508 rows failing description checks plus 36 further rows missing authors (2,544 excluded IDs total). Other required inputs are present and valid. The source exports are unchanged. Optional blank edition IDs and successful rows' empty `error` fields are allowed; zero views is valid. See `data/popularity_training_quality.json` and `data/popularity_training_exclusions.csv` for the checks and reasons.
 
-Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md) defines targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. Larger-dataset popularity models have not been trained by this preparation step.
+Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md) defines targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. It includes a small neural network in both feature variants, with grouped early-stopping validation and comparisons against the linear/tree baselines. Larger-dataset popularity models have not been trained by this preparation step.
 
 ## Run the scrapers
 

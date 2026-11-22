@@ -39,3 +39,15 @@ Never put views, recent-view counts, a view-derived feature or precomputed popul
 - Finish with an honest answer: which variant works better for which metric, how it compares with the baseline, and its limits. Genre accuracy from earlier experiments is not popularity accuracy. Do not promise 85% or claim that more data guarantees improvement.
 
 The existing raw exports remain the audit trail. Do not re-scrape successful records or rewrite old results to match new ones.
+
+## Neural-network experiment requested by Mohammad
+
+Include a small **MLP neural network in both A and B**, alongside the dummy, linear and tree alternatives. Train separate classification and log-view regression models. This is an experiment; neither the dataset size nor neural-network architecture guarantees a better result.
+
+- A reasonable starting point is two hidden layers (128, 64), ReLU, Adam and L2/weight-decay regularisation. Scale numeric inputs. Use TF-IDF plus a compact text representation (for example TruncatedSVD) rather than training a large language model from scratch; fit both TF-IDF and reduction inside each training fold. The only feature difference between A and B must be the description text.
+- Use a grouped validation subset drawn from each training fold for early stopping, not the final test set and not an ungrouped random internal split. Keep the epoch budget bounded (for example 100 epochs, patience 10). If using sklearn MLP, implement group-aware validation explicitly rather than assuming its built-in validation split respects `ol_group`.
+- A PyTorch implementation or sklearn MLP is acceptable. Record actual dependencies and device; a GPU is not a requirement for this small experiment.
+- Report training/validation loss curves, training time and the same task metrics as the other models. If using several initialisation seeds, predeclare them, report their variability and do not pick the best seed from the test scores.
+- Select architecture, regularisation, stopping rules and final neural/non-neural winner using training CV only. Preserve the fixed holdout for the final comparison. Report honestly if the neural network or descriptions do not improve the results.
+
+Reference: [scikit-learn's supervised neural-network guide](https://scikit-learn.org/stable/modules/neural_networks_supervised.html) covers MLP classification/regression, scaling, regularisation and the benefit of starting with a small architecture.
