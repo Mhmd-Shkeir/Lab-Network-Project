@@ -1,0 +1,31 @@
+{
+  "books_checked": 5600,
+  "no_description_at_all": 623,
+  "only_catalogue_text_or_under_5_words": 1022,
+  "5_to_24_words": 770,
+  "25_or_more_words": 3185,
+  "removed_shared_text_or_boilerplate": 33,
+  "kept_usable": 3152,
+  "kept_share": 0.5629,
+  "kept_per_stratum": {
+    "benchmark_random_fiction": 67,
+    "science_fiction": 941,
+    "fantasy": 1124,
+    "mystery_thriller": 1020
+  },
+  "kept_per_primary_genre": {
+    "none": 54,
+    "mystery_thriller": 1024,
+    "fantasy": 1126,
+    "science_fiction": 948
+  },
+  "kept_in_americana": 907,
+  "kept_juvenile": 769,
+  "words_median": 53.0,
+  "words_p25_p75": [
+    37.0,
+    100.0
+  ],
+  "views_median_kept": 132.0,
+  "views_median_not_kept": 164.0
+}

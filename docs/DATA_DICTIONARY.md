@@ -12,6 +12,7 @@ Tip for Excel: open via *Data → From Text/CSV* and keep `identifier` as **Text
 | `data/benchmark_200_bs4.csv` | 200 | Same 200 books, independent Requests + BeautifulSoup on `archive.org/details/<id>` |
 | `data/benchmark_200_selenium.csv` | 200 | Same 200 books, Selenium/Chrome on the same pages (fields read with WebDriver locators) |
 | `data/training_api.csv` | 5,600 | Training records collected through the API only; usable rows (`status = ok`): the 200 benchmark books + 1,800 science fiction + 1,800 fantasy + 1,800 mystery/thriller (each genre: 600 Americana + 1,200 from other English texts) |
+| `data/training_with_descriptions.csv` | 3,152 | The training books that have a **usable description** (25+ words after removing catalogue text such as "244 p. ; 22 cm", not boilerplate, not shared with another work): same columns as `training_api.csv` plus `description` (cleaned text) and `description_words`. Built by `scrapers/build_description_dataset.py` from `data/descriptions_raw_5600.jsonl` (raw descriptions of all 5,600 books). 941 science fiction, 1,124 fantasy, 1,020 mystery/thriller, 67 benchmark. Descriptions are catalogue/publisher summaries; their author is not known |
 | `data/training_api_not_usable.csv` | few | Training ids whose row was partial/failed, with the reason |
 | `data/benchmark_200_comparison/` | – | Field-by-field and view-count differences between the three methods |
 | `data/manifest/` | – | Pool snapshot, `benchmark_200_ids.json`, `training_ids.json`, genre pool snapshot, `genre_availability.json`, `genre_preview.csv`, exclusions (`exclusions.csv`, `genre_exclusions.csv`), views eligibility checks, sampling metadata |
@@ -59,6 +60,7 @@ Rows are never filled from another method. An empty cell means that method did n
 | `in_americana` | `True` for the 200 benchmark books and the first 600 books per genre (Americana collection); `False` for the 1,200 per genre added later from the wider English-text pool. Views are much lower for `False` (median 97 vs 285) |
 | `genre_primary` | One genre per book by the rules in `scrapers/genres.py`, precedence science_fiction > fantasy > mystery_thriller; `none` if no rule matched (possible for benchmark books) |
 | `genre_science_fiction`, `genre_fantasy`, `genre_mystery_thriller` | `True`/`False`: every genre rule the subject tags match. Books matching several genres have several `True` and one `genre_primary` |
+| `juvenile` | `1` if any subject tag contains "juvenile" (library marker for books written for children or young readers, e.g. "Magic -- Juvenile fiction"), else `0`. 975 of the 5,600 books (17.4%). Derived from `subjects` by `genres.is_juvenile`; a catalogue label, so `0` does not prove the book is for adults |
 | `work_group` | Normalised main title + first creator's surname. Copies, volumes and editions of one work share a group (at most 3 items per group). **Split train/test by this column** to avoid leakage |
 | `in_benchmark` | `True` if the id is also one of the 200 benchmark books (their API record is re-collected here, separately from `benchmark_200_api.csv`) |
 

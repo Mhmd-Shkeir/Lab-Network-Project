@@ -27,7 +27,7 @@ from ia_common import read_csv, write_records_csv
 
 TRAIN_FIELDS = config.DATA_FIELDS + [
     "sampling_stratum", "genre_primary"] + [f"genre_{g}" for g in genres.GENRE_ORDER] + [
-    "in_americana", "work_group", "in_benchmark"] + config.PROVENANCE_FIELDS
+    "in_americana", "juvenile", "work_group", "in_benchmark"] + config.PROVENANCE_FIELDS
 
 
 def load_run(path):
@@ -119,6 +119,7 @@ def main(argv=None):
                "sampling_stratum": meta_by_id[ident]["stratum"],
                "genre_primary": genres.primary_genre(flags) or "none",
                "in_americana": meta_by_id[ident].get("in_americana", True),
+               "juvenile": genres.is_juvenile(row.get("subjects") or []),
                **{f"genre_{g}": flags[g] for g in genres.GENRE_ORDER}}
         (usable if row["status"] == "ok" else unusable).append(row)
     write_records_csv(data / "training_api.csv", usable, TRAIN_FIELDS)
@@ -171,6 +172,7 @@ def main(argv=None):
     changed = [i for i, old in previous.items() if i in usable_by_id and any(
         str(usable_by_id[i].get(f, "") if not isinstance(usable_by_id[i].get(f), list) else
             config.LIST_SEPARATOR.join(usable_by_id[i][f])) != old[f] for f in config.DATA_FIELDS)]
+    t["juvenile_rows"] = sum(int(r["juvenile"]) for r in usable)
     t["previous_csv_rows"] = len(previous)
     t["previous_csv_rows_changed"] = len(changed)
     t["previous_csv_rows_missing_now"] = sum(1 for i in previous if i not in usable_by_id)
@@ -223,6 +225,7 @@ def main(argv=None):
           f"{len(drift)}",
           f"- usable rows per sampling stratum: {t['rows_per_stratum']} (manifest: {t['manifest_ids_per_stratum']})",
           f"- of which in the Americana collection: {t['americana_rows_per_stratum']}",
+          f"- books with a \"juvenile\" subject tag (column `juvenile` = 1): {t['juvenile_rows']}",
           f"- rows of the previous training_api.csv ({t['previous_csv_rows']}): changed {t['previous_csv_rows_changed']}, "
           f"missing now {t['previous_csv_rows_missing_now']}",
           f"- rows matching more than one genre rule: {t['rows_matching_several_genres']}; "
@@ -245,7 +248,8 @@ def main(argv=None):
     (data / "completeness_report.md").write_text("\n".join(L), encoding="utf-8")
 
     # ---- checksums
-    names = [f"benchmark_200_{m}.csv" for m in ("api", "bs4", "selenium")] + ["training_api.csv", "training_api_not_usable.csv"]
+    names = [f"benchmark_200_{m}.csv" for m in ("api", "bs4", "selenium")] + ["training_api.csv", "training_api_not_usable.csv"] + (
+        ["training_with_descriptions.csv"] if (data / "training_with_descriptions.csv").exists() else [])
     with open(data / "checksums.sha256", "w", encoding="utf-8", newline="\n") as f:
         for n in names:
             f.write(f"{hashlib.sha256((data / n).read_bytes()).hexdigest()}  {n}\n")

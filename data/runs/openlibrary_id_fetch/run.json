@@ -1,0 +1,52 @@
+{
+  "run_id": "openlibrary_id_fetch",
+  "method": "openlibrary_id_fetch",
+  "ids_file": null,
+  "ids_requested": 0,
+  "records_saved": 0,
+  "status_counts": {},
+  "attempts_logged_total": 112,
+  "retry_attempts_total": 0,
+  "attempt_seconds": {
+    "n": 112,
+    "mean": 0.816,
+    "median": 0.795,
+    "max": 1.732
+  },
+  "decoded_body_bytes_total": 947368,
+  "delay_seconds_setting": 3.0,
+  "user_agent": "LabNetProject/1.0 (university networking lab project; code written with claude-sonnet-5-5)",
+  "rate_limit": {
+    "mode": "sequential_gap",
+    "workers": 1,
+    "interval_s": 3.0,
+    "interval_s_at_end": 3.0,
+    "attempts_with_timing": 112,
+    "min_start_gap_s": 3.4962,
+    "max_requests_in_flight": 1,
+    "attempts_per_second_overall": 0.2639
+  },
+  "resumed": false,
+  "segments": [
+    {
+      "started_at_utc": "2026-11-22T15:18:28Z",
+      "ended_at_utc": "2026-11-22T15:25:33Z",
+      "total_s": 424.8,
+      "pacing_sleep_s": 332.852,
+      "backoff_sleep_s": 0.0,
+      "browser_startup_s": null,
+      "active_s_estimate": 91.948,
+      "sleep_totals_are_summed_over_workers": false,
+      "aborted": null
+    }
+  ],
+  "notes": "Timings are pilot/collection timings, not the final network comparison. decoded_body_bytes_total is decoded response body size, not wire bandwidth.",
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "AMD64",
+    "requests": "2.34.2",
+    "bs4": "4.15.0",
+    "selenium": "4.49.0"
+  }
+}

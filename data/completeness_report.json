@@ -243,7 +243,8 @@
       "fantasy": 600,
       "mystery_thriller": 600
     },
-    "previous_csv_rows": 2000,
+    "juvenile_rows": 975,
+    "previous_csv_rows": 5600,
     "previous_csv_rows_changed": 0,
     "previous_csv_rows_missing_now": 0,
     "views_percentiles": {

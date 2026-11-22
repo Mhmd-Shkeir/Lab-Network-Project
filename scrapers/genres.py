@@ -51,6 +51,12 @@ EXCLUDE_TITLE = re.compile(
 EXCLUDE_TITLE_ISSUE = re.compile(r"\b(?:v\.|vol\.?|volume)\s*\d+\s*(?:,|\s)\s*(?:no\.?|issue)\s*\d+", re.I)
 
 
+def is_juvenile(subjects):
+    """1 if any subject tag contains "juvenile" (library marker for books written for children/young readers), else 0.
+    A catalogue label: a missing tag does not prove the book is for adults."""
+    return int(any("juvenile" in tag for tag in tags(subjects)))
+
+
 def tags(subjects):
     return [str(s).strip().lower() for s in subjects if str(s).strip()]
 

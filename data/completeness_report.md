@@ -53,7 +53,8 @@ Field agreement between the three methods (rows complete in all three):
 - benchmark ids whose API views changed between the benchmark run and the training run: 0
 - usable rows per sampling stratum: {'benchmark_random_fiction': 200, 'science_fiction': 1800, 'fantasy': 1800, 'mystery_thriller': 1800} (manifest: {'benchmark_random_fiction': 200, 'science_fiction': 1800, 'fantasy': 1800, 'mystery_thriller': 1800})
 - of which in the Americana collection: {'benchmark_random_fiction': 200, 'science_fiction': 600, 'fantasy': 600, 'mystery_thriller': 600}
-- rows of the previous training_api.csv (2000): changed 0, missing now 0
+- books with a "juvenile" subject tag (column `juvenile` = 1): 975
+- rows of the previous training_api.csv (5600): changed 0, missing now 0
 - rows matching more than one genre rule: 359; genre flags differing from the manifest: 0
 - views percentiles (all usable rows): {'p10': 38, 'p25': 66, 'p33': 87, 'p50': 147, 'p66': 259, 'p75': 370, 'p90': 923, 'p99': 4897}
 - tercile cut-offs of all rows: low <= 87, high >= 259 (illustration only; thresholds must be fitted on the training split)

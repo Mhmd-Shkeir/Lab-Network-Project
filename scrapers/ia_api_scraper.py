@@ -28,13 +28,13 @@ def chunks(seq, size):
         yield seq[i:i + size]
 
 
-def collect_batch(run, client, batch, batch_no, batch_total):
+def collect_batch(run, client, batch, batch_no, batch_total, extra_fields=()):
     ids = [identifier for _, identifier, _ in batch]
     rows = {identifier: new_row(identifier, "api", run, position) for position, identifier, _ in batch}
     label = f"advancedsearch.php + be-api views/v1/short (batch {batch_no}/{batch_total})"
     query = "identifier:(" + " OR ".join(f'"{i}"' for i in ids) + ")"
     params = [("q", query), ("rows", len(ids)), ("page", 1), ("output", "json")]
-    params += [("fl[]", f) for f in SEARCH_FIELDS]
+    params += [("fl[]", f) for f in list(SEARCH_FIELDS) + list(extra_fields)]
     ctx = {"call": "search", "batch": batch_no, "n_ids": len(ids), "first_id": ids[0]}
     try:
         search = client.get(config.SEARCH_URL, params=params, context=ctx)
@@ -78,6 +78,9 @@ def collect_batch(run, client, batch, batch_no, batch_total):
         row["language"] = ",".join(unique(doc.get("language")))
         row["addeddate"] = str(doc.get("addeddate") or "")
         row["scanned_page_count"] = to_int(doc.get("imagecount")) if doc.get("imagecount") is not None else None
+        for f in extra_fields:      # description / Open Library ids: stored raw in records.jsonl only (CSV columns unchanged)
+            v = doc.get(f)
+            row["raw_" + f] = " ".join(map(str, v)) if isinstance(v, list) else (v or "")
         errors = []
         info = views.get(identifier) if isinstance(views, dict) else None
         row["raw_views_api"] = info          # kept in records.jsonl only (recent-window counts are not CSV fields)
@@ -96,16 +99,19 @@ def collect_batch(run, client, batch, batch_no, batch_total):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     add_common_args(parser)
+    parser.add_argument("--with-description", action="store_true", help="also fetch the item's description (raw, in records.jsonl)")
+    parser.add_argument("--with-openlibrary", action="store_true", help="also fetch openlibrary_work / openlibrary_edition ids (raw, in records.jsonl)")
     parser.add_argument("--batch-size", type=int, default=config.API_BATCH_SIZE,
                         help=f"ids per search+views call pair (default {config.API_BATCH_SIZE})")
     args = parser.parse_args(argv)
-    run, id_rows, todo = start_run("api", args, extra={"batch_size": args.batch_size})
+    extra_fields = (["description"] if args.with_description else []) + (["openlibrary_work", "openlibrary_edition"] if args.with_openlibrary else [])
+    run, id_rows, todo = start_run("api", args, extra={"batch_size": args.batch_size, "extra_fields": extra_fields})
     get_client = client_factory(run)
     batches = list(enumerate(chunks(todo, args.batch_size), 1))
 
     def handle(item):
         n, batch = item
-        collect_batch(run, get_client(), batch, n, len(batches))
+        collect_batch(run, get_client(), batch, n, len(batches), extra_fields)
         print(f"  batch {n}/{len(batches)} done ({len(run.records)} records)", flush=True)
 
     return execute(run, id_rows, args, lambda: run_parallel(batches, handle, run.workers))

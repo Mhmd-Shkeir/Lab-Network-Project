@@ -6,7 +6,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 
 - [x] Three separate Internet Archive scrapers with shared configuration, pacing, retry/backoff and checkpoints.
 - [x] Same 200 benchmark IDs collected independently by API, BS4 and Selenium, all rows `ok`.
-- [x] Training API dataset: 5,600 complete rows = 200 benchmark books + 1,800 books per genre (600 Americana + 1,200 from the wider English-text pool, flagged `in_americana`); the first 2,000 rows are unchanged.
+- [x] Training API dataset: 5,600 collector-success rows (source-quality checks remain) = 200 benchmark books + 1,800 books per genre (600 Americana + 1,200 from the wider English-text pool, flagged `in_americana`); the first 2,000 rows are unchanged.
 - [x] Genre rules, frozen manifests, sampling/exclusion records and source differences documented.
 - [x] Final CSVs, completeness report, comparison and checksums.
 - [x] Publication-year, timestamp and language parsing corrections; corrected HTML collections retained.
@@ -25,8 +25,10 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 ### Mohammad
 
 - [ ] Help resolve scraper/setup issues from Issa's smoke checks.
-- [x] Bounded `--workers` / `--min-interval` mode in all three scrapers with ONE global start-to-start request limit shared by all workers (retries included, 429/503 pauses everyone); 24 offline tests pass; not run against archive.org. Issa's commands are in the networking handoff.
-- [ ] Begin the ML notebook: load `training_api.csv`, validate types and groups, inspect distributions and define the prediction task.
+- [x] Bounded `--workers` / `--min-interval` mode in all three scrapers with ONE global start-to-start request limit shared by all workers (retries included, 429/503 pauses everyone); 28 offline tests pass, including description-cleaning tests; not run against archive.org. Issa's commands are in the networking handoff.
+- [x] Executed exploratory ML notebooks: grouped splits, EDA, baselines, regression/classification, learning curves and K-Means.
+- [ ] Finalise the submission notebook: rerun the corrected CV-selected summary and document that the existing held-out comparisons are exploratory.
+- [ ] Finish and validate the separate 15,000-item description/Open Library-linked API collection; preserve benchmark and earlier datasets.
 
 ### Both
 
@@ -46,12 +48,13 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 ## Data analysis and ML
 
 - [ ] Preserve raw CSVs; write cleaning output separately and report exclusions.
-- [ ] EDA: views, years, scanned pages, item age, genres and source differences.
-- [ ] Grouped training/test split by `work_group`; fit transforms and popularity thresholds on training data only.
-- [ ] Baselines plus regression/classification; evaluate overall and by genre.
-- [ ] Exclude view-derived values and sampling/provenance fields from predictive inputs; genre features may be used.
-- [ ] Learning curves to assess whether additional training data helps.
-- [ ] Optional K-Means as an additional exploratory analysis.
+- [x] Exploratory EDA: views, years, scanned pages, item age, genres and source differences.
+- [x] Existing experiments use grouped train/test splits by `work_group` and training-derived transforms/thresholds.
+- [ ] Validate grouping on the larger dataset using `ol_group`, and keep final model choices independent of held-out scores.
+- [x] Exploratory baselines plus regression/classification and per-genre comparisons; final model selection/reporting still needs review.
+- [ ] Exclude view-derived values and identifiers from predictive inputs. Document the collection flag and age as existing-engagement features; do not claim new-publication prediction. For genre/juvenile models, exclude the subject tags that define the labels.
+- [x] Learning curves on the existing training snapshot; compare future datasets with a consistent evaluation protocol.
+- [x] Optional exploratory K-Means in `notebooks/ml_analysis1.ipynb`.
 - [ ] ML notebook with outputs and honest limits: the snapshot estimates existing archived-item engagement, not new-publication sales.
 
 ## Final submission

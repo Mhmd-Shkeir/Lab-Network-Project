@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-11-22T15:48:23Z",
+  "pool_query": "mediatype:texts AND language:eng AND creator:* AND year:[1800 TO 2020] AND imagecount:[50 TO 1500] AND (subject:\"science fiction\" OR subject:fantasy OR subject:(\"detective and mystery stories\" OR \"mystery fiction\" OR \"detective fiction\" OR thriller OR thrillers OR \"suspense fiction\" OR \"spy stories\" OR \"crime fiction\")) AND openlibrary_work:[* TO *] AND description:[* TO *]",
+  "snapshot_file": "ol_pool_snapshot_20261122.csv.gz",
+  "snapshot_sha256": "e334610a45791a475a072134a1db3d2cde23c9947afb27dac4847e9823007859",
+  "scrape_api_reported_total": null,
+  "snapshot_rows": 41849,
+  "new_candidates_usable": 19607,
+  "excluded_by_stage": {
+    "nonfiction_rule": 2382,
+    "already_selected": 4539,
+    "genre_rule": 982,
+    "metadata": 15,
+    "description": 14324
+  },
+  "per_genre_wanted": 5000,
+  "per_genre_available": {
+    "science_fiction": 5251,
+    "fantasy": 6459,
+    "mystery_thriller": 7897
+  },
+  "distinct_open_library_works_available": 18460
+}
