@@ -1,0 +1,8 @@
+model,precision,recall,f1,accuracy,tp,fp,fn
+"BASELINE existing juvenile-tag model, classical A",0.44,0.5366,0.4835,0.7025,22,28,19
+"BASELINE existing juvenile-tag model, classical B",0.5385,0.5122,0.525,0.7595,21,18,20
+"BASELINE existing juvenile-tag model, neural B",0.4894,0.561,0.5227,0.7342,23,24,18
+"existing tag-model score alone, threshold tuned (A: no description)",0.3538,0.561,0.434,0.6203,23,42,18
+"existing tag-model score alone, threshold tuned (B: with description)",0.5,0.4146,0.4533,0.7405,17,17,24
+stacked: tag score + pages + year (A),0.566,0.7317,0.6383,0.7848,30,23,11
+stacked: tag score + pages + year (B),0.5926,0.7805,0.6737,0.8038,32,22,9

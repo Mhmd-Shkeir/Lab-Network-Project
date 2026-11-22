@@ -1,0 +1,8 @@
+model,precision,recall,f1,accuracy,tp,fp,fn,tn
+NEW A: metadata only (stack_hgb),0.6271,0.7255,0.6727,0.7526,74,44,28,145
+NEW B: metadata + description (stack_direct_lr),0.8,0.7843,0.7921,0.8557,80,20,22,169
+baseline: always 'not children',0.0,0.0,0.0,0.6495,0,0,102,189
+"old juvenile-tag model, classical A",0.5234,0.6569,0.5826,0.6701,67,61,35,128
+"old juvenile-tag model, classical B",0.6733,0.6667,0.67,0.7698,68,33,34,156
+"old juvenile-tag model, neural A",0.5074,0.6765,0.5798,0.6564,69,67,33,122
+"old juvenile-tag model, neural B",0.646,0.7157,0.6791,0.7629,73,40,29,149

@@ -1,0 +1,9 @@
+variant,family,fraction,training_labels,cv_f1_mean,cv_f1_sd
+A,stack_hgb,0.25,159,0.5968,0.019
+A,stack_hgb,0.5,319,0.6108,0.0358
+A,stack_hgb,0.75,478,0.632,0.0462
+A,stack_hgb,1.0,638,0.644,0.0457
+B,stack_direct_lr,0.25,159,0.6849,0.0593
+B,stack_direct_lr,0.5,319,0.7175,0.06
+B,stack_direct_lr,0.75,478,0.7178,0.054
+B,stack_direct_lr,1.0,638,0.7312,0.0597

@@ -1,0 +1,5 @@
+family,description,genre_accuracy,juvenile_accuracy,juvenile_balanced_accuracy,n_books,seed,juvenile_marker_share,note
+classical,without,0.76,0.765,0.776,400,2026,0.235,Ad-hoc check: random sample of single-genre archive.org snapshot books in none of our datasets; labels from subject tags; models are the CV-selected ones refit on the saved training pools.
+classical,with,0.885,0.86,0.835,400,2026,0.235,Ad-hoc check: random sample of single-genre archive.org snapshot books in none of our datasets; labels from subject tags; models are the CV-selected ones refit on the saved training pools.
+neural,without,0.64,0.708,0.717,400,2026,0.235,Ad-hoc check: random sample of single-genre archive.org snapshot books in none of our datasets; labels from subject tags; models are the CV-selected ones refit on the saved training pools.
+neural,with,0.84,0.818,0.796,400,2026,0.235,Ad-hoc check: random sample of single-genre archive.org snapshot books in none of our datasets; labels from subject tags; models are the CV-selected ones refit on the saved training pools.

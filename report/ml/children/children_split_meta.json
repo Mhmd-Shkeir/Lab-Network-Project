@@ -1,0 +1,16 @@
+{
+  "seed": 2026,
+  "cv_folds": 5,
+  "group_column": "ol_group",
+  "training_rows": 797,
+  "training_groups": 795,
+  "training_children": 231,
+  "fresh_test_rows": 291,
+  "fresh_test_groups": 291,
+  "fresh_test_children": 102,
+  "sha256_labels": "91f95f65488a6415d216473cf26f2f87e9ce17846d2b7f088b189a022ae745e6",
+  "sha256_training_folds": "e588ced659bb2dc0e3c44ad2b9d8485563ce6bdae1e1f1e5f011ab450ec274e0",
+  "sha256_fresh_test_ids": "23147f44b553930e3d967ac2da905a8d66835e345cb51ff7856bc192dc934e55",
+  "created_utc": "2026-11-22T21:19:47.858524+00:00",
+  "rules": "docs/CHILDREN_LABEL_RULES.md"
+}

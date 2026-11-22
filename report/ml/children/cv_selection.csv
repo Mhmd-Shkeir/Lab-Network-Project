@@ -1,0 +1,10 @@
+variant,family,cfg_id,cfg,cv_f1,cv_precision,cv_recall,cv_accuracy,is_winner
+A,direct_lr,1,"{""C"": 1.0}",0.61779,0.58201,0.66291,0.76412,False
+A,dummy,0,{},0.0,0.0,0.0,0.71012,False
+A,stack_direct_lr,0,"{""C"": 0.1}",0.61876,0.5659,0.68712,0.75663,False
+A,stack_hgb,1,"{""max_iter"": 150, ""learning_rate"": 0.05, ""max_depth"": 3, ""min_samples_leaf"": 20, ""l2_regularization"": 2.0}",0.64397,0.56266,0.75609,0.75909,True
+A,stack_lr,2,"{""C"": 1.0}",0.62164,0.55986,0.70348,0.75413,False
+B,direct_lr,2,"{""C"": 3.0}",0.71538,0.72828,0.70618,0.83812,False
+B,stack_direct_lr,2,"{""C"": 1.0}",0.73125,0.70666,0.76036,0.83939,True
+B,stack_hgb,1,"{""max_iter"": 150, ""learning_rate"": 0.05, ""max_depth"": 3, ""min_samples_leaf"": 20, ""l2_regularization"": 2.0}",0.6867,0.6388,0.74653,0.803,False
+B,stack_lr,2,"{""C"": 1.0}",0.68794,0.62582,0.76839,0.79926,False
