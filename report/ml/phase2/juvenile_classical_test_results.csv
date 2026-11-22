@@ -1,0 +1,9 @@
+variant,algo,family,cfg,is_best_in_family,accuracy,macro_f1,balanced_accuracy,juv_precision,juv_recall,juv_f1,roc_auc,fit_seconds,accuracy | author seen in training,macro_f1 | author seen in training,accuracy | author NOT seen in training,macro_f1 | author NOT seen in training
+A,dummy,baseline,{},False,0.72243,0.41942,0.5,0.0,0.0,0.0,0.5,0.00111,0.69758,0.41093,0.7556,0.43039
+A,hgb,tree,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",True,0.71932,0.68808,0.72126,0.49618,0.72561,0.58935,0.80554,1.43247,0.74248,0.71523,0.68841,0.65133
+A,linsvc,linear,"{""C"": 0.1}",False,0.72779,0.68998,0.71366,0.50718,0.68191,0.58171,0.79407,0.08437,0.76122,0.72983,0.68314,0.63585
+A,logreg,linear,"{""C"": 1.0}",False,0.72779,0.68899,0.71147,0.50726,0.6748,0.57915,0.79357,0.22811,0.76172,0.72987,0.68248,0.63328
+B,dummy,baseline,{},False,0.72243,0.41942,0.5,0.0,0.0,0.0,0.5,0.00067,0.69758,0.41093,0.7556,0.43039
+B,hgb,tree,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",True,0.82539,0.79235,0.80781,0.65911,0.76829,0.70953,0.89566,4.81806,0.82536,0.79941,0.82543,0.78079
+B,linsvc,linear,"{""C"": 0.1}",False,0.81636,0.78254,0.79906,0.64316,0.76016,0.69679,0.87736,1.84529,0.8145,0.78712,0.81884,0.77485
+B,logreg,linear,"{""C"": 1.0}",False,0.81608,0.78111,0.79573,0.6451,0.75,0.69361,0.87705,0.7304,0.81253,0.78397,0.82082,0.77583

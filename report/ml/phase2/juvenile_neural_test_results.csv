@@ -1,0 +1,3 @@
+variant,algo,family,cfg,is_best_in_family,accuracy,macro_f1,balanced_accuracy,juv_precision,juv_recall,juv_f1,roc_auc,fit_seconds,accuracy | author seen in training,macro_f1 | author seen in training,accuracy | author NOT seen in training,macro_f1 | author NOT seen in training
+A,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.001, ""dropout"": 0.1}",True,0.68632,0.66188,0.70655,0.4602,0.75203,0.57099,0.77592,8.95048,0.7183,0.69318,0.64361,0.62071
+B,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,0.79408,0.76553,0.79646,0.59592,0.80183,0.68371,0.87315,5.35742,0.78836,0.76443,0.80171,0.76629

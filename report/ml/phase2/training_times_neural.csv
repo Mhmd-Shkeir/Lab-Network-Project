@@ -1,0 +1,5 @@
+algo,variant,task,cv_fit_s_per_fold,cv_fit_s_per_seed_or_model,final_fit_s_on_pool
+mlp,A,genre,18.51,6.17,22.48
+mlp,B,genre,7.51,2.5,7.59
+mlp,A,juvenile,7.74,2.58,8.95
+mlp,B,juvenile,5.04,1.68,5.36

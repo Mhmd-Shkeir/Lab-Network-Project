@@ -1,0 +1,7 @@
+variant,algo,family,cfg,is_best_in_family,seed,accuracy,macro_f1,balanced_accuracy,juv_precision,juv_recall,juv_f1,roc_auc,best_epoch,fit_seconds
+A,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.001, ""dropout"": 0.1}",True,2026,0.69647,0.66819,0.70638,0.46986,0.72866,0.57131,0.77665,33,3.99207
+A,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.001, ""dropout"": 0.1}",True,2027,0.67955,0.65526,0.69999,0.45309,0.74593,0.56375,0.76872,20,2.62924
+A,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.001, ""dropout"": 0.1}",True,2028,0.67052,0.64809,0.69593,0.44478,0.75305,0.55925,0.76531,17,2.32917
+B,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2026,0.79097,0.76119,0.79025,0.59282,0.78862,0.67684,0.87123,5,1.63646
+B,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2027,0.78872,0.76075,0.79369,0.5871,0.80488,0.67895,0.86703,7,1.89677
+B,mlp,neural,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2028,0.78872,0.75991,0.79119,0.58815,0.79675,0.67674,0.87111,6,1.82419

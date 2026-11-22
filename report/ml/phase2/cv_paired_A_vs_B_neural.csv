@@ -1,0 +1,7 @@
+task,algo,metric,A_mean,B_mean,mean_B_minus_A,sd_of_fold_differences,folds_B_better
+genre,mlp,accuracy,0.6239,0.8263,0.2025,0.0116,5
+genre,mlp,macro_f1,0.6196,0.8234,0.2038,0.0118,5
+juvenile,mlp,accuracy,0.6759,0.7784,0.1025,0.0086,5
+juvenile,mlp,macro_f1,0.6515,0.7467,0.0952,0.0058,5
+juvenile,mlp,balanced_accuracy,0.6993,0.7775,0.0783,0.0058,5
+juvenile,mlp,juv_f1,0.5595,0.6572,0.0977,0.007,5

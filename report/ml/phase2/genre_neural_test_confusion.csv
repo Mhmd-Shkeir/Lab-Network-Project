@@ -1,0 +1,7 @@
+variant,algo,true_class,pred_science_fiction,pred_fantasy,pred_mystery_thriller
+A,mlp,science_fiction,459,238,223
+A,mlp,fantasy,207,729,242
+A,mlp,mystery_thriller,119,247,825
+B,mlp,science_fiction,663,173,84
+B,mlp,fantasy,133,949,96
+B,mlp,mystery_thriller,47,85,1059

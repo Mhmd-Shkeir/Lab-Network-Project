@@ -1,0 +1,12 @@
+comparison,detail,accuracy_mean,accuracy_lo95,accuracy_hi95,macro_f1_mean,macro_f1_lo95,macro_f1_hi95,balanced_accuracy_mean,balanced_accuracy_lo95,balanced_accuracy_hi95
+"description effect (B - A), same algorithm",dummy,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"description effect (B - A), same algorithm",hgb,0.17855,0.15992,0.19777,0.17903,0.16013,0.19878,0.1784,0.15946,0.19799
+"description effect (B - A), same algorithm",linsvc,0.15374,0.13802,0.16885,0.15643,0.14021,0.17193,0.15725,0.14148,0.17288
+"description effect (B - A), same algorithm",logreg,0.15326,0.13781,0.16905,0.15593,0.13981,0.17242,0.15623,0.1408,0.17265
+CV-selected best classical model (B winner - A winner),linsvc (B) vs logreg (A),0.15436,0.13884,0.16957,0.15718,0.14184,0.17241,0.15765,0.14232,0.17262
+"model minus train-fitted baseline, variant A",hgb,0.26715,0.24272,0.29099,0.44394,0.42644,0.46109,0.28539,0.26869,0.30133
+"model minus train-fitted baseline, variant A",linsvc,0.35049,0.32835,0.37197,0.52723,0.50974,0.54518,0.36671,0.34969,0.3832
+"model minus train-fitted baseline, variant A",logreg,0.34987,0.32765,0.37111,0.52649,0.50878,0.54399,0.36631,0.34971,0.38309
+"model minus train-fitted baseline, variant B",hgb,0.4457,0.42317,0.46754,0.62297,0.60728,0.63876,0.4638,0.45025,0.47851
+"model minus train-fitted baseline, variant B",linsvc,0.50423,0.48425,0.52483,0.68367,0.66949,0.69685,0.52396,0.51153,0.53614
+"model minus train-fitted baseline, variant B",logreg,0.50313,0.48212,0.52408,0.68241,0.66888,0.69641,0.52254,0.51028,0.53501

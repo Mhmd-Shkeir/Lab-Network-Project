@@ -1,0 +1,6 @@
+comparison,detail,accuracy_mean,accuracy_lo95,accuracy_hi95,macro_f1_mean,macro_f1_lo95,macro_f1_hi95,balanced_accuracy_mean,balanced_accuracy_lo95,balanced_accuracy_hi95
+"description effect (B - A), neural network",mlp,0.19994,0.1819,0.21885,0.20211,0.18369,0.22177,0.20154,0.18279,0.221
+"neural network minus best classical model chosen by CV, variant A",mlp - logreg,-0.09606,-0.11251,-0.08023,-0.09792,-0.11485,-0.08168,-0.09588,-0.11247,-0.07984
+"neural network minus train-fitted baseline, variant A",mlp - dummy,0.25381,0.22909,0.27782,0.42857,0.41078,0.44704,0.27042,0.25396,0.28641
+"neural network minus best classical model chosen by CV, variant B",mlp - linsvc,-0.05048,-0.06296,-0.03797,-0.05299,-0.06554,-0.03999,-0.05199,-0.06465,-0.03928
+"neural network minus train-fitted baseline, variant B",mlp - dummy,0.45374,0.43205,0.47544,0.63068,0.61558,0.64604,0.47196,0.45865,0.48641

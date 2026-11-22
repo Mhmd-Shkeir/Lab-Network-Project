@@ -1,0 +1,17 @@
+algo,variant,task,cv_fit_s_per_fold,cv_fit_s_per_seed_or_model,final_fit_s_on_pool
+dummy,A,genre,0.0,0.0,0.0
+dummy,B,genre,0.0,0.0,0.0
+hgb,A,genre,7.28,7.28,3.88
+hgb,B,genre,26.6,26.6,13.87
+linsvc,A,genre,0.13,0.13,0.16
+linsvc,B,genre,17.04,17.04,13.62
+logreg,A,genre,0.87,0.87,0.87
+logreg,B,genre,1.99,1.99,2.1
+dummy,A,juvenile,0.0,0.0,0.0
+dummy,B,juvenile,0.0,0.0,0.0
+hgb,A,juvenile,3.28,3.28,1.43
+hgb,B,juvenile,8.02,8.02,4.82
+linsvc,A,juvenile,0.07,0.07,0.08
+linsvc,B,juvenile,2.6,2.6,1.85
+logreg,A,juvenile,0.21,0.21,0.23
+logreg,B,juvenile,0.63,0.63,0.73

@@ -1,0 +1,7 @@
+variant,algo,family,cfg,is_best_in_family,seed,accuracy,macro_f1,balanced_accuracy,f1_science_fiction,f1_fantasy,f1_mystery_thriller,best_epoch,fit_seconds
+A,mlp,neural,"{""hidden"": [128, 64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2026,0.61751,0.6092,0.60847,0.53946,0.62121,0.66693,43,10.76571
+A,mlp,neural,"{""hidden"": [128, 64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2027,0.609,0.60247,0.6016,0.53776,0.60463,0.66501,37,6.8817
+A,mlp,neural,"{""hidden"": [128, 64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2028,0.59775,0.58977,0.58935,0.51882,0.59353,0.65696,21,4.8277
+B,mlp,neural,"{""hidden"": [128, 64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2026,0.80967,0.80329,0.80155,0.74168,0.79983,0.86835,4,2.60678
+B,mlp,neural,"{""hidden"": [128, 64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2027,0.80359,0.79793,0.79717,0.74091,0.79068,0.8622,4,2.56263
+B,mlp,neural,"{""hidden"": [128, 64], ""weight_decay"": 0.01, ""dropout"": 0.3}",True,2028,0.80754,0.80195,0.80099,0.74649,0.79341,0.86595,4,2.42126

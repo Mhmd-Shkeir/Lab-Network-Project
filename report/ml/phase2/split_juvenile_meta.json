@@ -1,0 +1,12 @@
+{
+  "task": "juvenile",
+  "seed": 2026,
+  "rows": 17727,
+  "groups": 16666,
+  "test_rows": 3545,
+  "pool_rows": 14182,
+  "cv_folds": 5,
+  "group_column": "ol_group",
+  "sha256": "b6788a4327c7371e0ba56820bafd755ae3eb673bb8c19beabfb9946cb897f154",
+  "created_utc": "2026-11-22T19:05:31.356087+00:00"
+}

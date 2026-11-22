@@ -1,0 +1,5 @@
+variant,algo,true_class,pred_no_marker,pred_juvenile_marker
+A,mlp,no_marker,1693,868
+A,mlp,juvenile_marker,244,740
+B,mlp,no_marker,2026,535
+B,mlp,juvenile_marker,195,789

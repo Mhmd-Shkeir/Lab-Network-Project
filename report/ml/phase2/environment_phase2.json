@@ -1,0 +1,61 @@
+{
+  "python": "3.13.2",
+  "numpy": "2.2.3",
+  "pandas": "2.2.3",
+  "scipy": "1.15.2",
+  "scikit-learn": "1.6.1",
+  "torch": "2.14.0+cpu",
+  "joblib": "1.4.2",
+  "device": "cpu",
+  "cpu_count": 16,
+  "seed": 2026,
+  "mlp_seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "cv_folds": 5,
+  "test_share": "1/5 of work groups",
+  "bootstrap_resamples": 1000,
+  "svd_dims": {
+    "metadata": 100,
+    "description": 200
+  },
+  "mlp": {
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "batch": 256,
+    "max_epochs": 100,
+    "patience": 10,
+    "validation": "15% of training work groups"
+  },
+  "data_file": "data\\popularity_training_clean.csv",
+  "data_sha256": "52ba0b86e0c1a9484d4b4b42a16de9aced234a497dbf2a764a66ba99508d3c1e",
+  "model_inputs": [
+    "publication_year",
+    "log_pages",
+    "age_years",
+    "n_creators",
+    "title_words",
+    "title_text",
+    "creator_tokens",
+    "description"
+  ],
+  "never_inputs": [
+    "subjects",
+    "n_subjects",
+    "juvenile",
+    "genre_primary",
+    "genre_science_fiction",
+    "genre_fantasy",
+    "genre_mystery_thriller",
+    "sampling_stratum",
+    "in_americana",
+    "source_batch",
+    "identifier",
+    "ol_group",
+    "work_group",
+    "views_all_time",
+    "description_words"
+  ]
+}

@@ -1,0 +1,5 @@
+task,variant,best classical (CV),CV macro-F1 classical,CV macro-F1 neural,CV winner,test acc classical,test acc neural,test macro-F1 classical,test macro-F1 neural,test bal.acc classical,test bal.acc neural,test juv-F1 classical,test juv-F1 neural
+genre,A,logreg,0.6865,0.6196,logreg,0.7078,0.612,0.702,0.6043,,,,
+genre,B,linsvc,0.851,0.8234,linsvc,0.8626,0.8121,0.8595,0.8065,,,,
+juvenile,A,hgb,0.6826,0.6515,hgb,0.7193,0.6863,0.6881,0.6619,0.7213,0.7066,0.5894,0.571
+juvenile,B,hgb,0.776,0.7467,hgb,0.8254,0.7941,0.7924,0.7655,0.8078,0.7965,0.7095,0.6837

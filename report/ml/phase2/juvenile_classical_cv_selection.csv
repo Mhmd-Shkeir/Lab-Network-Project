@@ -1,0 +1,9 @@
+variant,algo,family,cfg_id,cfg,cv_macro_f1,cv_accuracy,is_best_in_family
+A,dummy,baseline,0,{},0.42056,0.72584,False
+A,hgb,tree,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",0.68257,0.71634,True
+A,linsvc,linear,1,"{""C"": 0.1}",0.67537,0.7154,False
+A,logreg,linear,1,"{""C"": 1.0}",0.67581,0.71681,False
+B,dummy,baseline,0,{},0.42056,0.72584,False
+B,hgb,tree,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",0.77605,0.81364,True
+B,linsvc,linear,1,"{""C"": 0.1}",0.76468,0.80348,False
+B,logreg,linear,1,"{""C"": 1.0}",0.76396,0.80369,False

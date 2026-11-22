@@ -1,0 +1,17 @@
+variant,algo,true_class,pred_no_marker,pred_juvenile_marker
+A,dummy,no_marker,2561,0
+A,dummy,juvenile_marker,984,0
+A,hgb,no_marker,1836,725
+A,hgb,juvenile_marker,270,714
+A,linsvc,no_marker,1909,652
+A,linsvc,juvenile_marker,313,671
+A,logreg,no_marker,1916,645
+A,logreg,juvenile_marker,320,664
+B,dummy,no_marker,2561,0
+B,dummy,juvenile_marker,984,0
+B,hgb,no_marker,2170,391
+B,hgb,juvenile_marker,228,756
+B,linsvc,no_marker,2146,415
+B,linsvc,juvenile_marker,236,748
+B,logreg,no_marker,2155,406
+B,logreg,juvenile_marker,246,738

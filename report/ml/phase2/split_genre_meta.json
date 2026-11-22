@@ -1,0 +1,12 @@
+{
+  "task": "genre",
+  "seed": 2026,
+  "rows": 16515,
+  "groups": 15555,
+  "test_rows": 3289,
+  "pool_rows": 13226,
+  "cv_folds": 5,
+  "group_column": "ol_group",
+  "sha256": "d8bf922069715fc2498300bccce7b2e5d333e588f4f4586ade062ae8ff11ab93",
+  "created_utc": "2026-11-22T19:05:22.735765+00:00"
+}
