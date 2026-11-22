@@ -1,3 +1,4 @@
 # Preserve published CSV bytes so checksums work on Windows, Linux and macOS.
 data/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 data/checksums.sha256 text eol=lf
+report/**/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,14 @@
+{
+  "seed": 2026,
+  "holdout_fraction_target": 0.17,
+  "cv_folds": 5,
+  "group_column": "ol_group",
+  "holdout_rule": "whole ol_group units whose Open Library work id is absent from data/openlibrary_ids_5600.csv, same share per genre",
+  "cv_stratification": "genre stratum + collection batch, grouped by ol_group",
+  "manifest_sha256": "6a610d3f9a5bc4e494ea888e6bc5522f9499c486872b3ac0df4c78ce2c2bc2b1",
+  "created_utc": "2026-11-22T17:29:10.311959+00:00",
+  "rows_pool": 14721,
+  "rows_holdout": 3006,
+  "groups_pool": 13780,
+  "groups_holdout": 2886
+}

@@ -1,0 +1,19 @@
+variant,task,algo,cfg_id,cfg,family,cv_criterion,cv_value,is_variant_winner,is_best_non_neural
+A,classification,dummy,0,{},baseline,macro_f1,0.16696,False,False
+A,classification,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",tree,macro_f1,0.55011,False,False
+A,classification,logreg,2,"{""C"": 1.0}",linear,macro_f1,0.56375,True,True
+A,classification,mlp,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",neural,macro_f1,0.54314,False,False
+A,regression,dummy_mean,0,{},baseline,r2_log,-5e-05,False,False
+A,regression,dummy_median,0,{},baseline,r2_log,-0.03429,False,False
+A,regression,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",tree,r2_log,0.33307,False,False
+A,regression,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",neural,r2_log,0.32292,False,False
+A,regression,ridge,2,"{""alpha"": 3.0}",linear,r2_log,0.40065,True,True
+B,classification,dummy,0,{},baseline,macro_f1,0.16696,False,False
+B,classification,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",tree,macro_f1,0.55737,False,False
+B,classification,logreg,2,"{""C"": 1.0}",linear,macro_f1,0.57315,True,True
+B,classification,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",neural,macro_f1,0.5447,False,False
+B,regression,dummy_mean,0,{},baseline,r2_log,-5e-05,False,False
+B,regression,dummy_median,0,{},baseline,r2_log,-0.03429,False,False
+B,regression,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",tree,r2_log,0.34297,False,False
+B,regression,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",neural,r2_log,0.3454,False,False
+B,regression,ridge,2,"{""alpha"": 3.0}",linear,r2_log,0.41868,True,True

@@ -4,3 +4,4 @@ matplotlib
 seaborn
 scikit-learn
 jupyter
+torch  # CPU build is enough (notebooks/05_popularity_description_comparison.ipynb)

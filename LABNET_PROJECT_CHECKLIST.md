@@ -29,7 +29,8 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 - [x] Executed exploratory ML notebooks: grouped splits, EDA, baselines, regression/classification, learning curves and K-Means.
 - [ ] Finalise the submission notebook: rerun the corrected CV-selected summary and document that the existing held-out comparisons are exploratory.
 - [x] Finish and validate the 15,000-item API collection; exports contain 20,271 linked records / 17,763 description-ready records. Benchmark and earlier datasets preserved.
-- [ ] Train and evaluate the next models on the larger dataset using `ol_group`, one fixed grouped holdout, training-only model selection and same-item description comparisons.
+- [x] Complete notebook 05: paired A/B popularity models, including MLP, on 17,727 items with one fixed grouped holdout and saved CV choices/results.
+- [ ] Optional: implement the five proposed trials in notebook 05 section 9, using training-pool CV only and separate outputs; none run yet.
 
 ### Both
 
@@ -49,7 +50,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 ## Data analysis and ML
 
 - [x] Preserve raw CSVs; separate complete-case popularity cohort: 17,727 rows, 2,544 excluded IDs/reasons, validated required inputs and quality report.
-- [ ] Follow `docs/POPULARITY_EXPERIMENT_HANDOFF.md`: compare description/no-description popularity models on the same cohort and fixed grouped split.
+- [x] Run the paired comparison from `docs/POPULARITY_EXPERIMENT_HANDOFF.md`; preserve the completed results and document the neural-validation limitation.
 - [x] Exploratory EDA: views, years, scanned pages, item age, genres and source differences.
 - [x] Existing experiments use grouped train/test splits by `work_group` and training-derived transforms/thresholds.
 - [ ] Validate grouping on the larger dataset using `ol_group`, and keep final model choices independent of held-out scores.
@@ -57,7 +58,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 - [ ] Exclude view-derived values and identifiers from predictive inputs. Document the collection flag and age as existing-engagement features; do not claim new-publication prediction. For genre/juvenile models, exclude the subject tags that define the labels.
 - [x] Learning curves on the existing training snapshot; compare future datasets with a consistent evaluation protocol.
 - [x] Optional exploratory K-Means in `notebooks/ml_analysis1.ipynb`.
-- [ ] ML notebook with outputs and honest limits: the snapshot estimates existing archived-item engagement, not new-publication sales.
+- [x] Executed ML notebook 05 with recorded outputs and limits: existing archived-item engagement, not new-publication sales. Final report/presentation still required.
 
 ## Final submission
 

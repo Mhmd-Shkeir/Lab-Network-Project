@@ -41,6 +41,7 @@ Install `requirements-analysis.txt` separately from the scraping environment. Th
 
 | Notebook | Purpose and status |
 |---|---|
+| `notebooks/05_popularity_description_comparison.ipynb` | Main completed experiment: 17,727 items, same A/B folds, 3,006 fresh held-out items. CV-selected LogReg accuracy 57.35% without descriptions / 59.35% with; Ridge R² on log views 0.3997 / 0.4186. MLP also tested; it did not beat the selected linear models. Section 9 contains five optional trials, NOT RUN |
 | `notebooks/ml_analysis1.ipynb` | Executed overview: cleaning checks, EDA, baselines, grouped evaluation, learning curves and exploratory K-Means |
 | `notebooks/02_popularity_methods.ipynb` | Existing archived-item engagement: CV-selected classifier has 59.5% held-out accuracy versus 30.1% baseline; selected regression ensemble has R² 0.401 on log views, with 61.1% within a factor of two |
 | `notebooks/03_children_book_classifier.ipynb` | Exploratory detection of the catalogue's juvenile marker; missing juvenile tags do not establish that a book is for adults. Report F1, balanced accuracy and AUC, not plain accuracy alone |
@@ -48,6 +49,12 @@ Install `requirements-analysis.txt` separately from the scraping environment. Th
 | `notebooks/ml_analysis.ipynb` | Unexecuted starter retained for reference; not the completed analysis |
 
 Genre accuracy is not popularity accuracy. These are exploratory results on the existing datasets. Use training-pool cross-validation for model choices, keep copies of a work in the same fold, and do not keep tuning against a reused test set. Author overlap and rule-based catalogue labels limit generalisation. Some descriptions still contain catalogue notes or contents lists; the 3,152-item subset covers about 56% of the original training data, so compare description/no-description models on the same books.
+
+### Recorded paired-model results and optional next trials
+
+`report/ml/` contains the fixed split manifest, CV selections, saved predictions, per-genre results, grouped bootstrap intervals, training times and figures for notebook 05. Of the 17,727 complete-case items, 14,721 are the training pool and 3,006 are held out; no held-out Open Library work appears in the earlier 5,600-item set. Model settings were selected using training-pool CV before the holdout was scored. The recorded classifier baseline is 35.20% accuracy. With descriptions, LogReg gains about 2.0 percentage points (group-bootstrap interval approximately +0.7 to +3.4); the neural-network result is about 56.4% in either variant. These are existing-archive engagement results, not new-book forecasts.
+
+The original neural pipeline uses grouped early stopping, but fits feature transforms before carving out that internal validation subset. Section 9 proposes a stricter inner-validation fit and refit on all outer-training rows, along with richer text/SVM, group-cross-fitted history, a broader tree search and frozen semantic embeddings. These are proposed experiments, not measured improvements. New trials must use only the saved training-pool CV folds, write to `report/ml_trials/`, and preserve the completed baseline and inspected holdout. Temporary result caches are ignored by Git. Published result CSV bytes are preserved so the split-manifest hash works across platforms.
 
 ### Completed larger description collection
 
@@ -57,7 +64,7 @@ The 15,000-item API run completed on 22 November 2026: **15,000 unique items col
 
 Use `ol_group` (the Open Library work ID) for grouped evaluation: there are 19,011 works overall and 16,702 in the description-ready subset. Four older work groups exceed the proposed three-item cap, with a maximum of six; keep them together rather than treating copies as independent books. The 329 older items without an Open Library work link are excluded from this linked export, not deleted from the original dataset. The 200-book networking benchmark is unchanged.
 
-The snapshot contained 41,849 candidates; initial checks retained 19,607 new candidates, from which the frozen manifest selected 15,000. Description-ready status is an automated filter, not a manual guarantee of summary quality. Compare description/no-description models on the same items and splits; larger data does not guarantee higher accuracy. The larger-dataset ML results are not available yet.
+The snapshot contained 41,849 candidates; initial checks retained 19,607 new candidates, from which the frozen manifest selected 15,000. Description-ready status is an automated filter, not a manual guarantee of summary quality. Compare description/no-description models on the same items and splits; larger data does not guarantee higher accuracy. The paired larger-dataset experiment is complete in `notebooks/05_popularity_description_comparison.ipynb`; optional follow-up trials below section 8 are proposals and have not been run.
 
 Collection checkpoints and attempt logs are in `data/runs/api_20261122_154837_ol15000/`. `scrapers/build_ol_dataset.py --new-run data/runs/api_20261122_154837_ol15000` rebuilds the enriched exports from saved files without website requests. See the [dataset note](data/training_ol_books_README.md) for columns, source differences and exclusions.
 
@@ -67,7 +74,7 @@ Published CSVs are stored byte-for-byte using `.gitattributes`, so Git does not 
 
 `python scrapers/prepare_popularity_dataset.py` builds `data/popularity_training_clean.csv` offline, retaining 17,727 rows / 16,666 works and all 37 columns from the full linked export. It excludes 2,508 rows failing description checks plus 36 further rows missing authors (2,544 excluded IDs total). Other required inputs are present and valid. The source exports are unchanged. Optional blank edition IDs and successful rows' empty `error` fields are allowed; zero views is valid. See `data/popularity_training_quality.json` and `data/popularity_training_exclusions.csv` for the checks and reasons.
 
-Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md) defines targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. It includes a small neural network in both feature variants, with grouped early-stopping validation and comparisons against the linear/tree baselines. Larger-dataset popularity models have not been trained by this preparation step.
+Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md) defines targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. It includes a small neural network in both feature variants, with grouped early-stopping validation and comparisons against the linear/tree baselines. The cleaning step does not train models. The subsequent completed paired experiment is in `notebooks/05_popularity_description_comparison.ipynb`.
 
 ## Run the scrapers
 

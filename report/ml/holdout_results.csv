@@ -1,0 +1,19 @@
+variant,task,algo,family,cfg_id,cfg,is_cv_variant_winner,is_cv_best_non_neural,accuracy,macro_f1,fit_seconds,r2_log,mae_log,mae_views,median_ae_views,within_2x
+A,classification,dummy,baseline,0,{},False,False,0.35196,0.17356,0.00077,,,,,
+A,classification,hgb,tree,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",False,False,0.55955,0.55113,3.75928,,,,,
+A,classification,logreg,linear,2,"{""C"": 1.0}",True,True,0.57352,0.56534,1.60942,,,,,
+A,classification,mlp,neural,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",False,False,0.56387,0.554,17.20559,,,,,
+A,regression,dummy_mean,baseline,0,{},False,False,,,0.00084,-0.00542,0.93783,296.87786,91.002,0.4145
+A,regression,dummy_median,baseline,0,{},False,False,,,0.00075,-0.01292,0.91021,293.25948,72.0,0.45675
+A,regression,hgb,tree,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",False,False,,,1.26236,0.32249,0.72292,265.38408,61.72255,0.57651
+A,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,,,17.36221,0.30479,0.73146,267.56562,61.67936,0.56953
+A,regression,ridge,linear,2,"{""alpha"": 3.0}",True,True,,,0.06814,0.39974,0.67567,257.39609,58.50703,0.60745
+B,classification,dummy,baseline,0,{},False,False,0.35196,0.17356,0.0007,,,,,
+B,classification,hgb,tree,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",False,False,0.56886,0.56073,9.46164,,,,,
+B,classification,logreg,linear,2,"{""C"": 1.0}",True,True,0.59348,0.58525,3.36958,,,,,
+B,classification,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,0.56454,0.54878,8.17699,,,,,
+B,regression,dummy_mean,baseline,0,{},False,False,,,0.00061,-0.00542,0.93783,296.87786,91.002,0.4145
+B,regression,dummy_median,baseline,0,{},False,False,,,0.00069,-0.01292,0.91021,293.25948,72.0,0.45675
+B,regression,hgb,tree,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",False,False,,,3.19585,0.34679,0.70923,264.66338,61.46762,0.58184
+B,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,,,10.19008,0.33216,0.71331,267.10906,59.27265,0.58849
+B,regression,ridge,linear,2,"{""alpha"": 3.0}",True,True,,,0.28696,0.4186,0.6689,255.36629,59.2932,0.61577

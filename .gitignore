@@ -18,3 +18,7 @@ measurements/
 
 # macOS folder metadata
 .DS_Store
+
+# Rebuildable ML caches; retain result tables/figures and split manifests.
+report/ml/cache/
+report/ml_trials/cache/

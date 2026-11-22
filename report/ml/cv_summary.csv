@@ -1,0 +1,47 @@
+variant,task,algo,cfg_id,cfg,accuracy,accuracy_sd,macro_f1,macro_f1_sd,r2_log,r2_log_sd,mae_log,mae_views,median_ae_views,within_2x,fit_seconds,feature_seconds,family
+A,classification,dummy,0,{},0.33415,0.00781,0.16696,0.00291,,,,,,,0.00148,7.48093,baseline
+A,classification,hgb,0,"{""max_iter"": 150, ""learning_rate"": 0.05, ""max_depth"": 3, ""min_samples_leaf"": 40, ""l2_regularization"": 1.0}",0.55232,0.01122,0.54124,0.01102,,,,,,,2.36232,7.48093,tree
+A,classification,hgb,1,"{""max_iter"": 300, ""learning_rate"": 0.03, ""max_depth"": 4, ""min_samples_leaf"": 40, ""l2_regularization"": 2.0}",0.55457,0.00715,0.54553,0.00762,,,,,,,6.95881,7.48093,tree
+A,classification,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",0.55716,0.01228,0.55011,0.01175,,,,,,,7.76855,7.48093,tree
+A,classification,logreg,0,"{""C"": 0.1}",0.55464,0.00881,0.53823,0.00716,,,,,,,0.57458,7.48093,linear
+A,classification,logreg,1,"{""C"": 0.3}",0.57128,0.00793,0.56067,0.00827,,,,,,,0.82796,7.48093,linear
+A,classification,logreg,2,"{""C"": 1.0}",0.57046,0.01019,0.56375,0.01082,,,,,,,1.33303,7.48093,linear
+A,classification,logreg,3,"{""C"": 3.0}",0.55851,0.01051,0.55434,0.01028,,,,,,,1.99718,7.48093,linear
+A,classification,mlp,0,"{""weight_decay"": 0.001, ""dropout"": 0.1}",0.54927,0.00768,0.53855,0.00972,,,,,,,15.00425,7.48093,neural
+A,classification,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",0.54982,0.00805,0.54133,0.00968,,,,,,,10.68298,7.48093,neural
+A,classification,mlp,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",0.55153,0.00498,0.54314,0.00572,,,,,,,15.89451,7.48093,neural
+A,regression,dummy_mean,0,{},,,,,-5e-05,5e-05,0.95576,345.37338,92.54964,0.4107,0.00199,7.48093,baseline
+A,regression,dummy_median,0,{},,,,,-0.03429,0.0025,0.94132,343.45267,71.8,0.44507,0.00083,7.48093,baseline
+A,regression,hgb,0,"{""max_iter"": 150, ""learning_rate"": 0.05, ""max_depth"": 3, ""min_samples_leaf"": 40, ""l2_regularization"": 1.0}",,,,,0.29355,0.01433,0.77299,314.89931,67.46409,0.5397,0.71373,7.48093,tree
+A,regression,hgb,1,"{""max_iter"": 300, ""learning_rate"": 0.03, ""max_depth"": 4, ""min_samples_leaf"": 40, ""l2_regularization"": 2.0}",,,,,0.31984,0.01542,0.75286,311.22768,65.68091,0.55553,1.82705,7.48093,tree
+A,regression,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",,,,,0.33307,0.01267,0.74021,309.40337,65.13223,0.57034,2.24128,7.48093,tree
+A,regression,mlp,0,"{""weight_decay"": 0.001, ""dropout"": 0.1}",,,,,0.3181,0.01749,0.74671,310.94232,66.31989,0.5696,10.05053,7.48093,neural
+A,regression,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",,,,,0.32292,0.01677,0.74554,310.90474,65.38085,0.5673,14.24672,7.48093,neural
+A,regression,mlp,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",,,,,0.3184,0.01567,0.75028,311.16912,66.13923,0.56356,20.77491,7.48093,neural
+A,regression,ridge,0,"{""alpha"": 0.3}",,,,,0.33725,0.02359,0.73337,310.97745,66.43666,0.58046,0.13493,7.48093,linear
+A,regression,ridge,1,"{""alpha"": 1.0}",,,,,0.39415,0.01715,0.70063,299.56749,63.31348,0.59813,0.08755,7.48093,linear
+A,regression,ridge,2,"{""alpha"": 3.0}",,,,,0.40065,0.01392,0.70104,299.28479,62.75666,0.59711,0.06101,7.48093,linear
+A,regression,ridge,3,"{""alpha"": 10.0}",,,,,0.36445,0.0133,0.7277,306.02966,64.97265,0.5732,0.04225,7.48093,linear
+B,classification,dummy,0,{},0.33415,0.00781,0.16696,0.00291,,,,,,,0.00172,7.48093,baseline
+B,classification,hgb,0,"{""max_iter"": 150, ""learning_rate"": 0.05, ""max_depth"": 3, ""min_samples_leaf"": 40, ""l2_regularization"": 1.0}",0.55714,0.01028,0.54575,0.00964,,,,,,,4.37785,7.48093,tree
+B,classification,hgb,1,"{""max_iter"": 300, ""learning_rate"": 0.03, ""max_depth"": 4, ""min_samples_leaf"": 40, ""l2_regularization"": 2.0}",0.56421,0.01094,0.55494,0.01026,,,,,,,12.78016,7.48093,tree
+B,classification,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",0.56448,0.01331,0.55737,0.01315,,,,,,,16.17924,7.48093,tree
+B,classification,logreg,0,"{""C"": 0.1}",0.57128,0.00666,0.5561,0.00543,,,,,,,1.36164,7.48093,linear
+B,classification,logreg,1,"{""C"": 0.3}",0.58208,0.00988,0.57252,0.01022,,,,,,,2.24498,7.48093,linear
+B,classification,logreg,2,"{""C"": 1.0}",0.5791,0.00931,0.57315,0.00942,,,,,,,3.47701,7.48093,linear
+B,classification,logreg,3,"{""C"": 3.0}",0.56815,0.00986,0.56448,0.00992,,,,,,,4.88072,7.48093,linear
+B,classification,mlp,0,"{""weight_decay"": 0.001, ""dropout"": 0.1}",0.55267,0.00827,0.5399,0.00776,,,,,,,7.91927,7.48093,neural
+B,classification,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",0.55688,0.00842,0.5447,0.01018,,,,,,,8.80758,7.48093,neural
+B,classification,mlp,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",0.55533,0.00716,0.54233,0.00671,,,,,,,11.38739,7.48093,neural
+B,regression,dummy_mean,0,{},,,,,-5e-05,5e-05,0.95576,345.37338,92.54964,0.4107,0.00185,7.48093,baseline
+B,regression,dummy_median,0,{},,,,,-0.03429,0.0025,0.94132,343.45267,71.8,0.44507,0.00084,7.48093,baseline
+B,regression,hgb,0,"{""max_iter"": 150, ""learning_rate"": 0.05, ""max_depth"": 3, ""min_samples_leaf"": 40, ""l2_regularization"": 1.0}",,,,,0.30901,0.01526,0.76431,314.69233,67.523,0.54323,1.40664,7.48093,tree
+B,regression,hgb,1,"{""max_iter"": 300, ""learning_rate"": 0.03, ""max_depth"": 4, ""min_samples_leaf"": 40, ""l2_regularization"": 2.0}",,,,,0.3319,0.01817,0.74542,311.27954,65.24879,0.56566,3.8942,7.48093,tree
+B,regression,hgb,2,"{""max_iter"": 200, ""learning_rate"": 0.05, ""max_depth"": 6, ""min_samples_leaf"": 60, ""l2_regularization"": 5.0}",,,,,0.34297,0.0178,0.73404,309.93385,65.36213,0.57605,5.0288,7.48093,tree
+B,regression,mlp,0,"{""weight_decay"": 0.001, ""dropout"": 0.1}",,,,,0.34262,0.01859,0.73163,309.43424,65.7121,0.5812,8.83972,7.48093,neural
+B,regression,mlp,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",,,,,0.3454,0.01915,0.73061,308.81506,64.56548,0.58027,10.91574,7.48093,neural
+B,regression,mlp,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",,,,,0.34503,0.01583,0.73194,309.14085,62.80052,0.57715,16.54619,7.48093,neural
+B,regression,ridge,0,"{""alpha"": 0.3}",,,,,0.2924,0.01965,0.76681,321.82074,72.0847,0.55248,0.66456,7.48093,linear
+B,regression,ridge,1,"{""alpha"": 1.0}",,,,,0.38943,0.01588,0.70739,303.30159,65.3411,0.58962,0.389,7.48093,linear
+B,regression,ridge,2,"{""alpha"": 3.0}",,,,,0.41868,0.01369,0.69038,298.97002,62.78657,0.60308,0.24834,7.48093,linear
+B,regression,ridge,3,"{""alpha"": 10.0}",,,,,0.39469,0.01349,0.70768,303.34411,63.46168,0.5878,0.15234,7.48093,linear

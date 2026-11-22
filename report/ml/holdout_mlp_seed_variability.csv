@@ -1,0 +1,13 @@
+variant,task,algo,family,cfg_id,cfg,is_cv_variant_winner,is_cv_best_non_neural,seed,accuracy,macro_f1,fit_seconds,best_epoch,r2_log,mae_log,mae_views,median_ae_views,within_2x
+A,classification,mlp,neural,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",False,False,2026,0.55522,0.54745,7.55095,19,,,,,
+A,classification,mlp,neural,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",False,False,2027,0.55722,0.55006,5.2453,20,,,,,
+A,classification,mlp,neural,2,"{""weight_decay"": 0.1, ""dropout"": 0.5}",False,False,2028,0.55289,0.53918,4.40934,15,,,,,
+A,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2026,,,5.94499,24,0.28449,0.73937,270.09078,60.15786,0.57385
+A,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2027,,,5.14204,19,0.29513,0.73938,269.55043,63.87972,0.56021
+A,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2028,,,6.27518,27,0.29393,0.73685,269.68358,62.71168,0.57718
+B,classification,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2026,0.5652,0.55669,2.67533,5,,,,,
+B,classification,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2027,0.55888,0.53604,2.61585,4,,,,,
+B,classification,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2028,0.55788,0.54357,2.8858,6,,,,,
+B,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2026,,,3.22137,9,0.31094,0.72747,269.41615,61.85364,0.5825
+B,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2027,,,3.51927,10,0.32129,0.72021,270.08585,60.66743,0.58849
+B,regression,mlp,neural,1,"{""weight_decay"": 0.01, ""dropout"": 0.3}",False,False,2028,,,3.44944,10,0.31541,0.7231,269.5792,59.23327,0.58283

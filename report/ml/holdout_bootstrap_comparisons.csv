@@ -1,0 +1,28 @@
+comparison,task,detail,accuracy_mean,accuracy_lo95,accuracy_hi95,macro_f1_mean,macro_f1_lo95,macro_f1_hi95,r2_log_mean,r2_log_lo95,r2_log_hi95,mae_log_mean,mae_log_lo95,mae_log_hi95,mae_views_mean,mae_views_lo95,mae_views_hi95,median_ae_views_mean,median_ae_views_lo95,median_ae_views_hi95,within_2x_mean,within_2x_lo95,within_2x_hi95
+"description effect (B - A), same algorithm",classification,dummy,0.0,0.0,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,
+"description effect (B - A), same algorithm",classification,logreg,0.02019,0.00695,0.03391,0.02016,0.00644,0.03444,,,,,,,,,,,,,,,
+"description effect (B - A), same algorithm",classification,hgb,0.00911,-0.0057,0.02374,0.00936,-0.00677,0.02455,,,,,,,,,,,,,,,
+"description effect (B - A), same algorithm",classification,mlp,0.00093,-0.01302,0.01565,-0.005,-0.01894,0.0105,,,,,,,,,,,,,,,
+CV-selected winners (B winner - A winner),classification,logreg (B) vs logreg (A),0.02019,0.00695,0.03391,0.02016,0.00644,0.03444,,,,,,,,,,,,,,,
+"neural network minus best non-neural model by CV, variant A",classification,mlp - logreg,-0.01001,-0.02727,0.00659,-0.01171,-0.02879,0.00565,,,,,,,,,,,,,,,
+"model minus train-fitted baseline (dummy), variant A",classification,logreg,0.22198,0.1988,0.24356,0.3919,0.37334,0.40921,,,,,,,,,,,,,,,
+"model minus train-fitted baseline (dummy), variant A",classification,hgb,0.20799,0.18578,0.22897,0.37765,0.3602,0.39543,,,,,,,,,,,,,,,
+"model minus train-fitted baseline (dummy), variant A",classification,mlp,0.21197,0.19095,0.23333,0.38019,0.36167,0.39835,,,,,,,,,,,,,,,
+"neural network minus best non-neural model by CV, variant B",classification,mlp - logreg,-0.02927,-0.04627,-0.01198,-0.03687,-0.05521,-0.01829,,,,,,,,,,,,,,,
+"model minus train-fitted baseline (dummy), variant B",classification,logreg,0.24217,0.22075,0.26416,0.41207,0.39539,0.42923,,,,,,,,,,,,,,,
+"model minus train-fitted baseline (dummy), variant B",classification,hgb,0.2171,0.19539,0.23967,0.38701,0.36973,0.40654,,,,,,,,,,,,,,,
+"model minus train-fitted baseline (dummy), variant B",classification,mlp,0.2129,0.19129,0.23416,0.3752,0.35648,0.39248,,,,,,,,,,,,,,,
+"description effect (B - A), same algorithm",regression,dummy_mean,,,,,,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"description effect (B - A), same algorithm",regression,dummy_median,,,,,,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"description effect (B - A), same algorithm",regression,ridge,,,,,,,0.01909,0.00748,0.03174,-0.00679,-0.01539,0.00099,-2.0764,-5.65322,1.20506,0.81801,-1.86354,3.5118,0.00832,-0.00531,0.02112
+"description effect (B - A), same algorithm",regression,hgb,,,,,,,0.02472,0.01039,0.03885,-0.01383,-0.02234,-0.00572,-0.73905,-2.63669,1.30973,-0.32526,-2.66099,2.07481,0.00519,-0.00762,0.01813
+"description effect (B - A), same algorithm",regression,mlp,,,,,,,0.02742,0.00907,0.04489,-0.01803,-0.02859,-0.00692,-0.38438,-4.41864,4.0906,-2.76005,-5.32705,-0.22385,0.01922,0.00627,0.03368
+CV-selected winners (B winner - A winner),regression,ridge (B) vs ridge (A),,,,,,,0.01909,0.00748,0.03174,-0.00679,-0.01539,0.00099,-2.0764,-5.65322,1.20506,0.81801,-1.86354,3.5118,0.00832,-0.00531,0.02112
+"neural network minus best non-neural model by CV, variant A",regression,mlp - ridge,,,,,,,-0.09484,-0.11874,-0.071,0.05572,0.04261,0.06962,10.11137,3.37475,15.26736,3.33876,0.10244,6.33626,-0.03796,-0.05506,-0.02267
+"model minus train-fitted baseline (dummy_mean), variant A",regression,ridge,,,,,,,0.40533,0.37097,0.43581,-0.2622,-0.28273,-0.24106,-39.42655,-45.89387,-31.85538,-32.91525,-36.55226,-29.0109,0.1926,0.17219,0.21289
+"model minus train-fitted baseline (dummy_mean), variant A",regression,hgb,,,,,,,0.32812,0.29348,0.3603,-0.21493,-0.23483,-0.19456,-31.45182,-36.2074,-26.9278,-29.67066,-33.15949,-26.06263,0.16183,0.1422,0.18152
+"model minus train-fitted baseline (dummy_mean), variant A",regression,mlp,,,,,,,0.31049,0.27737,0.34244,-0.20649,-0.2259,-0.1869,-29.31517,-33.81632,-25.03698,-29.57649,-32.75355,-26.29233,0.15464,0.13459,0.17334
+"neural network minus best non-neural model by CV, variant B",regression,mlp - ridge,,,,,,,-0.0865,-0.1084,-0.06635,0.04448,0.03186,0.05606,11.80339,6.71645,16.51428,-0.2393,-3.41782,2.9668,-0.02706,-0.04274,-0.00967
+"model minus train-fitted baseline (dummy_mean), variant B",regression,ridge,,,,,,,0.42441,0.39113,0.45675,-0.26899,-0.29031,-0.24798,-41.50294,-47.68655,-35.16925,-32.09724,-35.86447,-28.04971,0.20092,0.18048,0.22278
+"model minus train-fitted baseline (dummy_mean), variant B",regression,hgb,,,,,,,0.35285,0.31967,0.38371,-0.22876,-0.24788,-0.20859,-32.19086,-36.77485,-27.88331,-29.99592,-33.68979,-26.62911,0.16702,0.14641,0.18767
+"model minus train-fitted baseline (dummy_mean), variant B",regression,mlp,,,,,,,0.33791,0.30666,0.36877,-0.22452,-0.24439,-0.20551,-29.69955,-35.46591,-24.08358,-32.33654,-36.04774,-29.10974,0.17386,0.15385,0.19481
