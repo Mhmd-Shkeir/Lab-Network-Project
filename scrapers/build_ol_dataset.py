@@ -67,6 +67,9 @@ def main(argv=None):
     # list-valued columns of new rows are lists; flatten like the other CSVs
     for c in ("creators", "subjects"):
         both[c] = both[c].map(lambda v: config.LIST_SEPARATOR.join(v) if isinstance(v, list) else v)
+    for c in ("creators", "first_creator"):          # archive.org marks unattributed items with the creator text "None"
+        both[c] = both[c].fillna("").astype(str).replace({"None": ""})
+    both["author_missing"] = (both["first_creator"] == "").astype(int)
     both["description_words"] = both["description"].map(dsc.description_words)
     both["ol_group"] = both["openlibrary_work"]
     dup_before = int(both.identifier.duplicated().sum())
@@ -78,12 +81,12 @@ def main(argv=None):
     both["description_ready"] = ((both["description_words"] >= READY) & ~both["description"].map(dsc.is_boilerplate) & ~norm.isin(shared)).astype(int)
     both.loc[both["description_ready"] == 0, "description"] = both.loc[both["description_ready"] == 0, "description"].where(both["description_words"] >= READY, "")
     both["description_words"] = both["description"].map(dsc.description_words)
-    out_cols = cols[:-1] + ["ol_group", "description_words", "description_ready", "source_batch"]
+    out_cols = cols[:-1] + ["ol_group", "author_missing", "description_words", "description_ready", "source_batch"]
     both[out_cols].to_csv(data / "training_ol_books.csv", index=False, encoding="utf-8-sig")
     both[both.description_ready == 1][out_cols].to_csv(data / "training_ol_books_with_description.csv", index=False, encoding="utf-8-sig")
 
     usable = both["description_ready"] == 1
-    no_author = both["first_creator"].fillna("") == ""
+    no_author = both["author_missing"] == 1
     wc = both.groupby("ol_group").size()
     rep = {"rows": len(both), "from_first_5600": int((both.source_batch == "first_5600").sum()), "newly_collected": int((both.source_batch == "ol_collection").sum()),
            "new_not_usable": dict(dropped), "all_have_open_library_work": bool((both.openlibrary_work != "").all()),

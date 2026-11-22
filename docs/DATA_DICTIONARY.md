@@ -96,3 +96,20 @@ requests); they are **not** the final network comparison.
 - `subject:fiction` also matches some non-fiction books about fiction.
 - Training ids were chosen so that the Views API had data for them at manifest-build time (it had data for all examined genre books).
 - Genre labels are heuristics on free-text subject tags; some mislabelled or non-fiction books may remain.
+
+## Completed linked-book export (22 November 2026)
+
+`data/training_ol_books.csv` has 20,271 rows (5,271 older linked records + 15,000 newly collected records) and 37 columns. `data/training_ol_books_with_description.csv` has the same columns and the 17,763 rows whose `description_ready` is 1. Both preserve the original field/provenance columns and add:
+
+| Column | Meaning |
+|---|---|
+| `openlibrary_work` | Open Library work ID linked from the Archive item's metadata; present for every exported row |
+| `openlibrary_edition` | Edition link where supplied; may be empty |
+| `ol_group` | Same work ID as `openlibrary_work`; use this for train/test grouping in this export |
+| `description` | Cleaned catalogue/publisher text; consult `description_ready` before using it as a usable summary |
+| `description_words` | Number of whitespace-separated words in the exported description |
+| `description_ready` | 1 for 25+ words, not identified boilerplate and not the same normalised text shared by different works; an automated quality rule |
+| `author_missing` | 1 when the creator is missing or the source text is `None`; the missing creator fields are empty in this export |
+| `source_batch` | `first_5600` or `ol_collection`; provenance for EDA, not an automatic predictor |
+
+There are 42 missing-author records overall and 36 in the description-ready subset. Four older Open Library work groups contain more than three items (maximum six). The full export contains 19,011 works; the description-ready subset contains 16,702. A row is an archived item, not necessarily an independent literary work. The 329 older items without an Open Library work link remain in the earlier dataset. See `data/training_ol_books_report.json` and `data/training_ol_books_README.md` for exclusions and source differences. None of these exports changes the fixed 200-book benchmark.

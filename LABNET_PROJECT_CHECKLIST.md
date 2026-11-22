@@ -28,7 +28,8 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 - [x] Bounded `--workers` / `--min-interval` mode in all three scrapers with ONE global start-to-start request limit shared by all workers (retries included, 429/503 pauses everyone); 28 offline tests pass, including description-cleaning tests; not run against archive.org. Issa's commands are in the networking handoff.
 - [x] Executed exploratory ML notebooks: grouped splits, EDA, baselines, regression/classification, learning curves and K-Means.
 - [ ] Finalise the submission notebook: rerun the corrected CV-selected summary and document that the existing held-out comparisons are exploratory.
-- [ ] Finish and validate the separate 15,000-item description/Open Library-linked API collection; preserve benchmark and earlier datasets.
+- [x] Finish and validate the 15,000-item API collection; exports contain 20,271 linked records / 17,763 description-ready records. Benchmark and earlier datasets preserved.
+- [ ] Train and evaluate the next models on the larger dataset using `ol_group`, one fixed grouped holdout, training-only model selection and same-item description comparisons.
 
 ### Both
 

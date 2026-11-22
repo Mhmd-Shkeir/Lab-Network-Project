@@ -1,13 +1,13 @@
 # Internet Archive book scraping project
 
-Compare API, Requests/BeautifulSoup and Selenium collection of the same 200 Internet Archive books. Use a separate 5,600-record API dataset for exploratory analysis and estimating existing archived-item engagement.
+Compare API, Requests/BeautifulSoup and Selenium collection of the same 200 Internet Archive books. Use the completed 20,271-item Open Library-linked API dataset (17,763 description-ready items) for the next analysis; the earlier 5,600-record dataset and its exploratory results are preserved.
 
 Mohammad owns the scrapers and collection. Issa owns networking measurements. Both own cleaning, ML, the final report and presentation. The assignment deadline is **25 November 2026**.
 
 ## Start here
 
 1. **Issa:** [Ubuntu setup](docs/SETUP_UBUNTU_VM.md), then [networking handoff](docs/HANDOFF_NETWORKING_ISSA.md).
-2. **Data and ML:** use `data/training_api.csv`; read the [data dictionary](docs/DATA_DICTIONARY.md).
+2. **Data and ML:** for the next description-based models use `data/training_ol_books_with_description.csv` (17,763 rows). Use `data/training_ol_books.csv` for the full linked dataset, and split by `ol_group`. Read the [dataset note](data/training_ol_books_README.md) and [data dictionary](docs/DATA_DICTIONARY.md). Existing notebook scores are from the earlier datasets.
 3. **Remaining work:** [project checklist](LABNET_PROJECT_CHECKLIST.md) and [assignment requirements](docs/ASSIGNMENT_REQUIREMENTS.md).
 
 ## Collected data
@@ -18,9 +18,11 @@ Mohammad owns the scrapers and collection. Issa owns networking measurements. Bo
 | `benchmark_200_bs4.csv` | 200 | Independent HTML collection of the same books |
 | `benchmark_200_selenium.csv` | 200 | Browser collection of the same books |
 | `training_with_descriptions.csv` | 3,152 | The books of `training_api.csv` that have a usable description (25+ words), with the description text. Experiment: descriptions did not clearly improve popularity prediction |
+| `training_ol_books.csv` | 20,271 | All Open Library-linked records: 5,271 older items + 15,000 new items, with description/author quality flags |
+| `training_ol_books_with_description.csv` | 17,763 | Description-ready subset for the next content-based models; 37 columns, grouped by `ol_group` |
 | `training_api.csv` | 5,600 | 200 benchmark books plus 1,800 science fiction, 1,800 fantasy and 1,800 mystery/thriller records (each genre: 600 from Americana + 1,200 from other English texts on archive.org) |
 
-All rows have collection status `ok`, meaning the collector completed its required-field checks. This is not a guarantee of catalogue quality: eight creator values are the literal text `None`, which must be treated as missing in analysis. Source metadata and genre labels still need analysis. There are 5,391 training work groups, with at most three archived items per group. Split training and evaluation by `work_group`.
+The earlier 5,600 rows have collection status `ok`, meaning the collector completed its required-field checks. This is not a guarantee of catalogue quality: eight creator values are the literal text `None`, which must be treated as missing in analysis. Source metadata and genre labels still need analysis. There are 5,391 training work groups, with at most three archived items per group. Split training and evaluation by `work_group`.
 
 **Two sources inside the training set:** the first 2,000 rows are Americana books (published earlier, unchanged); the other 3,600 come from the wider English-text pool on archive.org, because Americana alone could supply only about 1,280 fantasy books. They are flagged by `in_americana`. Their views are much lower (median 97 views versus 285 for the Americana genre books), so this flag matters for EDA and modelling; check it in a train/test split and by genre. Genre labels are rule-based on subject tags and a few non-genre items remain (for example a cross-stitch pattern book tagged fantasy).
 
@@ -30,7 +32,7 @@ The benchmark is a reproducible sample from Americana's broad English-fiction po
 
 All benchmark metadata agrees across methods except one subject list. API views exceed page views for 195 of 200 books; BS4 and Selenium agree on the observed page values. These differences are preserved. Views describe engagement with an archived copy, rather than worldwide sales or future publication success.
 
-`data/completeness_report.md` documents quality checks. `data/checksums.sha256` verifies the six published CSVs, including the header-only `training_api_not_usable.csv` (zero unusable training records). Excel can open these UTF-8 CSVs; keep identifiers as text.
+`data/completeness_report.md` documents the earlier dataset checks; `data/training_ol_books_report.json` documents the completed larger dataset. `data/checksums.sha256` verifies the eight published CSVs, including the header-only `training_api_not_usable.csv` (zero unusable training records). Excel can open these UTF-8 CSVs; keep identifiers as text.
 
 ## Analysis notebooks and current results
 
@@ -46,11 +48,17 @@ Install `requirements-analysis.txt` separately from the scraping environment. Th
 
 Genre accuracy is not popularity accuracy. These are exploratory results on the existing datasets. Use training-pool cross-validation for model choices, keep copies of a work in the same fold, and do not keep tuning against a reused test set. Author overlap and rule-based catalogue labels limit generalisation. Some descriptions still contain catalogue notes or contents lists; the 3,152-item subset covers about 56% of the original training data, so compare description/no-description models on the same books.
 
-### Larger description collection (in progress)
+### Completed larger description collection
 
-The frozen `data/manifest/ol_books_new_ids.json` selects **15,000 additional items**: 5,000 per genre, English, linked to an Open Library work, and with at least 25 cleaned description words in the candidate snapshot. The source is still **archive.org's API**, not automated HTML access to openlibrary.org. The saved snapshot has 41,849 candidates and 19,607 passing the initial candidate checks; candidate counts are not completed collection counts.
+The 15,000-item API run completed on 22 November 2026: **15,000 unique items collected**, 5,000 per genre, in 47 minutes 26 seconds. It made 600 successful requests and recovered from 10 failed attempts through retries. These are collection timings, not the final networking benchmark. The source remains **archive.org's API**; the Open Library IDs are links in the metadata.
 
-`scrapers/ia_api_scraper.py --with-description --with-openlibrary` stores enrichment in raw `records.jsonl`; the ordinary scraper CSV keeps its original schema. `scrapers/build_ol_dataset.py --new-run <completed-run-folder>` builds the enriched CSV offline. Final exports must be validated after the run completes. Some older items may lack a usable description even when included in a combined export: distinguish the full linked dataset from its description-ready subset, flag missing creators, and split future models by `ol_group` (Open Library work ID). More items do not guarantee higher accuracy. Preserve the 200-book benchmark.
+`data/training_ol_books.csv` combines these records with 5,271 Open Library-linked items from the older dataset: **20,271 unique items**, with 37 columns. `data/training_ol_books_with_description.csv` contains the **17,763 description-ready items**, including 14,935 of the new records. Sixty-five new records failed the final description checks; the raw records are preserved. Forty-two full-dataset records have a missing author, explicitly flagged by `author_missing` (36 are in the description-ready subset).
+
+Use `ol_group` (the Open Library work ID) for grouped evaluation: there are 19,011 works overall and 16,702 in the description-ready subset. Four older work groups exceed the proposed three-item cap, with a maximum of six; keep them together rather than treating copies as independent books. The 329 older items without an Open Library work link are excluded from this linked export, not deleted from the original dataset. The 200-book networking benchmark is unchanged.
+
+The snapshot contained 41,849 candidates; initial checks retained 19,607 new candidates, from which the frozen manifest selected 15,000. Description-ready status is an automated filter, not a manual guarantee of summary quality. Compare description/no-description models on the same items and splits; larger data does not guarantee higher accuracy. The larger-dataset ML results are not available yet.
+
+Collection checkpoints and attempt logs are in `data/runs/api_20261122_154837_ol15000/`. `scrapers/build_ol_dataset.py --new-run data/runs/api_20261122_154837_ol15000` rebuilds the enriched exports from saved files without website requests. See the [dataset note](data/training_ol_books_README.md) for columns, source differences and exclusions.
 
 Published CSVs are stored byte-for-byte using `.gitattributes`, so Git does not change their line endings and invalidate checksums between Windows and Linux.
 

@@ -1,0 +1,57 @@
+{
+  "rows": 20271,
+  "from_first_5600": 5271,
+  "newly_collected": 15000,
+  "new_not_usable": {},
+  "all_have_open_library_work": true,
+  "distinct_open_library_works": 19011,
+  "max_items_per_work": 6,
+  "with_usable_description": 17763,
+  "per_stratum": {
+    "science_fiction": 6734,
+    "fantasy": 6702,
+    "mystery_thriller": 6674,
+    "benchmark_random_fiction": 161
+  },
+  "per_stratum_with_description": {
+    "fantasy": 5995,
+    "mystery_thriller": 5885,
+    "science_fiction": 5831,
+    "benchmark_random_fiction": 52
+  },
+  "juvenile_share": 0.2524,
+  "language_all_english": true,
+  "duplicate_identifiers_removed": 0,
+  "duplicate_identifiers": 0,
+  "description_ready_rows": 17763,
+  "not_ready_rows": 2508,
+  "not_ready_by_source": {
+    "first_5600": 2443,
+    "ol_collection": 65
+  },
+  "shared_description_texts_removed_from_ready": 76,
+  "missing_author_rows": 42,
+  "missing_author_by_source": {
+    "ol_collection": 34,
+    "first_5600": 8
+  },
+  "missing_title_rows": 0,
+  "missing_year_rows": 0,
+  "work_groups_with_more_than_3_items": 4,
+  "largest_work_group": 6,
+  "ready_work_groups": 16702,
+  "description_words_ready_p5_median_p95": [
+    28.0,
+    56.0,
+    210.0
+  ],
+  "views_min_median_max": [
+    2,
+    118.0,
+    184689
+  ],
+  "retrieved_at_window_utc": [
+    "2026-11-19T21:33:22Z",
+    "2026-11-22T16:36:02Z"
+  ]
+}
