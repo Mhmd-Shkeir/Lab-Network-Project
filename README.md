@@ -41,7 +41,7 @@ Install `requirements-analysis.txt` separately from the scraping environment. Th
 
 | Notebook | Purpose and status |
 |---|---|
-| `notebooks/05_popularity_description_comparison.ipynb` | Main completed experiment: 17,727 items, same A/B folds, 3,006 fresh held-out items. CV-selected LogReg accuracy 57.35% without descriptions / 59.35% with; Ridge R² on log views 0.3997 / 0.4186. MLP also tested; it did not beat the selected linear models. Section 9 contains five optional trials, NOT RUN |
+| `notebooks/05_popularity_description_comparison.ipynb` | Main completed experiment: 17,727 items, same A/B folds, 3,006 fresh held-out items. CV-selected LogReg accuracy 57.35% without descriptions / 59.35% with; Ridge R² on log views 0.3997 / 0.4186. MLP also tested; it did not beat the selected linear models. Section 9 is a runnable manual-input demo: enter a title/description and optional metadata to compare predictions |
 | `notebooks/ml_analysis1.ipynb` | Executed overview: cleaning checks, EDA, baselines, grouped evaluation, learning curves and exploratory K-Means |
 | `notebooks/02_popularity_methods.ipynb` | Existing archived-item engagement: CV-selected classifier has 59.5% held-out accuracy versus 30.1% baseline; selected regression ensemble has R² 0.401 on log views, with 61.1% within a factor of two |
 | `notebooks/03_children_book_classifier.ipynb` | Exploratory detection of the catalogue's juvenile marker; missing juvenile tags do not establish that a book is for adults. Report F1, balanced accuracy and AUC, not plain accuracy alone |
@@ -50,11 +50,13 @@ Install `requirements-analysis.txt` separately from the scraping environment. Th
 
 Genre accuracy is not popularity accuracy. These are exploratory results on the existing datasets. Use training-pool cross-validation for model choices, keep copies of a work in the same fold, and do not keep tuning against a reused test set. Author overlap and rule-based catalogue labels limit generalisation. Some descriptions still contain catalogue notes or contents lists; the 3,152-item subset covers about 56% of the original training data, so compare description/no-description models on the same books.
 
-### Recorded paired-model results and optional next trials
+### Recorded paired-model results and manual book entry
 
 `report/ml/` contains the fixed split manifest, CV selections, saved predictions, per-genre results, grouped bootstrap intervals, training times and figures for notebook 05. Of the 17,727 complete-case items, 14,721 are the training pool and 3,006 are held out; no held-out Open Library work appears in the earlier 5,600-item set. Model settings were selected using training-pool CV before the holdout was scored. The recorded classifier baseline is 35.20% accuracy. With descriptions, LogReg gains about 2.0 percentage points (group-bootstrap interval approximately +0.7 to +3.4); the neural-network result is about 56.4% in either variant. These are existing-archive engagement results, not new-book forecasts.
 
-The original neural pipeline uses grouped early stopping, but fits feature transforms before carving out that internal validation subset. Section 9 proposes a stricter inner-validation fit and refit on all outer-training rows, along with richer text/SVM, group-cross-fitted history, a broader tree search and frozen semantic embeddings. These are proposed experiments, not measured improvements. New trials must use only the saved training-pool CV folds, write to `report/ml_trials/`, and preserve the completed baseline and inspected holdout. Temporary result caches are ignored by Git. Published result CSV bytes are preserved so the split-manifest hash works across platforms.
+Section 9 lets you try a book by hand: run Setup once, edit `BOOK` (title and description, plus optional author/year/pages/genre/subjects/archive age), then run Predict. The setup refits only the recorded CV-selected LogisticRegression/Ridge pairs on the saved training pool; subsequent entries reuse those models. It makes no website requests and does not rerun CV, fit holdout targets, change datasets or overwrite experiment results. Missing optional metadata uses visible training-pool defaults. A blank description returns only the metadata prediction. These are estimates of existing archived-item views at the supplied/assumed archive age, not forecasts of new-book sales.
+
+The original neural experiment's feature transforms were fitted before its internal early-stopping validation carve-out; that limitation remains part of the recorded experiment. The manual demo uses the selected linear models. Temporary result caches are ignored by Git, and result CSV bytes are preserved so manifest hashes work across platforms.
 
 ### Completed larger description collection
 
@@ -64,7 +66,7 @@ The 15,000-item API run completed on 22 November 2026: **15,000 unique items col
 
 Use `ol_group` (the Open Library work ID) for grouped evaluation: there are 19,011 works overall and 16,702 in the description-ready subset. Four older work groups exceed the proposed three-item cap, with a maximum of six; keep them together rather than treating copies as independent books. The 329 older items without an Open Library work link are excluded from this linked export, not deleted from the original dataset. The 200-book networking benchmark is unchanged.
 
-The snapshot contained 41,849 candidates; initial checks retained 19,607 new candidates, from which the frozen manifest selected 15,000. Description-ready status is an automated filter, not a manual guarantee of summary quality. Compare description/no-description models on the same items and splits; larger data does not guarantee higher accuracy. The paired larger-dataset experiment is complete in `notebooks/05_popularity_description_comparison.ipynb`; optional follow-up trials below section 8 are proposals and have not been run.
+The snapshot contained 41,849 candidates; initial checks retained 19,607 new candidates, from which the frozen manifest selected 15,000. Description-ready status is an automated filter, not a manual guarantee of summary quality. Compare description/no-description models on the same items and splits; larger data does not guarantee higher accuracy. The paired larger-dataset experiment is complete in `notebooks/05_popularity_description_comparison.ipynb`; section 9 provides editable book inputs and a prediction cell; the original experiment results are preserved.
 
 Collection checkpoints and attempt logs are in `data/runs/api_20261122_154837_ol15000/`. `scrapers/build_ol_dataset.py --new-run data/runs/api_20261122_154837_ol15000` rebuilds the enriched exports from saved files without website requests. See the [dataset note](data/training_ol_books_README.md) for columns, source differences and exclusions.
 
@@ -108,6 +110,8 @@ The default input is the fixed 200-book manifest. Use `--limit 3` for an initial
 | `docs/` | Setup, networking handoff, data dictionary and assignment requirements |
 | `tests/` | Offline HTTP-client, parser, median, simulated browser-retry and threading/global-limit and description-cleaning/cohort tests (32 tests) |
 | `notebooks/`, `captures/`, `screenshots/`, `report/` | Executed ML experiments and destinations for network evidence, screenshots and the final report |
+
+Manual-entry helper checks use the analysis environment: `python -B -m unittest discover -s notebooks/tests -v` (4 tests). The runnable demo was also checked against six saved reference predictions.
 
 Analysis packages are in `requirements-analysis.txt`. Run offline tests with `python -B -m unittest discover -s tests -v`; they use a local fake server and a simulated browser, without archive.org requests.
 

@@ -30,7 +30,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 - [ ] Finalise the submission notebook: rerun the corrected CV-selected summary and document that the existing held-out comparisons are exploratory.
 - [x] Finish and validate the 15,000-item API collection; exports contain 20,271 linked records / 17,763 description-ready records. Benchmark and earlier datasets preserved.
 - [x] Complete notebook 05: paired A/B popularity models, including MLP, on 17,727 items with one fixed grouped holdout and saved CV choices/results.
-- [ ] Optional: implement the five proposed trials in notebook 05 section 9, using training-pool CV only and separate outputs; none run yet.
+- [x] Notebook 05 section 9: runnable manual book entry with A/B popularity and view-count predictions; optional metadata defaults are visible. Preserves completed experiment results.
 
 ### Both
 
