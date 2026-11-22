@@ -126,7 +126,11 @@ class ManualBookPredictor:
         manifest = manifest.set_index('identifier').loc[df.identifier]
         pool = df[(manifest['split'] == 'pool').to_numpy()].reset_index(drop=True)
         selection = pd.read_csv(report/'cv_selection.csv')
-        return cls().fit(pool, selection, verbose=verbose)
+        model = cls().fit(pool, selection, verbose=verbose)
+        model.project_root = root
+        model.data_sha256 = env['data_sha256']
+        model.split_sha256 = meta['manifest_sha256']
+        return model
 
     def fit(self, pool, selection, verbose=True):
         pool = pool.copy()
@@ -204,3 +208,53 @@ class ManualBookPredictor:
                              'High probability (%)': round(float(probabilities[2])*100, 1)})
         return {'predictions': pd.DataFrame(rows), 'assumptions': assumptions, 'inputs_used': frame,
                 'class_cutoffs': {'low_max': float(self.cutoffs[0]), 'medium_max': float(self.cutoffs[1])}}
+
+
+    def archive_example(self, kind='holdout'):
+        """Load a real saved Archive item; observed views are returned separately from model inputs."""
+        examples = {'training': 'fahrenheit4510000brad',
+                    'holdout': 'timemachineinvis0000well_p4k8'}
+        if kind not in examples:
+            raise ValueError("Choose kind='training' or kind='holdout'.")
+        if not hasattr(self, 'project_root'):
+            raise RuntimeError('Run the updated Setup cell first.')
+        root = self.project_root
+        data_file, split_file = root/'data/popularity_training_clean.csv', root/'report/ml/split_manifest.csv'
+        if (hashlib.sha256(data_file.read_bytes()).hexdigest() != self.data_sha256 or
+                hashlib.sha256(split_file.read_bytes()).hexdigest() != self.split_sha256):
+            raise ValueError('The dataset/split changed since Setup. Reload matching models before using the examples.')
+        data = pd.read_csv(data_file, encoding='utf-8-sig', keep_default_na=False).set_index('identifier')
+        manifest = pd.read_csv(split_file, keep_default_na=False).set_index('identifier')
+        identifier = examples[kind]
+        row, split = data.loc[identifier], manifest.loc[identifier]
+        seen = identifier in self.training_identifiers
+        group_seen = row['ol_group'] in self.training_groups
+        if kind == 'training' and (split['split'] != 'pool' or not seen or not group_seen):
+            raise ValueError('The training example is not in the fitted training pool.')
+        if kind == 'holdout' and (split['split'] != 'holdout' or seen or group_seen):
+            raise ValueError('The held-out example must have neither its item nor its work group in training.')
+        years = (pd.to_datetime(row.retrieved_at_utc, utc=True)-pd.to_datetime(row.addeddate, utc=True)).days/365.25
+        book = {'title': row['title'], 'description': row['description'], 'author': row['creators'],
+                'publication_year': int(row.publication_year), 'pages': int(row.scanned_page_count),
+                'genre': None, 'subjects': row['subjects'], 'archive_years': float(years),
+                'juvenile': str(row.juvenile).lower() in ['1', 'true']}
+        observed = int(row.views_all_time)
+        actual = 'low' if observed <= self.cutoffs[0] else ('high' if observed > self.cutoffs[1] else 'medium')
+        reference = {'title': row['title'], 'identifier': identifier, 'item_url': row.item_url,
+                     'split': 'training pool' if seen else 'held-out test set (work not trained on)',
+                     'observed_archive_views': observed, 'observed_popularity': actual,
+                     'observed_at_utc': row.retrieved_at_utc, 'work_group': row.ol_group}
+        return {'book': book, 'reference': reference}
+
+    def predict_archive_example(self, kind='holdout'):
+        """Predict from book metadata first, then attach the separately saved observed target for comparison."""
+        example = self.archive_example(kind)
+        answer = self.predict_book(**example['book'])
+        reference = example['reference']
+        table = answer['predictions'].copy()
+        table['Observed archive views'] = reference['observed_archive_views']
+        table['Observed popularity'] = reference['observed_popularity']
+        table['Class matches observed?'] = table['Predicted popularity'] == reference['observed_popularity']
+        table['Absolute view-count error'] = (table['Estimated archive views']-reference['observed_archive_views']).abs()
+        answer.update(predictions=table, reference=reference, book=example['book'])
+        return answer

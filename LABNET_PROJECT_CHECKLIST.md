@@ -31,6 +31,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 - [x] Finish and validate the 15,000-item API collection; exports contain 20,271 linked records / 17,763 description-ready records. Benchmark and earlier datasets preserved.
 - [x] Complete notebook 05: paired A/B popularity models, including MLP, on 17,727 items with one fixed grouped holdout and saved CV choices/results.
 - [x] Notebook 05 section 9: runnable manual book entry with A/B popularity and view-count predictions; optional metadata defaults are visible. Preserves completed experiment results.
+- [x] Notebook 05 section 10: one verified training example and one held-out work, with real metadata, observed views/classes and prediction errors displayed separately from model inputs.
 
 ### Both
 
