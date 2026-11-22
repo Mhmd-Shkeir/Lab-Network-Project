@@ -250,7 +250,8 @@ def main(argv=None):
     # ---- checksums
     names = [f"benchmark_200_{m}.csv" for m in ("api", "bs4", "selenium")] + ["training_api.csv", "training_api_not_usable.csv"]
     names += [name for name in ("training_with_descriptions.csv", "training_ol_books.csv",
-                                "training_ol_books_with_description.csv") if (data / name).exists()]
+                                "training_ol_books_with_description.csv", "popularity_training_clean.csv",
+                                "popularity_training_exclusions.csv") if (data / name).exists()]
     with open(data / "checksums.sha256", "w", encoding="utf-8", newline="\n") as f:
         for n in names:
             f.write(f"{hashlib.sha256((data / n).read_bytes()).hexdigest()}  {n}\n")

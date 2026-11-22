@@ -25,7 +25,7 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 ### Mohammad
 
 - [ ] Help resolve scraper/setup issues from Issa's smoke checks.
-- [x] Bounded `--workers` / `--min-interval` mode in all three scrapers with ONE global start-to-start request limit shared by all workers (retries included, 429/503 pauses everyone); 28 offline tests pass, including description-cleaning tests; not run against archive.org. Issa's commands are in the networking handoff.
+- [x] Bounded `--workers` / `--min-interval` mode in all three scrapers with ONE global start-to-start request limit shared by all workers (retries included, 429/503 pauses everyone); 32 offline tests pass, including description-cleaning tests; not run against archive.org. Issa's commands are in the networking handoff.
 - [x] Executed exploratory ML notebooks: grouped splits, EDA, baselines, regression/classification, learning curves and K-Means.
 - [ ] Finalise the submission notebook: rerun the corrected CV-selected summary and document that the existing held-out comparisons are exploratory.
 - [x] Finish and validate the 15,000-item API collection; exports contain 20,271 linked records / 17,763 description-ready records. Benchmark and earlier datasets preserved.
@@ -48,7 +48,8 @@ Deadline: **25 November 2026**. Working finish target: **23 November**. Owners: 
 
 ## Data analysis and ML
 
-- [ ] Preserve raw CSVs; write cleaning output separately and report exclusions.
+- [x] Preserve raw CSVs; separate complete-case popularity cohort: 17,727 rows, 2,544 excluded IDs/reasons, validated required inputs and quality report.
+- [ ] Follow `docs/POPULARITY_EXPERIMENT_HANDOFF.md`: compare description/no-description popularity models on the same cohort and fixed grouped split.
 - [x] Exploratory EDA: views, years, scanned pages, item age, genres and source differences.
 - [x] Existing experiments use grouped train/test splits by `work_group` and training-derived transforms/thresholds.
 - [ ] Validate grouping on the larger dataset using `ol_group`, and keep final model choices independent of held-out scores.

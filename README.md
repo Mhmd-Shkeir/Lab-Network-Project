@@ -7,7 +7,7 @@ Mohammad owns the scrapers and collection. Issa owns networking measurements. Bo
 ## Start here
 
 1. **Issa:** [Ubuntu setup](docs/SETUP_UBUNTU_VM.md), then [networking handoff](docs/HANDOFF_NETWORKING_ISSA.md).
-2. **Data and ML:** for the next description-based models use `data/training_ol_books_with_description.csv` (17,763 rows). Use `data/training_ol_books.csv` for the full linked dataset, and split by `ol_group`. Read the [dataset note](data/training_ol_books_README.md) and [data dictionary](docs/DATA_DICTIONARY.md). Existing notebook scores are from the earlier datasets.
+2. **Data and ML:** for the description/no-description popularity comparison use `data/popularity_training_clean.csv` (17,727 complete-case rows) and the [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md). Use `data/training_ol_books.csv` for the full linked dataset, and split by `ol_group`. Read the [dataset note](data/training_ol_books_README.md) and [data dictionary](docs/DATA_DICTIONARY.md). Existing notebook scores are from the earlier datasets.
 3. **Remaining work:** [project checklist](LABNET_PROJECT_CHECKLIST.md) and [assignment requirements](docs/ASSIGNMENT_REQUIREMENTS.md).
 
 ## Collected data
@@ -18,6 +18,7 @@ Mohammad owns the scrapers and collection. Issa owns networking measurements. Bo
 | `benchmark_200_bs4.csv` | 200 | Independent HTML collection of the same books |
 | `benchmark_200_selenium.csv` | 200 | Browser collection of the same books |
 | `training_with_descriptions.csv` | 3,152 | The books of `training_api.csv` that have a usable description (25+ words), with the description text. Experiment: descriptions did not clearly improve popularity prediction |
+| `popularity_training_clean.csv` | 17,727 | Required inputs complete; same books for both popularity-model variants. Split by `ol_group` |
 | `training_ol_books.csv` | 20,271 | All Open Library-linked records: 5,271 older items + 15,000 new items, with description/author quality flags |
 | `training_ol_books_with_description.csv` | 17,763 | Description-ready subset for the next content-based models; 37 columns, grouped by `ol_group` |
 | `training_api.csv` | 5,600 | 200 benchmark books plus 1,800 science fiction, 1,800 fantasy and 1,800 mystery/thriller records (each genre: 600 from Americana + 1,200 from other English texts on archive.org) |
@@ -32,7 +33,7 @@ The benchmark is a reproducible sample from Americana's broad English-fiction po
 
 All benchmark metadata agrees across methods except one subject list. API views exceed page views for 195 of 200 books; BS4 and Selenium agree on the observed page values. These differences are preserved. Views describe engagement with an archived copy, rather than worldwide sales or future publication success.
 
-`data/completeness_report.md` documents the earlier dataset checks; `data/training_ol_books_report.json` documents the completed larger dataset. `data/checksums.sha256` verifies the eight published CSVs, including the header-only `training_api_not_usable.csv` (zero unusable training records). Excel can open these UTF-8 CSVs; keep identifiers as text.
+`data/completeness_report.md` documents the earlier dataset checks; `data/training_ol_books_report.json` documents the completed larger dataset. `data/checksums.sha256` verifies the ten published CSVs, including the header-only `training_api_not_usable.csv` (zero unusable training records). Excel can open these UTF-8 CSVs; keep identifiers as text.
 
 ## Analysis notebooks and current results
 
@@ -61,6 +62,12 @@ The snapshot contained 41,849 candidates; initial checks retained 19,607 new can
 Collection checkpoints and attempt logs are in `data/runs/api_20261122_154837_ol15000/`. `scrapers/build_ol_dataset.py --new-run data/runs/api_20261122_154837_ol15000` rebuilds the enriched exports from saved files without website requests. See the [dataset note](data/training_ol_books_README.md) for columns, source differences and exclusions.
 
 Published CSVs are stored byte-for-byte using `.gitattributes`, so Git does not change their line endings and invalidate checksums between Windows and Linux.
+
+## Clean cohort for the popularity comparison
+
+`python scrapers/prepare_popularity_dataset.py` builds `data/popularity_training_clean.csv` offline, retaining 17,727 rows / 16,666 works and all 37 columns from the full linked export. It excludes 2,508 rows failing description checks plus 36 further rows missing authors (2,544 excluded IDs total). Other required inputs are present and valid. The source exports are unchanged. Optional blank edition IDs and successful rows' empty `error` fields are allowed; zero views is valid. See `data/popularity_training_quality.json` and `data/popularity_training_exclusions.csv` for the checks and reasons.
+
+Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md) defines targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. Larger-dataset popularity models have not been trained by this preparation step.
 
 ## Run the scrapers
 
@@ -92,7 +99,7 @@ The default input is the fixed 200-book manifest. Use `--limit 3` for an initial
 | `data/manifest/` | Frozen benchmark/training IDs, snapshots, genre rules evidence and exclusions |
 | `data/runs/` | Collection checkpoints, raw records, attempts and summaries; keep active-run outputs local until completion and validation |
 | `docs/` | Setup, networking handoff, data dictionary and assignment requirements |
-| `tests/` | Offline HTTP-client, parser, median, simulated browser-retry and threading/global-limit and description-cleaning tests (28 tests) |
+| `tests/` | Offline HTTP-client, parser, median, simulated browser-retry and threading/global-limit and description-cleaning/cohort tests (32 tests) |
 | `notebooks/`, `captures/`, `screenshots/`, `report/` | Executed ML experiments and destinations for network evidence, screenshots and the final report |
 
 Analysis packages are in `requirements-analysis.txt`. Run offline tests with `python -B -m unittest discover -s tests -v`; they use a local fake server and a simulated browser, without archive.org requests.

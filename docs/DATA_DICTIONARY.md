@@ -113,3 +113,7 @@ requests); they are **not** the final network comparison.
 | `source_batch` | `first_5600` or `ol_collection`; provenance for EDA, not an automatic predictor |
 
 There are 42 missing-author records overall and 36 in the description-ready subset. Four older Open Library work groups contain more than three items (maximum six). The full export contains 19,011 works; the description-ready subset contains 16,702. A row is an archived item, not necessarily an independent literary work. The 329 older items without an Open Library work link remain in the earlier dataset. See `data/training_ol_books_report.json` and `data/training_ol_books_README.md` for exclusions and source differences. None of these exports changes the fixed 200-book benchmark.
+
+## Complete-case popularity cohort
+
+`data/popularity_training_clean.csv` retains the same 37 columns as `training_ol_books.csv`, with 17,727 rows across 16,666 `ol_group` values. Use it for both description/no-description variants. Required fields are documented in `data/popularity_training_quality.json`; optional fields may still be blank. Rows that failed description-readiness checks or had missing authors/invalid required inputs are listed in `data/popularity_training_exclusions.csv` (2,544 excluded IDs). Values are not imputed or filtered by popularity. Raw exports are unchanged. Rebuild offline with `python scrapers/prepare_popularity_dataset.py`.
