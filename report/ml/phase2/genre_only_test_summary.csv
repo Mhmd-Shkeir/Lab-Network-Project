@@ -1,0 +1,11 @@
+variant,algo,family,is_best_in_family,accuracy,macro_f1,balanced_accuracy,f1_science_fiction,f1_fantasy,f1_mystery_thriller,fit_seconds,accuracy | author seen in training,macro_f1 | author seen in training,accuracy | author NOT seen in training,macro_f1 | author NOT seen in training,model
+without description,dummy,baseline,False,0.35816,0.17581,0.33333,0.0,0.52742,0.0,0.00091,0.3582,0.17582,0.35812,0.17579,dummy baseline
+without description,hgb,tree,False,0.62542,0.61975,0.6185,0.57276,0.60749,0.67902,3.88393,0.67471,0.6726,0.56412,0.54906,HistGradientBoosting
+without description,linsvc,linear,False,0.70842,0.70272,0.69952,0.65578,0.71158,0.7408,0.16275,0.79704,0.79569,0.59823,0.57413,LinearSVC
+without description,logreg,linear,True,0.70781,0.70196,0.69911,0.65267,0.71151,0.74171,0.87114,0.79759,0.79611,0.59618,0.57262,LogisticRegression
+with description,dummy,baseline,False,0.35816,0.17581,0.33333,0.0,0.52742,0.0,0.00073,0.3582,0.17582,0.35812,0.17579,dummy baseline
+with description,hgb,tree,False,0.8042,0.79897,0.79714,0.74743,0.79187,0.85762,13.87129,0.82556,0.82433,0.77763,0.76346,HistGradientBoosting
+with description,linsvc,linear,True,0.86257,0.85949,0.85714,0.82708,0.85126,0.90013,13.61709,0.89742,0.89692,0.81924,0.80894,LinearSVC
+with description,logreg,linear,False,0.86136,0.85812,0.8556,0.8242,0.84751,0.90263,2.1029,0.89468,0.89425,0.81992,0.80925,LogisticRegression
+without description,mlp,neural,True,0.61204,0.60433,0.60348,0.53842,0.60953,0.66505,22.47511,0.66155,0.65813,0.55048,0.53222,MLP (neural)
+with description,mlp,neural,True,0.8121,0.80651,0.80514,0.75213,0.79581,0.8716,7.59067,0.83324,0.83209,0.78581,0.77037,MLP (neural)

@@ -105,7 +105,7 @@ class Phase2Predictor:
     """family = 'classical' (notebook 06: CV-selected LogReg / LinearSVC / HistGradientBoosting) or 'neural' (notebook 07: small MLP)."""
 
     @classmethod
-    def from_project(cls, family="classical", verbose=True):
+    def from_project(cls, family="classical", verbose=True, tasks=None):
         self = cls(); self.family = family
         env = json.loads((p2.OUT / "environment_phase2.json").read_text(encoding="utf-8"))
         if p2.sha256_file(p2.DATA_FILE) != env["data_sha256"]:
@@ -115,7 +115,7 @@ class Phase2Predictor:
         t0 = time.time()
         if verbose:
             print(f"Preparing the selected {family} models once from the saved training pools (no scraping, no CV rerun) ...")
-        for task in p2.TASKS:
+        for task in (tasks or p2.TASKS):          # default: both tasks (notebooks 06/07); notebook 09 asks for genre only
             d = p2.task_frame(df, task)
             meta = json.loads((p2.OUT / f"split_{task}_meta.json").read_text(encoding="utf-8"))
             if meta["sha256"] != p2.sha256_file(p2.OUT / f"split_{task}.csv"):
