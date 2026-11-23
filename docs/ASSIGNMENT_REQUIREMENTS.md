@@ -22,6 +22,18 @@ Source: the supplied two-page assignment, *Analyzing Website Data Collection Eff
 
 ## Team implementation choices
 
-Internet Archive, the 200-item comparison, 2,000-row training dataset, three genre allocations and three repetitions per method are our project choices. The PDF does not prescribe those values or mandate Open Library or K-Means. Compare all methods on the same benchmark workload; collect the larger training dataset separately through the API.
+Internet Archive, the 200-item comparison, the larger training dataset (5,600 books, then 15,000 more; 17,727 after cleaning) and the three genres are our project choices; we captured one run per method (three repeats were planned but not done). The PDF does not prescribe those values or mandate Open Library or K-Means. Compare all methods on the same benchmark workload; collect the larger training dataset separately through the API.
 
-The final report (`report/Lab_Network_Final_Report.docx`) shows the current status of every requirement.
+## Where each requirement is in the repository
+
+| Requirement | Where |
+|---|---|
+| Three scrapers and CSV files | `scrapers/ia_api_scraper.py`, `ia_bs4_scraper.py`, `ia_selenium_scraper.py`; `data/benchmark_200_*.csv` |
+| Speed, bandwidth, requests, latency table | `report/network_measurements.csv`, `report/network_summary.csv`, `notebooks/network_analysis.ipynb` |
+| ss / iftop / nload / tcpdump / Wireshark | `screenshots/` (macOS `lsof` stands in for `ss`), `run_mac_*.sh`, `docs/MAC_NETWORK_CAPTURE.md` |
+| Firewall, rate limiting, multithreading | `run_mac_pf_demo.sh` (macOS `pf` stands in for `ufw`), `report/rate_limit_experiment.csv`, `--workers` option of the scrapers |
+| Cleaning, EDA, ML | `data/popularity_training_clean.csv`; notebooks 05, 08, 09, 10 (see `notebooks/README.md`) |
+| Recommendation | Section 8 of the final report |
+| Final report | `report/Lab_Network_Final_Report.docx` (export to PDF for submission) |
+| Presentation (10 min) | `report/Lab_Network_Presentation.pptx` |
+

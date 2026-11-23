@@ -14,8 +14,9 @@ Tip for Excel: open via *Data → From Text/CSV* and keep `identifier` as **Text
 | `data/benchmark_200_bs4.csv` | 200 | Same 200 books, independent Requests + BeautifulSoup on `archive.org/details/<id>` |
 | `data/benchmark_200_selenium.csv` | 200 | Same 200 books, Selenium/Chrome on the same pages (fields read with WebDriver locators) |
 | `data/training_api.csv` | 5,600 | Training records collected through the API only; usable rows (`status = ok`): the 200 benchmark books + 1,800 science fiction + 1,800 fantasy + 1,800 mystery/thriller (each genre: 600 Americana + 1,200 from other English texts) |
-| `data/training_with_descriptions.csv` | 3,152 | The training books that have a **usable description** (25+ words after removing catalogue text such as "244 p. ; 22 cm", not boilerplate, not shared with another work): same columns as `training_api.csv` plus `description` (cleaned text) and `description_words`. Built by `scrapers/build_description_dataset.py` from `data/descriptions_raw_5600.jsonl` (raw descriptions of all 5,600 books). 941 science fiction, 1,124 fantasy, 1,020 mystery/thriller, 67 benchmark. Descriptions are catalogue/publisher summaries; their author is not known |
-| `data/training_api_not_usable.csv` | few | Training ids whose row was partial/failed, with the reason |
+| `data/popularity_training_clean.csv` | 17,727 | **The final clean dataset used by the ML notebooks** (37 columns, grouped by `ol_group`; built by `scrapers/prepare_popularity_dataset.py`; see the last two sections of this file) |
+| `data/labels/` | – | Labels and sampling files for the children-audience experiment (notebook 08); rules in `docs/CHILDREN_LABEL_RULES.md` |
+| `data/archive/` | – | Notes and raw files of removed intermediate CSVs, kept for reference only |
 | `data/benchmark_200_comparison/` | – | Field-by-field and view-count differences between the three methods |
 | `data/manifest/` | – | Pool snapshot, `benchmark_200_ids.json`, `training_ids.json`, genre pool snapshot, `genre_availability.json`, `genre_preview.csv`, exclusions (`exclusions.csv`, `genre_exclusions.csv`), views eligibility checks, sampling metadata |
 | `data/completeness_report.md/.json` | – | Counts, completeness per field, ranges, consistency checks |
@@ -100,6 +101,8 @@ requests); they are **not** the final network comparison.
 - Genre labels are heuristics on free-text subject tags; some mislabelled or non-fiction books may remain.
 
 ## Completed linked-book export (22 November 2026)
+
+*This section describes `training_ol_books.csv`, an intermediate file that was removed from `data/` (it is in Git history, see `data/README.md`). Its 37 columns are the same as in `popularity_training_clean.csv`.*
 
 `data/training_ol_books.csv` has 20,271 rows (5,271 older linked records + 15,000 newly collected records) and 37 columns. `data/training_ol_books_with_description.csv` has the same columns and the 17,763 rows whose `description_ready` is 1. Both preserve the original field/provenance columns and add:
 
