@@ -4,7 +4,7 @@ We compare three ways of collecting the same 200 Internet Archive books (API, Re
 
 **Team:** Mohammad owns the scrapers, the data and the machine learning. Issa owns the networking and security measurements. The final report and presentation are shared. Deadline: **25 November 2026**.
 
-## What is in this repository (the deliverables)
+## What is in this repository
 
 | Deliverable | Where |
 |---|---|
@@ -57,7 +57,7 @@ Raw run folders are in `data/runs/`, the frozen lists of chosen books in `data/m
 | `report/` | The final report, network measurement CSVs, `ml/` (saved results, figures, split manifests) and `figures/` |
 | `screenshots/` | Network screenshots (Issa), scraper terminal runs (`scrapers/`) and notebook screenshots (`ml/`) |
 | `measurements/`, `captures/` | Small demo run outputs; packet captures go in `captures/` |
-| `docs/` | Data dictionary, assignment requirements, Mac capture notes, label rules, how to reopen the notebooks |
+| `docs/` | Data dictionary, Mac capture notes, label rules, how to reopen the notebooks |
 | `tests/` | 32 offline tests (HTTP client, retries, parsers, threading limit, description cleaning, cohort) |
 | `run_mac_*.sh` | Issa's scripts for the Mac baselines and the PF firewall demo |
 

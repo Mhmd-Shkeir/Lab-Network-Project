@@ -1,6 +1,6 @@
 # macOS measurement workflow
 
-This Mac has Chrome, `tcpdump`, `iftop`, and `nload`. macOS is not Linux: it does not provide `ufw` or `ss`. The supplied runner can collect the same fixed 200-item workload with a separate packet capture for each run, but a `pf` firewall demonstration is not the assignment's literal UFW demonstration. State this limitation in the report or use a Linux VM/host for that requirement.
+This Mac has Chrome, `tcpdump`, `iftop`, and `nload`. macOS is not Linux: it does not provide `ufw` or `ss`. The supplied runner can collect the same fixed 200-item workload with a separate packet capture for each run, but a `pf` firewall demonstration is not a UFW demonstration. State this limitation in the report or use a Linux VM/host if UFW itself is needed.
 
 ## Before the baseline
 
