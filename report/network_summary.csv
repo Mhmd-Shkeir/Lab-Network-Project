@@ -1,0 +1,4 @@
+method,repetitions,median_captured_IP_KB,median_elapsed_s,median_request_count,median_client_duration_ms,median_TCP_RTT_ms,min_successful_rows,max_retries
+api,1,163.19,30.988,8.0,1203.65,0.0765,200,0
+bs4,1,11368.311,1664.082,200.0,5323.3275,0.067,200,0
+selenium,1,18634.731,1712.765,8933.0,5473.855000000001,0.09000000000000001,200,0

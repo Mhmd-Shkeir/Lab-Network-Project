@@ -45,7 +45,7 @@ Install `requirements-analysis.txt` separately from the scraping environment. Th
 | `notebooks/ml_analysis1.ipynb` | Executed overview: cleaning checks, EDA, baselines, grouped evaluation, learning curves and exploratory K-Means |
 | `notebooks/02_popularity_methods.ipynb` | Existing archived-item engagement: CV-selected classifier has 59.5% held-out accuracy versus 30.1% baseline; selected regression ensemble has R² 0.401 on log views, with 61.1% within a factor of two |
 | `notebooks/03_children_book_classifier.ipynb` | Exploratory detection of the catalogue's juvenile marker; missing juvenile tags do not establish that a book is for adults. Report F1, balanced accuracy and AUC, not plain accuracy alone |
-| `notebooks/04_genre_classifier.ipynb` | Genre classification: CV-selected description/title/creator LinearSVC has 81.6% held-out accuracy and 0.804 macro-F1. Input features exclude the subject tags that defined the genre labels |
+| `notebooks/04_genre_classifier.ipynb` | Genre classification: the current description-based LinearSVC has 86.26% held-out accuracy and 0.859 macro-F1 (see `report/ml/phase2/genre_classical_test_results.csv`). Input features exclude the subject tags that defined the genre labels |
 | `notebooks/ml_analysis.ipynb` | Unexecuted starter retained for reference; not the completed analysis |
 
 Genre accuracy is not popularity accuracy. These are exploratory results on the existing datasets. Use training-pool cross-validation for model choices, keep copies of a work in the same fold, and do not keep tuning against a reused test set. Author overlap and rule-based catalogue labels limit generalisation. Some descriptions still contain catalogue notes or contents lists; the 3,152-item subset covers about 56% of the original training data, so compare description/no-description models on the same books.
@@ -57,6 +57,8 @@ Genre accuracy is not popularity accuracy. These are exploratory results on the 
 Section 9 lets you try a book by hand: run Setup once, edit `BOOK` (title and description, plus optional author/year/pages/genre/subjects/archive age), then run Predict. The setup refits only the recorded CV-selected LogisticRegression/Ridge pairs on the saved training pool; subsequent entries reuse those models. It makes no website requests and does not rerun CV, fit holdout targets, change datasets or overwrite experiment results. Missing optional metadata uses visible training-pool defaults. A blank description returns only the metadata prediction. These are estimates of existing archived-item views at the supplied/assumed archive age, not forecasts of new-book sales.
 
 Section 10 contains two runnable real Archive examples with complete saved metadata: **Fahrenheit 451** (`fahrenheit4510000brad`, training pool; 19,245 observed views) and **The Time Machine and the Invisible Man** (`timemachineinvis0000well_p4k8`, held-out work; 87 observed views). Run the updated Setup first, then either example cell. The helper verifies item/work training membership, predicts from metadata, and only then attaches the saved observed views/class and absolute count error. The recorded views are snapshot values, not a live website lookup. These two examples illustrate behaviour; the training example is not generalisation evidence and neither replaces the full held-out metrics. The section 9 preset now uses the real training example rather than the fictional Lighthouse example.
+
+The separate children-audience experiment scored 85.57% on a 291-item fresh test, but its labels are AI-generated and not human validated. An 80-item blind review sheet is provided; complete it before claiming validated intended-audience performance. Genre and juvenile-marker scores above 80% are not popularity scores.
 
 The original neural experiment's feature transforms were fitted before its internal early-stopping validation carve-out; that limitation remains part of the recorded experiment. The manual demo uses the selected linear models. Temporary result caches are ignored by Git, and result CSV bytes are preserved so manifest hashes work across platforms.
 
@@ -91,7 +93,7 @@ pip install -r requirements.txt
 python scrapers/check_selenium_env.py
 ```
 
-For Issa's measurements, run all three methods in the **same Linux environment**, using fresh output folders:
+For a reproducible measurement rerun, the original handoff commands below use fresh output folders. The completed evidence in this project was captured on macOS; see [the network report](report/report_draft.md), [capture procedure](docs/MAC_NETWORK_CAPTURE.md), and screenshots. macOS `lsof`/PF were used, so Linux `ss`/UFW compliance is not claimed:
 
 ```bash
 python scrapers/ia_api_scraper.py --out-root measurements/runs --label net_run1
@@ -128,9 +130,9 @@ the option has **not** been run against archive.org. Commands and what to check 
 python scrapers/ia_bs4_scraper.py --workers 4 --min-interval 1 --out-root measurements/runs --label thr_w4_i1_run1
 ```
 
-## Remaining implementation
+## Network evidence and report
 
-The live threading and rate-limit experiments, and a proxy (optional), are Issa's. Ubuntu ARM browser setup remains untested; confirm the local browser check before collecting measurements.
+The API, BS4, and Selenium 200-item Mac baselines, Wireshark captures/screenshots, rate-limit comparison, and macOS PF block/recovery demonstration are complete. The measurements are single-run observations and the report documents their scope and platform limitations. See [the final report](report/report_draft.md), [PDF](output/pdf/lab_network_programming_report.pdf), and [project checklist](LABNET_PROJECT_CHECKLIST.md). Three repeats per method and the optional proxy remain outstanding.
 
 Use the project's identifying User-Agent, three-second pacing and bounded retry/backoff. Respect `Retry-After`; a long wait stops the run. Keep failures and source differences visible. Browser request-event totals and client-call durations have distinct meanings explained in the networking handoff.
 

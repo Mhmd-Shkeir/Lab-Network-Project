@@ -1,0 +1,4 @@
+method,run_id,captured_IP_KB,elapsed_s,request_count,page_navigations,mean_client_duration_ms,client_duration_scope,tcp_rtt_mean_ms,records_saved,status_ok,retries,ip_bytes,tcp_rtt_median_ms
+api,api_20261121_213054_mac_baseline_r1,163.19,30.988,8,,1203.65,HTTP attempt duration (s),74.44297619047619,200,200,0,163190.0,0.0765
+bs4,bs4_20261121_213223_mac_baseline_r1,11368.311,1664.082,200,,5323.3275,HTTP attempt duration (s),24.36084972133758,200,200,0,11368311.0,0.067
+selenium,selenium_20261121_231523_mac_baseline_r1,18634.731,1712.765,8933,200.0,5473.855000000001,Browser navigation duration (s),64.81121913774973,200,200,0,18634731.0,0.09000000000000001

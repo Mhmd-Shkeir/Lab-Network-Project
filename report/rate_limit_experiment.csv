@@ -1,0 +1,3 @@
+run_id,items,workers,min_interval_s,min_start_gap_s,max_requests_in_flight,http_attempts,successes,retries,elapsed_s,mean_http_attempt_s
+api_20261121_222407_rate_worker1,20,1,3.0,2.9926,1,8,20,0,21.894,0.744
+api_20261121_222433_rate_worker2,20,2,3.0,2.9955,1,8,20,0,21.854,0.596
