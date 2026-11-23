@@ -24,4 +24,4 @@ Source: the supplied two-page assignment, *Analyzing Website Data Collection Eff
 
 Internet Archive, the 200-item comparison, 2,000-row training dataset, three genre allocations and three repetitions per method are our project choices. The PDF does not prescribe those values or mandate Open Library or K-Means. Compare all methods on the same benchmark workload; collect the larger training dataset separately through the API.
 
-Current status and owners are maintained only in [the checklist](../LABNET_PROJECT_CHECKLIST.md).
+The final report (`report/Lab_Network_Final_Report.docx`) shows the current status of every requirement.

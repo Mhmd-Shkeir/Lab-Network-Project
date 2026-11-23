@@ -34,4 +34,4 @@ For a scoped macOS substitute, run `bash ./run_mac_pf_demo.sh en0` from the repo
 
 ## Optional isolated UFW demo without a full Ubuntu VM
 
-If Docker Desktop is available, start it, then run `./run_ufw_demo_docker.sh`. It starts a disposable Ubuntu container with a private network namespace, installs UFW and curl, allows HTTPS, blocks HTTPS, removes the block, verifies recovery, and destroys the container. The `NET_ADMIN` capability is limited to that disposable container and does not alter the Mac firewall. Keep the Terminal output and take a screenshot of the allow/block/recovery states for the report. Docker Desktop must be running first.
+The Ubuntu/UFW Docker demo script was removed from the repository (the firewall demonstration was done on the Mac with `pf`; see `run_mac_pf_demo.sh`). It is in the Git history.

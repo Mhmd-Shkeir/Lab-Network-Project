@@ -1,0 +1,3 @@
+variant,cfg_id,cfg,accuracy_mlp,macro_f1_mlp,recall_medium_mlp,family,accuracy_cv_winner,macro_f1_cv_winner,recall_medium_cv_winner,accuracy_logreg,macro_f1_logreg,recall_medium_logreg
+A,0,"{""hidden"": [64], ""weight_decay"": 0.001, ""dropout"": 0.1}",0.6091,0.6018,0.4126,cum_lr,0.6169,0.6126,0.4511,0.6108,0.6023,0.4033
+B,1,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",0.6073,0.599,0.3989,cum_lr,0.6223,0.6183,0.4585,0.6156,0.6078,0.4122

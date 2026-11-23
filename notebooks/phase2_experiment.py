@@ -1,6 +1,7 @@
 """Phase 2 helpers: genre classification and juvenile-marker classification, without / with description.
 
-Used by notebooks/06_genre_juvenile_classical.ipynb and notebooks/07_genre_juvenile_neural.ipynb.
+Used by notebooks/08_children_only_audience.ipynb and 09_genre_only.ipynb, and by the earlier notebooks 06 and 07
+(now only in Git history; they produced the saved results in report/ml/phase2/ that 08 and 09 read).
 Cohort: data/popularity_training_clean.csv (no scraping). Groups: ol_group. All fitting uses training rows only.
 
 LABEL-LEAKAGE RULE: the labels (genre flags and the juvenile marker) are derived from subject tags. Therefore NO subject-derived

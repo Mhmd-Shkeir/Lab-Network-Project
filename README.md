@@ -6,9 +6,9 @@ Mohammad owns the scrapers and collection. Issa owns networking measurements. Bo
 
 ## Start here
 
-1. **Issa:** [Ubuntu setup](docs/SETUP_UBUNTU_VM.md), then [networking handoff](docs/HANDOFF_NETWORKING_ISSA.md).
-2. **Data and ML:** for the description/no-description popularity comparison use `data/popularity_training_clean.csv` (17,727 complete-case rows) and the [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md). Use `data/training_ol_books.csv` for the full linked dataset, and split by `ol_group`. Read the [dataset note](data/training_ol_books_README.md) and [data dictionary](docs/DATA_DICTIONARY.md). Existing notebook scores are from the earlier datasets.
-3. **Remaining work:** [project checklist](LABNET_PROJECT_CHECKLIST.md) and [assignment requirements](docs/ASSIGNMENT_REQUIREMENTS.md).
+1. **Networking (Issa):** `notebooks/network_analysis.ipynb`, the `run_mac_*.sh` scripts and [the Mac capture notes](docs/MAC_NETWORK_CAPTURE.md).
+2. **Data and ML:** for the description/no-description popularity comparison use `data/popularity_training_clean.csv` (17,727 complete-case rows). Use `data/training_ol_books.csv` for the full linked dataset, and split by `ol_group`. Read the [dataset note](data/training_ol_books_README.md) and [data dictionary](docs/DATA_DICTIONARY.md). Existing notebook scores are from the earlier datasets.
+3. **Report and requirements:** the final report is `report/Lab_Network_Final_Report.docx`; the [assignment requirements](docs/ASSIGNMENT_REQUIREMENTS.md) list what is asked.
 
 ## Collected data
 
@@ -17,11 +17,10 @@ Mohammad owns the scrapers and collection. Issa owns networking measurements. Bo
 | `benchmark_200_api.csv` | 200 | API collection of the fixed benchmark books |
 | `benchmark_200_bs4.csv` | 200 | Independent HTML collection of the same books |
 | `benchmark_200_selenium.csv` | 200 | Browser collection of the same books |
-| `training_with_descriptions.csv` | 3,152 | The books of `training_api.csv` that have a usable description (25+ words), with the description text. Experiment: descriptions did not clearly improve popularity prediction |
-| `popularity_training_clean.csv` | 17,727 | Required inputs complete; same books for both popularity-model variants. Split by `ol_group` |
-| `training_ol_books.csv` | 20,271 | All Open Library-linked records: 5,271 older items + 15,000 new items, with description/author quality flags |
-| `training_ol_books_with_description.csv` | 17,763 | Description-ready subset for the next content-based models; 37 columns, grouped by `ol_group` |
 | `training_api.csv` | 5,600 | 200 benchmark books plus 1,800 science fiction, 1,800 fantasy and 1,800 mystery/thriller records (each genre: 600 from Americana + 1,200 from other English texts on archive.org) |
+| `popularity_training_clean.csv` | 17,727 | The final clean dataset used by the ML notebooks (complete required inputs; same books for both popularity-model variants). Split by `ol_group` |
+
+Only these five CSV files are kept. Intermediate files of the collection (for example the 20,271-row Open Library-linked export) were removed from the working folder and remain in Git history; see [data/README.md](data/README.md) for what each one was and how to restore it. Numbers below that mention them describe those removed files.
 
 The earlier 5,600 rows have collection status `ok`, meaning the collector completed its required-field checks. This is not a guarantee of catalogue quality: eight creator values are the literal text `None`, which must be treated as missing in analysis. Source metadata and genre labels still need analysis. There are 5,391 training work groups, with at most three archived items per group. Split training and evaluation by `work_group`.
 
@@ -33,7 +32,7 @@ The benchmark is a reproducible sample from Americana's broad English-fiction po
 
 All benchmark metadata agrees across methods except one subject list. API views exceed page views for 195 of 200 books; BS4 and Selenium agree on the observed page values. These differences are preserved. Views describe engagement with an archived copy, rather than worldwide sales or future publication success.
 
-`data/completeness_report.md` documents the earlier dataset checks; `data/training_ol_books_report.json` documents the completed larger dataset. `data/checksums.sha256` verifies the ten published CSVs, including the header-only `training_api_not_usable.csv` (zero unusable training records). Excel can open these UTF-8 CSVs; keep identifiers as text.
+`data/completeness_report.md` documents the earlier dataset checks; `data/archive/training_ol_books_report.json` documents the completed larger dataset. `data/checksums.sha256` verifies the five kept CSV files. Excel can open these UTF-8 CSVs; keep identifiers as text.
 
 ## Analysis notebooks and current results
 
@@ -64,6 +63,10 @@ The original neural experiment's feature transforms were fitted before its inter
 
 ### Completed larger description collection
 
+> **Note (tidy-up): the helper scripts `build_manifest.py`, `build_training_manifest.py`, `build_ol_manifest.py`, `build_ol_dataset.py`, `fetch_descriptions.py`, `fetch_openlibrary_ids.py` and `build_description_dataset.py` were removed from `scrapers/` (see `data/README.md`; they are in Git history).**
+>
+> **Note (tidy-up) on the files below:** `training_ol_books.csv`, `training_ol_books_with_description.csv` and the other intermediate CSV files named in this section were removed from `data/` (they are still in Git history; see `data/README.md` to restore one). The final dataset for the models is `data/popularity_training_clean.csv`, and the raw collection is in `data/runs/`.
+
 The 15,000-item API run completed on 22 November 2026: **15,000 unique items collected**, 5,000 per genre, in 47 minutes 26 seconds. It made 600 successful requests and recovered from 10 failed attempts through retries. These are collection timings, not the final networking benchmark. The source remains **archive.org's API**; the Open Library IDs are links in the metadata.
 
 `data/training_ol_books.csv` combines these records with 5,271 Open Library-linked items from the older dataset: **20,271 unique items**, with 37 columns. `data/training_ol_books_with_description.csv` contains the **17,763 description-ready items**, including 14,935 of the new records. Sixty-five new records failed the final description checks; the raw records are preserved. Forty-two full-dataset records have a missing author, explicitly flagged by `author_missing` (36 are in the description-ready subset).
@@ -80,7 +83,7 @@ Published CSVs are stored byte-for-byte using `.gitattributes`, so Git does not 
 
 `python scrapers/prepare_popularity_dataset.py` builds `data/popularity_training_clean.csv` offline, retaining 17,727 rows / 16,666 works and all 37 columns from the full linked export. It excludes 2,508 rows failing description checks plus 36 further rows missing authors (2,544 excluded IDs total). Other required inputs are present and valid. The source exports are unchanged. Optional blank edition IDs and successful rows' empty `error` fields are allowed; zero views is valid. See `data/popularity_training_quality.json` and `data/popularity_training_exclusions.csv` for the checks and reasons.
 
-Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The [experiment handoff](docs/POPULARITY_EXPERIMENT_HANDOFF.md) defines targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. It includes a small neural network in both feature variants, with grouped early-stopping validation and comparisons against the linear/tree baselines. The cleaning step does not train models. The subsequent completed paired experiment is in `notebooks/05_popularity_description_comparison.ipynb`.
+Use this same cohort for the with-description and without-description variants, and reuse one grouped split. The experiment rules (written when the data was prepared) define targets, permissible features, a fresh holdout drawn from new work groups, train-only model selection, paired evaluation and outputs. It includes a small neural network in both feature variants, with grouped early-stopping validation and comparisons against the linear/tree baselines. The cleaning step does not train models. The subsequent completed paired experiment is in `notebooks/05_popularity_description_comparison.ipynb`.
 
 ## Run the scrapers
 
@@ -136,8 +139,8 @@ The API, BS4, and Selenium 200-item Mac baselines, Wireshark captures/screenshot
 
 Use the project's identifying User-Agent, three-second pacing and bounded retry/backoff. Respect `Retry-After`; a long wait stops the run. Keep failures and source differences visible. Browser request-event totals and client-call durations have distinct meanings explained in the networking handoff.
 
-Earlier experiments and superseded plans are preserved in the [project history](HISTORY.md) and the verified local backup; they are removed from the active handoff.
+Earlier experiments, handoff notes and superseded plans were removed from the repository; they remain in the Git history.
 
 ### Reopening ML demos without training
 
-Notebooks 05?09 save their selected fitted models and preprocessing locally. Keep `RETRAIN = False`, run the demo Setup/Load cell, then the book example. See [reopening instructions](docs/REOPENING_NOTEBOOKS.md).
+Notebooks 05?10 save their selected fitted models and preprocessing locally. Keep `RETRAIN = False`, run the demo Setup/Load cell, then the book example. See [reopening instructions](docs/REOPENING_NOTEBOOKS.md).

@@ -42,7 +42,7 @@ def main():
         return 0
     except Exception as exc:
         print("RESULT: FAILED -", type(exc).__name__, str(exc).splitlines()[0][:300])
-        print("See docs/SETUP_UBUNTU_VM.md (browser/driver setup, ARM notes, CHROME_NO_SANDBOX).")
+        print("Set CHROME_BINARY / CHROMEDRIVER (see scrapers/config.py), or install Chrome/Chromium and a matching driver.")
         return 1
     finally:
         if driver is not None:

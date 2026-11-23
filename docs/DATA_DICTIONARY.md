@@ -1,5 +1,7 @@
 # Data dictionary
 
+> **Note (tidy-up):** only five CSV files remain in `data/` (the three `benchmark_200_*` files, `training_api.csv` and `popularity_training_clean.csv`). Rows below that describe `training_ol_books.csv`, `training_ol_books_with_description.csv`, `training_with_descriptions.csv`, `training_api_not_usable.csv`, `openlibrary_ids_5600.csv` or `popularity_training_exclusions.csv` describe files that were removed from the working folder; they are still in Git history (see [data/README.md](../data/README.md)). `popularity_training_clean.csv` has the same 37 columns as the removed `training_ol_books.csv`.
+
 Source: Internet Archive (archive.org), Americana collection, English fiction texts (query in `data/manifest/manifest_meta.json`).
 CSV files are UTF-8 **with BOM** so Excel shows accents correctly. Lists (creators, subjects) are joined with ` | `.
 Tip for Excel: open via *Data → From Text/CSV* and keep `identifier` as **Text** (some identifiers are all digits or start with 0).

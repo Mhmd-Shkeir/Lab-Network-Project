@@ -1,4 +1,4 @@
-"""Try-a-book helper for notebooks 06 (classical) and 07 (neural).
+"""Try-a-book helper for notebook 09 (and for the earlier notebooks 06 classical / 07 neural, now only in Git history).
 
 Refits, once and without any web access, the CV-selected genre and juvenile-marker models of the chosen family on the saved
 training pool of each task (the same books, features and settings as in the notebook), then predicts one book typed by hand.

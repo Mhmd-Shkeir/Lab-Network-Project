@@ -7,7 +7,7 @@ Browser and driver are found without hard-coded paths, in this order:
   2. CHROME_BINARY / CHROMEDRIVER environment variables
   3. google-chrome, google-chrome-stable, chromium, chromium-browser / chromedriver on PATH
   4. Selenium Manager (downloads a matching Chrome for Testing + driver; x86-64 Linux/Windows/macOS only)
-See docs/SETUP_UBUNTU_VM.md. A fresh temporary browser profile is created for every run (cold cache).
+A fresh temporary browser profile is created for every run (cold cache).
 
 The Chrome performance log is used to count the browser's own sub-requests and encoded bytes per page
 (browser-reported numbers, NOT wire bytes: use tcpdump/Wireshark for those).

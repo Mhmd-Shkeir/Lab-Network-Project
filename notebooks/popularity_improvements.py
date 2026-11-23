@@ -151,6 +151,11 @@ class FoldData:
         self.coll = (tr[["in_americana"]].to_numpy(float), te[["in_americana"]].to_numpy(float))
         H_tr, H_te = history_features(tr, te, seed=seed); sh = StandardScaler().fit(H_tr); self.hist = (sh.transform(H_tr), sh.transform(H_te))
         self.hist_raw = (H_tr, H_te)
+        self.transformers = {"numeric": sc, "text": tf_m, "raw_authors": cv_raw, "normal_authors": cv_norm,
+                             "description": tf_d, "spline": spl, "age": sa, "interaction": si, "history": sh}
+        from popularity_checkpoint import HistoryLookup
+        self.history_lookup = HistoryLookup(tr)
+        self.svd_transformers = {}
         self._svd = {}
         self.seconds = time.time() - t0
 
@@ -170,6 +175,7 @@ class FoldData:
     def _svd_block(self, key, mats, seed=SEED):
         if key not in self._svd:
             Mtr = mats[0]; svd = TruncatedSVD(SVD_DIM, random_state=seed).fit(Mtr); z = StandardScaler().fit(svd.transform(Mtr))
+            self.svd_transformers[key] = (svd, z)
             self._svd[key] = tuple(z.transform(svd.transform(m)) for m in mats)
         return self._svd[key]
 
@@ -234,41 +240,10 @@ def inner_oof_ridge(Xtr, ytr_log, groups, alpha, n_inner=4, seed=SEED):
 
 
 def predict(fd, family, cfg, step, variant, ycls_tr, ylog_tr, seed=SEED):
-    """Returns {'cls': predicted classes (or None), 'reg': predicted log views (or None)} for fd.te."""
-    out = {"cls": None, "reg": None}
-    if family == "logreg":
-        Xtr, Xte = fd.sparse(step, variant); out["cls"] = LogisticRegression(C=cfg["C"], max_iter=300).fit(Xtr, ycls_tr).predict(Xte)
-    elif family == "ridge":
-        Xtr, Xte = fd.sparse(step, variant); out["reg"] = Ridge(alpha=cfg["alpha"]).fit(Xtr, ylog_tr).predict(Xte)
-    elif family == "cum_lr":
-        Xtr, Xte = fd.sparse(step, variant)
-        p1 = LogisticRegression(C=cfg["C"], max_iter=300).fit(Xtr, (ycls_tr >= 1).astype(int)).predict_proba(Xte)[:, 1]
-        p2_ = LogisticRegression(C=cfg["C"], max_iter=300).fit(Xtr, (ycls_tr >= 2).astype(int)).predict_proba(Xte)[:, 1]
-        out["cls"] = _cum_probs(p1, p2_).argmax(1)
-    elif family == "ridge_thr":
-        Xtr, Xte = fd.sparse(step, variant); oof = inner_oof_ridge(Xtr, ylog_tr, fd.tr.ol_group.to_numpy(), cfg["alpha"])
-        t1, t2 = tune_thresholds(oof, ycls_tr); pr = Ridge(alpha=cfg["alpha"]).fit(Xtr, ylog_tr).predict(Xte)
-        out["cls"] = np.where(pr <= t1, 0, np.where(pr > t2, 2, 1)); out["reg"] = pr
-    elif family in ("cb", "cb_cat", "cb_cum"):
-        from catboost import CatBoostClassifier, CatBoostRegressor, Pool
-        Xtr, Xte = fd.dense(step, variant)
-        kw = dict(depth=cfg["depth"], iterations=cfg["iterations"], learning_rate=cfg["learning_rate"], l2_leaf_reg=cfg["l2_leaf_reg"], random_seed=seed, verbose=0, thread_count=3, allow_writing_files=False)
-        if family == "cb_cat":
-            ctr, cte = fd.author_cat(); Xtr = pd.DataFrame(Xtr).assign(author=ctr); Xte = pd.DataFrame(Xte).assign(author=cte)
-            Xtr.columns = Xte.columns = [str(c) for c in Xtr.columns]; kw["cat_features"] = ["author"]
-        if family == "cb_cum":
-            p1 = CatBoostClassifier(loss_function="Logloss", **kw).fit(Xtr, (ycls_tr >= 1).astype(int)).predict_proba(Xte)[:, 1]
-            p2_ = CatBoostClassifier(loss_function="Logloss", **kw).fit(Xtr, (ycls_tr >= 2).astype(int)).predict_proba(Xte)[:, 1]
-            out["cls"] = _cum_probs(p1, p2_).argmax(1)
-        else:
-            out["cls"] = np.asarray(CatBoostClassifier(loss_function="MultiClass", **kw).fit(Xtr, ycls_tr).predict(Xte)).ravel().astype(int)
-            out["reg"] = CatBoostRegressor(loss_function="RMSE", **kw).fit(Xtr, ylog_tr).predict(Xte)
-    else:
-        raise ValueError(family)
-    return out
-
-
-# ---------------------------------------------------------------- one cross-validation fold for a list of specs
+    """Original fit/predict recipe; final evaluation and demos retain these fitted pipelines."""
+    from popularity_checkpoint import fit_spec, predict_arrays
+    fitted, Xte = fit_spec(fd, family, cfg, step, variant, ycls_tr, ylog_tr, seed)
+    return predict_arrays(fitted, Xte)
 def fold_job(k, pool, folds, specs, limit=3):
     with threadpool_limits(limit):
         tr_i, va_i = np.where(folds != k)[0], np.where(folds == k)[0]
@@ -358,35 +333,32 @@ def boot_diff(groups, true_c, views, a, b, kind, n=pe.N_BOOT, seed=SEED):
 
 
 # ---------------------------------------------------------------- fit on the whole pool, score other books (historical holdout / external check)
-def fit_score(pool, other, specs, limit=8):
-    """Fits each spec on the whole training pool and scores `other` books. Classes use the pool's tercile cut-offs."""
-    with threadpool_limits(limit):
-        cuts, ytr_c, yo_c = class_labels(pool["views"].to_numpy(), other["views"].to_numpy()); ytr_l = pool["log_views"].to_numpy()
-        fd = FoldData(pool, other); rows, preds = [], {}
-        for sp_ in specs:
-            t0 = time.time(); pr = predict(fd, sp_["family"], sp_["cfg"], sp_["step"], sp_["variant"], ytr_c, ytr_l); sec = time.time() - t0
-            base = {"variant": sp_["variant"], "step": sp_["step"], "family": sp_["family"], "cfg": json.dumps(sp_["cfg"]), "label": sp_.get("label", ""), "fit_seconds": sec}
-            key = (sp_.get("label", ""), sp_["variant"])
-            if pr["cls"] is not None:
-                rows.append({**base, "task": "classification", **cls_row(yo_c, pr["cls"])}); preds[key + ("cls",)] = pr["cls"]
-            if pr["reg"] is not None:
-                rows.append({**base, "task": "regression", **reg_row(other["views"].to_numpy(), pr["reg"])}); preds[key + ("reg",)] = pr["reg"]
-    return pd.DataFrame(rows), preds, yo_c, cuts
-
-
+def fit_score(pool, other, specs, limit=8, retrain=False):
+    """Reuse saved fitted final models/results; fit and checkpoint missing evaluations once."""
+    from popularity_checkpoint import fit_score_saved
+    return fit_score_saved(pool, other, specs, limit=limit, retrain=retrain)
 def load_unused_books():
-    """Books of the full linked export that are NOT in the clean cohort and whose work group is absent from it (no new scraping)."""
-    full = pd.read_csv(ROOT / "data" / "training_ol_books.csv", encoding="utf-8-sig", keep_default_na=False)
-    clean = pd.read_csv(pe.DATA_FILE, encoding="utf-8-sig", keep_default_na=False)
-    ex = full[~full.identifier.isin(clean.identifier) & ~full.ol_group.isin(clean.ol_group)]
+    """Books of the full linked export that are NOT in the clean cohort and whose work group is absent from it (no new scraping).
+    The 2,374 rows are saved next to the notebook-10 results (unused_books_input.csv), so the check still works after the big
+    20,271-row export has been removed from data/."""
+    saved, meta = OUT / "unused_books_input.csv", OUT / "unused_books_input.meta.json"
+    big = ROOT / "data" / "training_ol_books.csv"
+    if big.exists():
+        full = pd.read_csv(big, encoding="utf-8-sig", keep_default_na=False)
+        clean = pd.read_csv(pe.DATA_FILE, encoding="utf-8-sig", keep_default_na=False)
+        ex = full[~full.identifier.isin(clean.identifier) & ~full.ol_group.isin(clean.ol_group)]
+        n_excl = len(full) - len(clean)
+        OUT.mkdir(parents=True, exist_ok=True)
+        ex.to_csv(saved, index=False, encoding="utf-8-sig"); meta.write_text(json.dumps({"n_excluded_from_cohort": n_excl, "rows_work_disjoint": len(ex)}), encoding="utf-8")
+    else:
+        n_excl = json.loads(meta.read_text(encoding="utf-8"))["n_excluded_from_cohort"]
     CACHE.mkdir(parents=True, exist_ok=True)
-    tmp = CACHE / "unused_books.csv"; ex.to_csv(tmp, index=False, encoding="utf-8-sig")
-    old = pe.DATA_FILE; pe.DATA_FILE = tmp
+    old = pe.DATA_FILE; pe.DATA_FILE = saved
     try:
         df = pe.load_cohort()
     finally:
         pe.DATA_FILE = old
-    return prepare(df), len(full) - len(clean)
+    return prepare(df), n_excl
 
 
 def environment():
@@ -418,22 +390,7 @@ def book_frame(books):
     return pd.DataFrame(rows)
 
 
-def demo_predict(pool, books, selection):
-    """Fits the CV-selected final models (step 5 features: cumulative LogReg for the class, Ridge for the view count) on the whole training pool and predicts the typed books,
-    without (A) and with (B) description. The settings come from cv_selection.csv; nothing about the typed book's own views is used."""
-    new = book_frame(books)
-    cuts = pe.tercile_cuts(pool["views"].to_numpy()); ytr_c = pe.to_class(pool["views"].to_numpy(), cuts); ytr_l = pool["log_views"].to_numpy()
-    fd = FoldData(pool, new)
-    out = []
-    for v in ("A", "B"):
-        c = selection[(selection.task == "classification") & (selection.variant == v) & (selection.role == "best cum_lr")].iloc[0]
-        r = selection[(selection.task == "regression") & (selection.variant == v) & (selection.role == "best ridge")].iloc[0]
-        Xtr, Xte = fd.sparse(5, v); C = json.loads(c.cfg)["C"]; alpha = json.loads(r.cfg)["alpha"]
-        p1 = LogisticRegression(C=C, max_iter=300).fit(Xtr, (ytr_c >= 1).astype(int)).predict_proba(Xte)[:, 1]
-        p2_ = LogisticRegression(C=C, max_iter=300).fit(Xtr, (ytr_c >= 2).astype(int)).predict_proba(Xte)[:, 1]
-        probs = _cum_probs(p1, p2_); est = np.expm1(np.clip(Ridge(alpha=alpha).fit(Xtr, ytr_l).predict(Xte), 0, None))
-        for i in range(len(new)):
-            out.append({"book": i, "Inputs": "Without description" if v == "A" else "With description", "Predicted popularity": CLASS_NAMES[int(probs[i].argmax())],
-                        "Low (%)": round(float(probs[i, 0]) * 100, 1), "Medium (%)": round(float(probs[i, 1]) * 100, 1), "High (%)": round(float(probs[i, 2]) * 100, 1),
-                        "Estimated views": int(round(float(est[i])))})
-    return pd.DataFrame(out), cuts
+def demo_predict(pool, books, selection, retrain=False):
+    """Backward-compatible demo: load saved selected models instead of fitting for every book."""
+    from popularity_checkpoint import ImprovedPopularityPredictor
+    return ImprovedPopularityPredictor.from_project(pool=pool, selection=selection, retrain=retrain).predict(books)

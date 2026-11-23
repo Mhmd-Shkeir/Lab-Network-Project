@@ -1,24 +1,24 @@
 variant,step,family,cfg,label,fit_seconds,task,accuracy,macro_f1,recall_low,recall_medium,recall_high,r2_log,mae_log,mae_views,median_ae_views,within_2x
-A,0,logreg,"{""C"": 1.0}",05 baseline,1.65389,classification,0.57352,0.56534,0.72873,0.38053,0.60795,,,,,
-A,0,ridge,"{""alpha"": 3.0}",05 baseline,0.07644,regression,,,,,,0.39974,0.67567,257.39609,58.50703,0.60745
-A,5,cum_lr,"{""C"": 0.3}",overall CV winner,1.00577,classification,0.61544,0.61058,0.76087,0.43953,0.64232,,,,,
-A,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,64.32421,classification,0.62209,0.61609,0.76843,0.43658,0.65843,,,,,
-A,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,64.32421,regression,,,,,,0.47792,0.62787,245.12594,52.51072,0.66068
-A,5,cum_lr,"{""C"": 0.3}",best cum_lr,1.07301,classification,0.61544,0.61058,0.76087,0.43953,0.64232,,,,,
-A,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,3.84726,classification,0.61311,0.61492,0.7155,0.53294,0.58432,,,,,
-A,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,3.84726,regression,,,,,,0.46634,0.63338,251.14827,53.20321,0.64571
-A,5,cb_cat,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",overall CV winner,131.86552,classification,0.61943,0.61471,0.7552,0.44641,0.65414,,,,,
-A,5,cb_cat,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",overall CV winner,131.86552,regression,,,,,,0.48024,0.62726,245.03065,51.46521,0.65569
-B,0,logreg,"{""C"": 1.0}",05 baseline,3.39123,classification,0.59348,0.58525,0.74575,0.39725,0.6348,,,,,
-B,0,ridge,"{""alpha"": 3.0}",05 baseline,0.29763,regression,,,,,,0.4186,0.6689,255.36629,59.2932,0.61577
-B,5,cum_lr,"{""C"": 0.3}",overall CV winner,2.38086,classification,0.62841,0.62428,0.77032,0.46608,0.64447,,,,,
-B,5,cb,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",best cb,45.60356,classification,0.62076,0.61282,0.77883,0.41888,0.66165,,,,,
-B,5,cb,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",best cb,45.60356,regression,,,,,,0.48475,0.62519,245.92412,51.38059,0.66467
-B,5,cum_lr,"{""C"": 0.3}",best cum_lr,2.48659,classification,0.62841,0.62428,0.77032,0.46608,0.64447,,,,,
-B,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,5.77472,classification,0.61544,0.61925,0.6673,0.53786,0.64125,,,,,
-B,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,5.77472,regression,,,,,,0.48205,0.62704,250.54434,54.52909,0.6487
-B,5,ridge,"{""alpha"": 10.0}",overall CV winner,0.59204,regression,,,,,,0.488,0.62245,248.61084,51.37846,0.6517
-B,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,118.43509,classification,0.62908,0.6225,0.78072,0.44444,0.65843,,,,,
-B,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,118.43509,regression,,,,,,0.48647,0.62399,246.65341,51.58034,0.65735
-B,5,ridge_thr,"{""alpha"": 10.0}",best ridge_thr,4.41567,classification,0.62142,0.6196,0.74669,0.47394,0.64017,,,,,
-B,5,ridge_thr,"{""alpha"": 10.0}",best ridge_thr,4.41567,regression,,,,,,0.488,0.62245,248.61084,51.37846,0.6517
+A,0,logreg,"{""C"": 1.0}",05 baseline,1.71221,classification,0.57352,0.56534,0.72873,0.38053,0.60795,,,,,
+A,0,ridge,"{""alpha"": 3.0}",05 baseline,0.07987,regression,,,,,,0.39974,0.67567,257.39609,58.50703,0.60745
+A,5,cum_lr,"{""C"": 0.3}",overall CV winner,1.11508,classification,0.61544,0.61058,0.76087,0.43953,0.64232,,,,,
+A,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,64.37244,classification,0.62209,0.61609,0.76843,0.43658,0.65843,,,,,
+A,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,64.37244,regression,,,,,,0.47792,0.62787,245.12594,52.51072,0.66068
+A,5,cum_lr,"{""C"": 0.3}",best cum_lr,1.13408,classification,0.61544,0.61058,0.76087,0.43953,0.64232,,,,,
+A,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,3.95185,classification,0.61311,0.61492,0.7155,0.53294,0.58432,,,,,
+A,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,3.95185,regression,,,,,,0.46634,0.63338,251.14827,53.20321,0.64571
+A,5,cb_cat,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",overall CV winner,131.989,classification,0.61943,0.61471,0.7552,0.44641,0.65414,,,,,
+A,5,cb_cat,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",overall CV winner,131.989,regression,,,,,,0.48024,0.62726,245.03065,51.46521,0.65569
+B,0,logreg,"{""C"": 1.0}",05 baseline,3.58857,classification,0.59348,0.58525,0.74575,0.39725,0.6348,,,,,
+B,0,ridge,"{""alpha"": 3.0}",05 baseline,0.36138,regression,,,,,,0.4186,0.6689,255.36629,59.2932,0.61577
+B,5,cum_lr,"{""C"": 0.3}",overall CV winner,2.58797,classification,0.62841,0.62428,0.77032,0.46608,0.64447,,,,,
+B,5,cb,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",best cb,47.27499,classification,0.62076,0.61282,0.77883,0.41888,0.66165,,,,,
+B,5,cb,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",best cb,47.27499,regression,,,,,,0.48475,0.62519,245.92412,51.38059,0.66467
+B,5,cum_lr,"{""C"": 0.3}",best cum_lr,2.48839,classification,0.62841,0.62428,0.77032,0.46608,0.64447,,,,,
+B,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,6.71742,classification,0.61544,0.61925,0.6673,0.53786,0.64125,,,,,
+B,5,ridge_thr,"{""alpha"": 3.0}",best ridge_thr,6.71742,regression,,,,,,0.48205,0.62704,250.54434,54.52909,0.6487
+B,5,ridge,"{""alpha"": 10.0}",overall CV winner,0.66451,regression,,,,,,0.488,0.62245,248.61084,51.37846,0.6517
+B,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,116.28675,classification,0.62908,0.6225,0.78072,0.44444,0.65843,,,,,
+B,5,cb,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",best cb,116.28675,regression,,,,,,0.48647,0.62399,246.65341,51.58034,0.65735
+B,5,ridge_thr,"{""alpha"": 10.0}",best ridge_thr,4.61368,classification,0.62142,0.6196,0.74669,0.47394,0.64017,,,,,
+B,5,ridge_thr,"{""alpha"": 10.0}",best ridge_thr,4.61368,regression,,,,,,0.488,0.62245,248.61084,51.37846,0.6517

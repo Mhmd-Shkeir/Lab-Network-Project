@@ -1,10 +1,10 @@
 """Shared settings for all scrapers (Internet Archive book project).
 
 Source: Internet Archive (https://archive.org), Americana collection, English fiction texts.
-Open Library / dBooks / LibriVox experiments are kept as history (see HISTORY.md) and are NOT used here.
+Open Library / dBooks / LibriVox experiments were early experiments and are NOT used here.
 
 Everything that can differ between machines is read from environment variables
-(see docs/SETUP_UBUNTU_VM.md); nothing in this file is tied to Windows, WSL or one browser path.
+(Chrome/driver paths, user agent, rate limits); nothing in this file is tied to Windows, WSL or one browser path.
 """
 import os
 from pathlib import Path

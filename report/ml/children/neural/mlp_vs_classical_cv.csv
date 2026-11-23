@@ -1,0 +1,3 @@
+variant,cfg_id,cfg,precision,recall,f1,accuracy,family,cv_f1,cv_precision,cv_recall,cv_accuracy
+B,1,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",0.7172,0.73,0.7223,0.8382,stack_direct_lr,0.7312,0.7067,0.7604,0.8394
+A,1,"{""hidden"": [64], ""weight_decay"": 0.01, ""dropout"": 0.3}",0.5863,0.6122,0.597,0.7616,stack_hgb,0.644,0.5627,0.7561,0.7591

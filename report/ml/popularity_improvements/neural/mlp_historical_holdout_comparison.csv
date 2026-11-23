@@ -1,0 +1,3 @@
+variant,model,accuracy,macro_f1,recall_low,recall_medium,recall_high
+A,MLP (CV-chosen setting),0.6101,0.6023,0.7732,0.4071,0.6466
+B,MLP (CV-chosen setting),0.6094,0.6002,0.7779,0.3972,0.6498
