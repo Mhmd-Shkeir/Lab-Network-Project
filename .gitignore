@@ -25,3 +25,6 @@ report/ml_trials/cache/
 
 # Fitted model checkpoints for reopening notebooks (local, rebuildable).
 report/ml/models/
+
+# Word/Office temporary lock files
+~$*
