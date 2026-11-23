@@ -1,0 +1,25 @@
+task,variant,role,stage,step,family,cfg_id,cfg,accuracy,macro_f1,r2_log,recall_medium,cv_criterion
+classification,A,overall CV winner,ordinal,5,cum_lr,0,"{""C"": 0.3}",0.61693,0.61256,,0.45112,0.61256
+classification,A,best logreg,ladder,5,logreg,0,"{""C"": 0.3}",0.61075,0.60227,,0.40332,0.60227
+classification,A,best cb,catboost,5,cb,1,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",0.61007,0.60317,,0.41765,0.60317
+classification,A,best cb_cat,catboost,5,cb_cat,0,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",0.60988,0.60398,,0.42367,0.60398
+classification,A,best cb_cum,ordinal,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0.61395,0.61053,,0.45866,0.61053
+classification,A,best cum_lr,ordinal,5,cum_lr,0,"{""C"": 0.3}",0.61693,0.61256,,0.45112,0.61256
+classification,A,best ridge_thr,ordinal,5,ridge_thr,1,"{""alpha"": 3.0}",0.60831,0.61086,,0.52445,0.61086
+classification,B,overall CV winner,ordinal,5,cum_lr,0,"{""C"": 0.3}",0.6223,0.61826,,0.45851,0.61826
+classification,B,best logreg,ladder,5,logreg,0,"{""C"": 0.3}",0.61557,0.60779,,0.41215,0.60779
+classification,B,best cb,catboost,5,cb,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0.61075,0.60236,,0.40552,0.60236
+classification,B,best cb_cat,catboost,5,cb_cat,0,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",0.61389,0.60775,,0.42567,0.60775
+classification,B,best cb_cum,ordinal,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0.61585,0.61286,,0.46238,0.61286
+classification,B,best cum_lr,ordinal,5,cum_lr,0,"{""C"": 0.3}",0.6223,0.61826,,0.45851,0.61826
+classification,B,best ridge_thr,ordinal,5,ridge_thr,1,"{""alpha"": 3.0}",0.61035,0.61441,,0.54173,0.61441
+regression,A,overall CV winner,catboost,5,cb_cat,0,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",,,0.4683,,0.4683
+regression,A,best ridge,ladder,5,ridge,1,"{""alpha"": 3.0}",,,0.46644,,0.46644
+regression,A,best cb,catboost,5,cb,1,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",,,0.46528,,0.46528
+regression,A,best cb_cat,catboost,5,cb_cat,0,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",,,0.4683,,0.4683
+regression,A,best ridge_thr,ordinal,5,ridge_thr,1,"{""alpha"": 3.0}",,,0.46644,,0.46644
+regression,B,overall CV winner,ladder,5,ridge,2,"{""alpha"": 10.0}",,,0.48216,,0.48216
+regression,B,best ridge,ladder,5,ridge,2,"{""alpha"": 10.0}",,,0.48216,,0.48216
+regression,B,best cb,catboost,5,cb,1,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",,,0.47162,,0.47162
+regression,B,best cb_cat,catboost,5,cb_cat,0,"{""depth"": 6, ""iterations"": 500, ""learning_rate"": 0.05, ""l2_leaf_reg"": 10.0}",,,0.47412,,0.47412
+regression,B,best ridge_thr,ordinal,5,ridge_thr,2,"{""alpha"": 10.0}",,,0.48216,,0.48216

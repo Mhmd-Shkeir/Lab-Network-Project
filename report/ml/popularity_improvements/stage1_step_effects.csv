@@ -1,0 +1,21 @@
+task,variant,added at step,metric,mean change,sd of fold changes,folds improved
+classification,A,1: + nonlinear archive age,macro_f1,0.0004,0.0031,3
+classification,A,2: + age x genre,macro_f1,0.0018,0.0039,3
+classification,A,3: + collection flag,macro_f1,0.0002,0.0012,2
+classification,A,4: + consistent author names,macro_f1,0.0116,0.0018,5
+classification,A,5: + author & subject history,macro_f1,0.0246,0.0086,5
+classification,B,1: + nonlinear archive age,macro_f1,0.0022,0.0025,4
+classification,B,2: + age x genre,macro_f1,-0.0005,0.0052,2
+classification,B,3: + collection flag,macro_f1,-0.0014,0.0021,1
+classification,B,4: + consistent author names,macro_f1,0.0105,0.005,5
+classification,B,5: + author & subject history,macro_f1,0.0238,0.0043,5
+regression,A,1: + nonlinear archive age,r2_log,0.0087,0.0037,5
+regression,A,2: + age x genre,r2_log,-0.0015,0.0033,2
+regression,A,3: + collection flag,r2_log,0.0018,0.0022,4
+regression,A,4: + consistent author names,r2_log,0.0356,0.0054,5
+regression,A,5: + author & subject history,r2_log,0.0213,0.0043,5
+regression,B,1: + nonlinear archive age,r2_log,0.0083,0.0041,5
+regression,B,2: + age x genre,r2_log,-0.0013,0.0024,2
+regression,B,3: + collection flag,r2_log,0.0019,0.0021,4
+regression,B,4: + consistent author names,r2_log,0.0314,0.0061,5
+regression,B,5: + author & subject history,r2_log,0.0232,0.0049,5

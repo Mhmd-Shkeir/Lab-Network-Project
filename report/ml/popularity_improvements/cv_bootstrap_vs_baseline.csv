@@ -1,0 +1,5 @@
+variant,task,comparison,accuracy_mean,accuracy_lo95,accuracy_hi95,macro_f1_mean,macro_f1_lo95,macro_f1_hi95,r2_log_mean,r2_log_lo95,r2_log_hi95,mae_log_mean,mae_log_lo95,mae_log_hi95,mae_views_mean,mae_views_lo95,mae_views_hi95,median_ae_views_mean,median_ae_views_lo95,median_ae_views_hi95,within_2x_mean,within_2x_lo95,within_2x_hi95
+A,classification,winner (cum_lr @step 5) minus 05 baseline,0.0466,0.0399,0.054,0.0488,0.0419,0.0566,,,,,,,,,,,,,,,
+A,regression,winner (cb_cat @step 5) minus 05 baseline,,,,,,,0.0675,0.0574,0.0774,-0.0481,-0.0543,-0.0416,-8.8314,-11.3372,-6.3768,-4.3921,-6.0347,-2.7415,0.0384,0.0309,0.0455
+B,classification,winner (cum_lr @step 5) minus 05 baseline,0.0433,0.0365,0.0497,0.0451,0.0381,0.0518,,,,,,,,,,,,,,,
+B,regression,winner (ridge @step 5) minus 05 baseline,,,,,,,0.0635,0.0551,0.0724,-0.0432,-0.0482,-0.0381,-8.2304,-11.3682,-5.2958,-5.2676,-6.5862,-3.8208,0.0352,0.029,0.0413

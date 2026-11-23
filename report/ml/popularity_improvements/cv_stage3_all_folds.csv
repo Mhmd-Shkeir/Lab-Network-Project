@@ -1,0 +1,201 @@
+stage,variant,step,family,cfg_id,cfg,fold,fit_seconds,task,accuracy,macro_f1,recall_low,recall_medium,recall_high,r2_log,mae_log,mae_views,median_ae_views,within_2x
+ordinal,A,0,cum_lr,0,"{""C"": 0.3}",0,0.32511,classification,0.5757,0.56479,0.74682,0.38264,0.58081,,,,,
+ordinal,A,0,cum_lr,1,"{""C"": 1.0}",0,0.67368,classification,0.57705,0.57058,0.70674,0.41265,0.59798,,,,,
+ordinal,A,0,cum_lr,2,"{""C"": 3.0}",0,0.98679,classification,0.57671,0.57104,0.69501,0.41265,0.60909,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",0,3.08056,classification,0.57943,0.57619,0.69404,0.43087,0.60101,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",0,3.08056,regression,,,,,,0.41486,0.70196,314.88431,62.73623,0.59335
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",0,2.81248,classification,0.5852,0.58608,0.67644,0.49839,0.57273,,,,,
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",0,2.81248,regression,,,,,,0.41715,0.70496,316.95949,61.44205,0.59572
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",0,2.77418,classification,0.56619,0.56535,0.69404,0.47374,0.52121,,,,,
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",0,2.77418,regression,,,,,,0.37808,0.73647,324.81682,65.2217,0.574
+ordinal,A,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0,18.14495,classification,0.55533,0.54747,0.71652,0.3955,0.53939,,,,,
+ordinal,A,5,cum_lr,0,"{""C"": 0.3}",0,1.07366,classification,0.62254,0.61402,0.76344,0.43301,0.65556,,,,,
+ordinal,A,5,cum_lr,1,"{""C"": 1.0}",0,1.73859,classification,0.61168,0.6036,0.73803,0.42337,0.65859,,,,,
+ordinal,A,5,cum_lr,2,"{""C"": 3.0}",0,2.6185,classification,0.5998,0.5941,0.70088,0.43301,0.65253,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",0,4.22593,classification,0.59708,0.6003,0.60411,0.52947,0.65354,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",0,4.22593,regression,,,,,,0.47441,0.6716,304.86756,61.95722,0.60421
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",0,3.65409,classification,0.61303,0.61437,0.68133,0.52304,0.62727,,,,,
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",0,3.65409,regression,,,,,,0.4976,0.65374,299.43798,58.46029,0.62356
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",0,3.49055,classification,0.61066,0.60823,0.69795,0.46624,0.65657,,,,,
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",0,3.49055,regression,,,,,,0.49251,0.6563,301.70221,58.71271,0.62627
+ordinal,A,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0,18.8559,classification,0.61948,0.61339,0.7478,0.4523,0.64444,,,,,
+ordinal,B,0,cum_lr,0,"{""C"": 0.3}",0,1.11638,classification,0.58859,0.57915,0.74487,0.40193,0.60303,,,,,
+ordinal,B,0,cum_lr,1,"{""C"": 1.0}",0,1.89623,classification,0.59131,0.58602,0.71261,0.43301,0.61515,,,,,
+ordinal,B,0,cum_lr,2,"{""C"": 3.0}",0,2.51786,classification,0.58588,0.58357,0.67546,0.45766,0.61414,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",0,4.10763,classification,0.57196,0.57223,0.66569,0.45874,0.58182,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",0,4.10763,regression,,,,,,0.40971,0.70827,319.71727,65.38119,0.59063
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",0,3.69253,classification,0.58248,0.58281,0.70088,0.49946,0.53838,,,,,
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",0,3.69253,regression,,,,,,0.4342,0.69437,316.95836,62.27387,0.5998
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",0,3.25564,classification,0.57434,0.57346,0.70479,0.48017,0.52828,,,,,
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",0,3.25564,regression,,,,,,0.40646,0.71604,321.29966,63.28533,0.58215
+ordinal,B,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0,31.72196,classification,0.56585,0.5604,0.71261,0.42872,0.54343,,,,,
+ordinal,B,5,cum_lr,0,"{""C"": 0.3}",0,2.34169,classification,0.63374,0.62537,0.77419,0.44695,0.66465,,,,,
+ordinal,B,5,cum_lr,1,"{""C"": 1.0}",0,3.93664,classification,0.62118,0.61438,0.73705,0.44266,0.6697,,,,,
+ordinal,B,5,cum_lr,2,"{""C"": 3.0}",0,5.52492,classification,0.61134,0.60717,0.70577,0.45659,0.6596,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",0,8.40601,classification,0.60183,0.60453,0.67155,0.53912,0.58889,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",0,8.40601,regression,,,,,,0.4707,0.67322,306.94498,63.39581,0.61439
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",0,6.15577,classification,0.60794,0.61035,0.63832,0.52304,0.65657,,,,,
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",0,6.15577,regression,,,,,,0.50842,0.64553,301.35418,59.54059,0.6351
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",0,4.61657,classification,0.62084,0.6118,0.74194,0.41158,0.69293,,,,,
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",0,4.61657,regression,,,,,,0.50835,0.64542,301.64281,56.91084,0.63883
+ordinal,B,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",0,29.65074,classification,0.62016,0.61293,0.75758,0.44373,0.64444,,,,,
+ordinal,A,0,cum_lr,0,"{""C"": 0.3}",1,0.37144,classification,0.56083,0.55511,0.71821,0.38337,0.58147,,,,,
+ordinal,A,0,cum_lr,1,"{""C"": 1.0}",1,0.69981,classification,0.57845,0.57567,0.71821,0.42596,0.59165,,,,,
+ordinal,A,0,cum_lr,2,"{""C"": 3.0}",1,1.03611,classification,0.5737,0.57299,0.68769,0.44118,0.59267,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",1,2.99281,classification,0.56693,0.57298,0.61343,0.56085,0.52648,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",1,2.99281,regression,,,,,,0.36811,0.70665,297.66066,63.37368,0.59302
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",1,2.70507,classification,0.5754,0.57985,0.66531,0.53144,0.52953,,,,,
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",1,2.70507,regression,,,,,,0.37888,0.70492,295.80686,62.83596,0.59031
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",1,2.83475,classification,0.55812,0.55951,0.68159,0.45639,0.53666,,,,,
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",1,2.83475,regression,,,,,,0.34313,0.72981,301.29809,64.377,0.56523
+ordinal,A,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",1,18.06709,classification,0.55405,0.55222,0.70193,0.44929,0.5112,,,,,
+ordinal,A,5,cum_lr,0,"{""C"": 0.3}",1,1.05494,classification,0.60522,0.60242,0.73856,0.4432,0.63442,,,,,
+ordinal,A,5,cum_lr,1,"{""C"": 1.0}",1,1.82609,classification,0.60047,0.59878,0.71007,0.44523,0.64664,,,,,
+ordinal,A,5,cum_lr,2,"{""C"": 3.0}",1,2.58196,classification,0.5876,0.58734,0.67548,0.44929,0.63849,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",1,4.15763,classification,0.58048,0.58601,0.61445,0.52231,0.60489,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",1,4.15763,regression,,,,,,0.41112,0.68997,296.22349,65.36274,0.59776
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",1,3.75926,classification,0.60319,0.6055,0.6999,0.5071,0.60285,,,,,
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",1,3.75926,regression,,,,,,0.43828,0.66721,290.76516,59.44202,0.62623
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",1,3.45723,classification,0.60962,0.60982,0.71414,0.47566,0.63951,,,,,
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",1,3.45723,regression,,,,,,0.43575,0.66557,291.19893,57.89693,0.62284
+ordinal,A,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",1,18.73399,classification,0.60725,0.60498,0.73245,0.45538,0.63442,,,,,
+ordinal,B,0,cum_lr,0,"{""C"": 0.3}",1,1.15506,classification,0.57946,0.57383,0.73754,0.40467,0.59674,,,,,
+ordinal,B,0,cum_lr,1,"{""C"": 1.0}",1,1.71439,classification,0.57743,0.57533,0.71109,0.43408,0.58758,,,,,
+ordinal,B,0,cum_lr,2,"{""C"": 3.0}",1,2.55297,classification,0.57438,0.57489,0.67752,0.45639,0.58961,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",1,4.05029,classification,0.55676,0.56279,0.62564,0.55477,0.48982,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",1,4.05029,regression,,,,,,0.36536,0.71506,301.31742,66.91422,0.58997
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",1,3.64286,classification,0.57675,0.57977,0.68362,0.4858,0.5611,,,,,
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",1,3.64286,regression,,,,,,0.39728,0.69295,295.58981,63.40622,0.60319
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",1,3.26929,classification,0.55981,0.5604,0.69685,0.44118,0.54175,,,,,
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",1,3.26929,regression,,,,,,0.37278,0.70937,299.35125,63.82877,0.58624
+ordinal,B,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",1,31.46392,classification,0.56015,0.55858,0.70498,0.4432,0.53259,,,,,
+ordinal,B,5,cum_lr,0,"{""C"": 0.3}",1,2.1074,classification,0.60962,0.60745,0.7355,0.45233,0.64155,,,,,
+ordinal,B,5,cum_lr,1,"{""C"": 1.0}",1,3.8009,classification,0.60962,0.60817,0.71719,0.4574,0.65479,,,,,
+ordinal,B,5,cum_lr,2,"{""C"": 3.0}",1,5.36749,classification,0.59878,0.59908,0.6765,0.46349,0.65682,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",1,8.21182,classification,0.58455,0.58923,0.63174,0.50304,0.61914,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",1,8.21182,regression,,,,,,0.40962,0.6909,300.49345,65.67941,0.60217
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",1,6.03034,classification,0.60928,0.6139,0.65615,0.5355,0.63646,,,,,
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",1,6.03034,regression,,,,,,0.45036,0.65818,292.14946,59.98641,0.62386
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",1,4.67248,classification,0.61403,0.61443,0.72737,0.48479,0.63035,,,,,
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",1,4.67248,regression,,,,,,0.45274,0.65378,290.43188,57.98577,0.63504
+ordinal,B,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",1,29.68457,classification,0.60115,0.59923,0.72126,0.4503,0.63238,,,,,
+ordinal,A,0,cum_lr,0,"{""C"": 0.3}",2,0.39341,classification,0.57574,0.56975,0.73548,0.39303,0.60591,,,,,
+ordinal,A,0,cum_lr,1,"{""C"": 1.0}",2,0.66015,classification,0.58997,0.58803,0.70332,0.44279,0.62933,,,,,
+ordinal,A,0,cum_lr,2,"{""C"": 3.0}",2,0.94252,classification,0.58624,0.58654,0.6805,0.46766,0.61507,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",2,3.10539,classification,0.58285,0.58828,0.64004,0.56119,0.54888,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",2,3.10539,regression,,,,,,0.40224,0.6974,341.70933,62.7157,0.60624
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",2,2.79022,classification,0.58218,0.58221,0.68776,0.43881,0.62525,,,,,
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",2,2.79022,regression,,,,,,0.4059,0.69812,337.56599,62.72988,0.60251
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",2,2.88585,classification,0.57099,0.57241,0.69813,0.45871,0.5611,,,,,
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",2,2.88585,regression,,,,,,0.37077,0.72166,341.49487,64.23008,0.57303
+ordinal,A,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",2,18.2343,classification,0.56286,0.5594,0.72407,0.4199,0.55092,,,,,
+ordinal,A,5,cum_lr,0,"{""C"": 0.3}",2,0.9961,classification,0.63267,0.62883,0.77178,0.46368,0.66904,,,,,
+ordinal,A,5,cum_lr,1,"{""C"": 1.0}",2,1.64643,classification,0.62521,0.62194,0.74793,0.4607,0.67312,,,,,
+ordinal,A,5,cum_lr,2,"{""C"": 3.0}",2,2.60658,classification,0.612,0.61162,0.69606,0.4796,0.66497,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",2,4.10105,classification,0.60285,0.6071,0.62344,0.53433,0.65275,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",2,4.10105,regression,,,,,,0.44684,0.67525,336.79246,63.58876,0.62013
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",2,3.71185,classification,0.61979,0.62111,0.6971,0.50149,0.66497,,,,,
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",2,3.71185,regression,,,,,,0.47247,0.65697,331.45357,58.4749,0.63368
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",2,3.52257,classification,0.61911,0.61937,0.71058,0.48458,0.66701,,,,,
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",2,3.52257,regression,,,,,,0.47279,0.65593,333.81832,57.27346,0.63402
+ordinal,A,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",2,18.92811,classification,0.6242,0.62068,0.75622,0.45473,0.66802,,,,,
+ordinal,B,0,cum_lr,0,"{""C"": 0.3}",2,0.95925,classification,0.59132,0.58688,0.7417,0.4209,0.61813,,,,,
+ordinal,B,0,cum_lr,1,"{""C"": 1.0}",2,1.73529,classification,0.60217,0.60171,0.71577,0.47562,0.62016,,,,,
+ordinal,B,0,cum_lr,2,"{""C"": 3.0}",2,2.3483,classification,0.5937,0.59572,0.67635,0.4995,0.60896,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",2,4.19989,classification,0.58963,0.59128,0.70643,0.49552,0.57128,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",2,4.19989,regression,,,,,,0.3904,0.7018,345.62016,62.45428,0.60081
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",2,3.63031,classification,0.59539,0.59645,0.71992,0.48358,0.58758,,,,,
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",2,3.63031,regression,,,,,,0.41867,0.69022,337.80218,61.8966,0.6103
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",2,3.25104,classification,0.58184,0.58541,0.66494,0.48657,0.59776,,,,,
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",2,3.25104,regression,,,,,,0.39765,0.70441,339.29972,62.94848,0.59099
+ordinal,B,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",2,31.56351,classification,0.57608,0.57299,0.72718,0.43483,0.5723,,,,,
+ordinal,B,5,cum_lr,0,"{""C"": 0.3}",2,2.34235,classification,0.63944,0.63635,0.78008,0.47861,0.66599,,,,,
+ordinal,B,5,cum_lr,1,"{""C"": 1.0}",2,3.84076,classification,0.63267,0.63135,0.74274,0.48856,0.6721,,,,,
+ordinal,B,5,cum_lr,2,"{""C"": 3.0}",2,5.42712,classification,0.62148,0.62249,0.70021,0.50746,0.6609,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",2,8.08088,classification,0.59912,0.60446,0.62863,0.55522,0.61507,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",2,8.08088,regression,,,,,,0.44307,0.67774,340.4447,63.31065,0.612
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",2,6.01585,classification,0.6242,0.62733,0.70851,0.53831,0.62933,,,,,
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",2,6.01585,regression,,,,,,0.48347,0.65071,330.56084,57.9235,0.63368
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",2,4.66968,classification,0.62928,0.62829,0.72718,0.47363,0.69246,,,,,
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",2,4.66968,regression,,,,,,0.48861,0.64607,332.55614,56.39823,0.63911
+ordinal,B,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",2,29.7811,classification,0.62792,0.6261,0.74896,0.47463,0.66599,,,,,
+ordinal,A,0,cum_lr,0,"{""C"": 0.3}",3,0.35017,classification,0.56382,0.55823,0.70624,0.38861,0.59794,,,,,
+ordinal,A,0,cum_lr,1,"{""C"": 1.0}",3,0.61798,classification,0.57304,0.57102,0.69396,0.43133,0.59485,,,,,
+ordinal,A,0,cum_lr,2,"{""C"": 3.0}",3,0.95981,classification,0.56928,0.56888,0.67349,0.44863,0.5866,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",3,3.0476,classification,0.57099,0.57407,0.66633,0.50763,0.53918,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",3,3.0476,regression,,,,,,0.39283,0.70094,286.6193,63.79411,0.59898
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",3,2.75425,classification,0.5727,0.57383,0.70215,0.47711,0.53918,,,,,
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",3,2.75425,regression,,,,,,0.39988,0.70136,288.34695,63.11183,0.60171
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",3,2.82145,classification,0.55666,0.5585,0.66428,0.45575,0.55052,,,,,
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",3,2.82145,regression,,,,,,0.36149,0.72909,296.65527,66.79396,0.57782
+ordinal,A,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",3,18.37527,classification,0.55154,0.54773,0.69396,0.40793,0.55361,,,,,
+ordinal,A,5,cum_lr,0,"{""C"": 0.3}",3,1.03369,classification,0.6058,0.60281,0.74207,0.45066,0.62577,,,,,
+ordinal,A,5,cum_lr,1,"{""C"": 1.0}",3,1.73798,classification,0.60648,0.60514,0.71853,0.46796,0.63402,,,,,
+ordinal,A,5,cum_lr,2,"{""C"": 3.0}",3,2.64717,classification,0.59181,0.59234,0.67861,0.47101,0.6268,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",3,4.22045,classification,0.59454,0.59933,0.6653,0.55849,0.55979,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",3,4.22045,regression,,,,,,0.44223,0.67018,278.77068,61.70443,0.61741
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",3,3.72398,classification,0.60375,0.60706,0.70215,0.53815,0.57113,,,,,
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",3,3.72398,regression,,,,,,0.46598,0.65598,278.06725,61.04901,0.63788
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",3,3.38336,classification,0.60648,0.60813,0.71648,0.50865,0.59485,,,,,
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",3,3.38336,regression,,,,,,0.46149,0.65922,281.49074,58.52409,0.63584
+ordinal,A,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",3,18.9168,classification,0.61024,0.60796,0.73286,0.46796,0.63093,,,,,
+ordinal,B,0,cum_lr,0,"{""C"": 0.3}",3,1.03155,classification,0.57611,0.57192,0.70829,0.41099,0.61031,,,,,
+ordinal,B,0,cum_lr,1,"{""C"": 1.0}",3,1.85863,classification,0.58669,0.58565,0.68884,0.45575,0.61649,,,,,
+ordinal,B,0,cum_lr,2,"{""C"": 3.0}",3,2.79595,classification,0.58089,0.5825,0.64995,0.49237,0.60103,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",3,4.11188,classification,0.57031,0.57233,0.66837,0.46999,0.5732,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",3,4.11188,regression,,,,,,0.3883,0.70619,291.57217,65.00225,0.5843
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",3,3.67788,classification,0.57167,0.57411,0.65097,0.46083,0.60412,,,,,
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",3,3.67788,regression,,,,,,0.41758,0.68863,287.9364,62.41019,0.60444
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",3,3.36046,classification,0.57747,0.5799,0.652,0.48321,0.59794,,,,,
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",3,3.36046,regression,,,,,,0.39219,0.7075,293.97339,63.93418,0.59181
+ordinal,B,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",3,31.75889,classification,0.55324,0.54978,0.69806,0.40895,0.55361,,,,,
+ordinal,B,5,cum_lr,0,"{""C"": 0.3}",3,2.31144,classification,0.61297,0.6091,0.75844,0.44863,0.63299,,,,,
+ordinal,B,5,cum_lr,1,"{""C"": 1.0}",3,3.85097,classification,0.61536,0.61484,0.71443,0.48118,0.65155,,,,,
+ordinal,B,5,cum_lr,2,"{""C"": 3.0}",3,5.61642,classification,0.60819,0.6096,0.67042,0.50356,0.65155,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",3,8.1976,classification,0.59488,0.59906,0.62334,0.52289,0.63918,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",3,8.1976,regression,,,,,,0.44303,0.67504,284.40204,64.64339,0.60853
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",3,5.98734,classification,0.61024,0.61593,0.65302,0.57375,0.60412,,,,,
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",3,5.98734,regression,,,,,,0.48131,0.64958,279.27782,60.9128,0.63174
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",3,4.57652,classification,0.61092,0.60905,0.77584,0.48118,0.57629,,,,,
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",3,4.57652,regression,,,,,,0.48042,0.64844,280.87267,58.14501,0.63754
+ordinal,B,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",3,29.78642,classification,0.61297,0.61106,0.73593,0.46796,0.63608,,,,,
+ordinal,A,0,cum_lr,0,"{""C"": 0.3}",4,0.36929,classification,0.57187,0.56553,0.72462,0.39918,0.58811,,,,,
+ordinal,A,0,cum_lr,1,"{""C"": 1.0}",4,0.60617,classification,0.57424,0.57138,0.69246,0.42901,0.59836,,,,,
+ordinal,A,0,cum_lr,2,"{""C"": 3.0}",4,0.93866,classification,0.56711,0.56601,0.65226,0.44033,0.60656,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",4,2.98071,classification,0.56541,0.57005,0.61809,0.5216,0.55533,,,,,
+ordinal,A,0,ridge_thr,0,"{""alpha"": 1.0}",4,2.98071,regression,,,,,,0.39274,0.69623,256.96386,63.94769,0.59905
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",4,2.70214,classification,0.56745,0.57301,0.6,0.53086,0.5707,,,,,
+ordinal,A,0,ridge_thr,1,"{""alpha"": 3.0}",4,2.70214,regression,,,,,,0.40144,0.69583,257.74466,63.66358,0.59531
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",4,2.93306,classification,0.56235,0.56703,0.59397,0.5072,0.58504,,,,,
+ordinal,A,0,ridge_thr,2,"{""alpha"": 10.0}",4,2.93306,regression,,,,,,0.36878,0.72147,265.88323,64.24052,0.57594
+ordinal,A,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",4,18.19957,classification,0.55556,0.55265,0.69648,0.42181,0.54508,,,,,
+ordinal,A,5,cum_lr,0,"{""C"": 0.3}",4,1.15374,classification,0.61842,0.61472,0.74573,0.46502,0.64139,,,,,
+ordinal,A,5,cum_lr,1,"{""C"": 1.0}",4,1.80603,classification,0.60143,0.59846,0.70452,0.4465,0.65061,,,,,
+ordinal,A,5,cum_lr,2,"{""C"": 3.0}",4,2.64063,classification,0.58852,0.58689,0.66332,0.44033,0.65984,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",4,4.15592,classification,0.5875,0.59147,0.61809,0.52675,0.6168,,,,,
+ordinal,A,5,ridge_thr,0,"{""alpha"": 1.0}",4,4.15592,regression,,,,,,0.42597,0.67608,255.73163,64.13067,0.62181
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",4,3.66877,classification,0.60177,0.60626,0.65829,0.55247,0.59324,,,,,
+ordinal,A,5,ridge_thr,1,"{""alpha"": 3.0}",4,3.66877,regression,,,,,,0.45789,0.65455,250.19451,60.66461,0.63201
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",4,3.39407,classification,0.60245,0.59991,0.75779,0.45988,0.58607,,,,,
+ordinal,A,5,ridge_thr,2,"{""alpha"": 10.0}",4,3.39407,regression,,,,,,0.46184,0.65209,250.45668,59.07828,0.63065
+ordinal,A,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",4,18.86733,classification,0.60856,0.60566,0.72764,0.46296,0.63217,,,,,
+ordinal,B,0,cum_lr,0,"{""C"": 0.3}",4,1.15651,classification,0.5824,0.57698,0.72362,0.40844,0.61168,,,,,
+ordinal,B,0,cum_lr,1,"{""C"": 1.0}",4,1.86516,classification,0.58172,0.58106,0.67739,0.45885,0.60656,,,,,
+ordinal,B,0,cum_lr,2,"{""C"": 3.0}",4,2.29051,classification,0.56813,0.56962,0.62915,0.46811,0.60553,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",4,4.2196,classification,0.54842,0.55057,0.61005,0.4321,0.60143,,,,,
+ordinal,B,0,ridge_thr,0,"{""alpha"": 1.0}",4,4.2196,regression,,,,,,0.39335,0.70563,258.28093,66.95358,0.5824
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",4,3.665,classification,0.57187,0.57655,0.63719,0.50823,0.56865,,,,,
+ordinal,B,0,ridge_thr,1,"{""alpha"": 3.0}",4,3.665,regression,,,,,,0.42569,0.68573,256.56335,63.94598,0.59769
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",4,3.32912,classification,0.58444,0.58619,0.62613,0.4856,0.64037,,,,,
+ordinal,B,0,ridge_thr,2,"{""alpha"": 10.0}",4,3.32912,regression,,,,,,0.40437,0.70109,262.79655,63.31161,0.58784
+ordinal,B,0,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",4,31.74499,classification,0.56337,0.55942,0.72261,0.4177,0.54611,,,,,
+ordinal,B,5,cum_lr,0,"{""C"": 0.3}",4,2.3801,classification,0.6157,0.61301,0.73869,0.46605,0.63934,,,,,
+ordinal,B,5,cum_lr,1,"{""C"": 1.0}",4,3.85254,classification,0.60584,0.60483,0.68643,0.46605,0.66291,,,,,
+ordinal,B,5,cum_lr,2,"{""C"": 3.0}",4,5.66582,classification,0.59701,0.59723,0.64523,0.47634,0.66803,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",4,8.24878,classification,0.58478,0.58849,0.65025,0.50206,0.60041,,,,,
+ordinal,B,5,ridge_thr,0,"{""alpha"": 1.0}",4,8.24878,regression,,,,,,0.42378,0.68334,258.15433,66.37936,0.60177
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",4,6.1427,classification,0.60007,0.60455,0.62915,0.53807,0.63217,,,,,
+ordinal,B,5,ridge_thr,1,"{""alpha"": 3.0}",4,6.1427,regression,,,,,,0.47167,0.649,248.73599,59.83267,0.63812
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",4,4.59757,classification,0.60584,0.60804,0.67136,0.50514,0.63934,,,,,
+ordinal,B,5,ridge_thr,2,"{""alpha"": 10.0}",4,4.59757,regression,,,,,,0.48069,0.64188,248.01674,58.56909,0.64118
+ordinal,B,5,cb_cum,0,"{""depth"": 4, ""iterations"": 500, ""learning_rate"": 0.06, ""l2_leaf_reg"": 5.0}",4,29.62137,classification,0.61706,0.615,0.72965,0.47531,0.64344,,,,,

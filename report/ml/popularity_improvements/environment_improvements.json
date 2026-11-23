@@ -1,0 +1,63 @@
+{
+  "python": "3.13.2",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy": "2.2.3",
+  "pandas": "2.2.3",
+  "scipy": "1.15.2",
+  "scikit-learn": "1.6.1",
+  "torch": "2.14.0+cpu",
+  "joblib": "1.4.2",
+  "torch_cuda_available": false,
+  "device_used": "cpu",
+  "cpu_count": 16,
+  "seed": 2026,
+  "mlp_seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "n_folds": 5,
+  "holdout_fraction": 0.17,
+  "bootstrap_resamples": 1000,
+  "mlp": {
+    "hidden_layers": [
+      128,
+      64
+    ],
+    "activation": "ReLU",
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "batch_size": 256,
+    "max_epochs": 100,
+    "patience": 10,
+    "validation": "15% of training work groups"
+  },
+  "data_file": "data\\popularity_training_clean.csv",
+  "data_sha256": "52ba0b86e0c1a9484d4b4b42a16de9aced234a497dbf2a764a66ba99508d3c1e",
+  "catboost": "1.2.10",
+  "steps": {
+    "0": "05 baseline features",
+    "1": "+ nonlinear archive age",
+    "2": "+ age x genre",
+    "3": "+ collection flag",
+    "4": "+ consistent author names",
+    "5": "+ author & subject history"
+  },
+  "history_smoothing_m": 5.0,
+  "catboost_configs": [
+    {
+      "depth": 4,
+      "iterations": 500,
+      "learning_rate": 0.06,
+      "l2_leaf_reg": 5.0
+    },
+    {
+      "depth": 6,
+      "iterations": 500,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 10.0
+    }
+  ],
+  "inner_history_folds": 5,
+  "outputs": "report\\ml\\popularity_improvements"
+}
