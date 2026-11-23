@@ -16,6 +16,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.linear_model import LogisticRegression, Ridge
 from sklearn.preprocessing import StandardScaler
 from threadpoolctl import threadpool_limits
+import model_store
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT/'scrapers'))
@@ -109,7 +110,7 @@ class ManualBookPredictor:
     """CV-selected LogisticRegression and Ridge, using original A/B features."""
 
     @classmethod
-    def from_project(cls, root=ROOT, verbose=True):
+    def from_project(cls, root=ROOT, verbose=True, retrain=False):
         root = Path(root)
         data_path, report = root/'data/popularity_training_clean.csv', root/'report/ml'
         manifest_path = report/'split_manifest.csv'
@@ -119,6 +120,11 @@ class ManualBookPredictor:
             raise ValueError('The dataset changed after the experiment. Prepare a matching model/split before using this demo.')
         if hashlib.sha256(manifest_path.read_bytes()).hexdigest() != meta['manifest_sha256']:
             raise ValueError('The experiment split manifest hash does not match.')
+        sig = model_store.signature([data_path, manifest_path, report/'cv_selection.csv',
+                                     Path(__file__), Path(model_store.__file__), root/'scrapers/genres.py'])
+        cached = None if retrain else model_store.load('05_popularity', sig, root=root, verbose=verbose)
+        if cached is not None:
+            return cached
         df = pd.read_csv(data_path, encoding='utf-8-sig', keep_default_na=False)
         manifest = pd.read_csv(manifest_path, keep_default_na=False)
         if df.identifier.duplicated().any() or manifest.identifier.duplicated().any() or set(df.identifier) != set(manifest.identifier):
@@ -130,6 +136,7 @@ class ManualBookPredictor:
         model.project_root = root
         model.data_sha256 = env['data_sha256']
         model.split_sha256 = meta['manifest_sha256']
+        model_store.save('05_popularity', model, sig, root=root, verbose=verbose)
         return model
 
     def fit(self, pool, selection, verbose=True):

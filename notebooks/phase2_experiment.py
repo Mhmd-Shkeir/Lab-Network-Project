@@ -150,9 +150,18 @@ class Features:
             zm, zd = StandardScaler().fit(sm.transform(Mtr)), StandardScaler().fit(sd.transform(Dtr))
             for part, (Mx, Dx) in (("tr", (Mtr, Dtr)), ("te", (Mte, Dte))):
                 self.blocks[part]["svdM"] = zm.transform(sm.transform(Mx)); self.blocks[part]["svdD"] = zd.transform(sd.transform(Dx))
+        self.transformers = {"numeric": sc, "title": tf_t, "creators": cv_c, "description": tf_d}
         self.n_meta, self.n_desc = Mtr.shape[1], Dtr.shape[1]
         self.seconds = time.time() - t0
         self._c = {}
+
+    def transform(self, d):
+        """Apply fitted sparse blocks to new books, without fitting anything."""
+        tr = self.transformers
+        return {"num": tr["numeric"].transform(d[NUM_COLS].astype(float)),
+                "M": sp.hstack([tr["title"].transform(d["title_text"]),
+                                tr["creators"].transform(d["creator_tokens"])]).tocsr(),
+                "D": tr["description"].transform(d["description"])}
 
     def get(self, variant, kind):
         key = (variant, kind)

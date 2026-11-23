@@ -135,3 +135,7 @@ The live threading and rate-limit experiments, and a proxy (optional), are Issa'
 Use the project's identifying User-Agent, three-second pacing and bounded retry/backoff. Respect `Retry-After`; a long wait stops the run. Keep failures and source differences visible. Browser request-event totals and client-call durations have distinct meanings explained in the networking handoff.
 
 Earlier experiments and superseded plans are preserved in the [project history](HISTORY.md) and the verified local backup; they are removed from the active handoff.
+
+### Reopening ML demos without training
+
+Notebooks 05?09 save their selected fitted models and preprocessing locally. Keep `RETRAIN = False`, run the demo Setup/Load cell, then the book example. See [reopening instructions](docs/REOPENING_NOTEBOOKS.md).

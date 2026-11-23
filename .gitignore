@@ -22,3 +22,6 @@ measurements/
 # Rebuildable ML caches; retain result tables/figures and split manifests.
 report/ml/cache/
 report/ml_trials/cache/
+
+# Fitted model checkpoints for reopening notebooks (local, rebuildable).
+report/ml/models/

@@ -27,6 +27,7 @@ from sklearn.model_selection import StratifiedGroupKFold
 from sklearn.preprocessing import StandardScaler
 
 import phase2_experiment as p2
+import model_store
 
 warnings.filterwarnings("ignore")
 ROOT = p2.ROOT
@@ -131,30 +132,76 @@ def _tagcols(variant):
     return ["tagA"] if variant == "A" else ["tagA", "tagB"]
 
 
-def fit_predict(tr, te, variant, family, cfg):
-    """Probability of 'children' for the rows of `te`. Everything is fitted on `tr` only (scalers, TF-IDF, models)."""
+def fit_predict(tr, te, variant, family, cfg, return_model=False):
+    """Fit on training labels only; optionally retain the fitted prediction pipeline."""
     t0 = time.time()
     if family == "dummy":
-        return np.zeros(len(te)), 0.0
+        result = (np.zeros(len(te)), 0.0)
+        return (*result, {"family": family}) if return_model else result
     ytr = tr.child.to_numpy()
     cols = _tagcols(variant) + NUM2
     sc = StandardScaler().fit(tr[cols]); Dtr, Dte = sc.transform(tr[cols]), sc.transform(te[cols])
+    F = None
     if family in ("stack_lr", "stack_hgb"):
         if family == "stack_lr":
             m = LogisticRegression(C=cfg["C"], class_weight="balanced", max_iter=500).fit(Dtr, ytr)
         else:
             m = HistGradientBoostingClassifier(early_stopping=False, class_weight="balanced", random_state=SEED, **cfg).fit(Dtr, ytr)
-        return m.predict_proba(Dte)[:, 1], time.time() - t0
-    F = p2.Features(tr[p2.ALLOWED_COLS].reset_index(drop=True), te[p2.ALLOWED_COLS].reset_index(drop=True), need_svd=False)
-    Mtr, Mte = F.blocks["tr"]["M"], F.blocks["te"]["M"]; Wtr, Wte = F.blocks["tr"]["D"], F.blocks["te"]["D"]
-    if family == "direct_lr":
-        dtr, dte = sc.transform(tr[cols])[:, -len(NUM2):], sc.transform(te[cols])[:, -len(NUM2):]
+        Xte = Dte
     else:
-        dtr, dte = Dtr, Dte
-    Xtr = sp.hstack([sp.csr_matrix(dtr), Mtr] + ([Wtr] if variant == "B" else [])).tocsr()
-    Xte = sp.hstack([sp.csr_matrix(dte), Mte] + ([Wte] if variant == "B" else [])).tocsr()
-    m = LogisticRegression(C=cfg["C"], class_weight="balanced", max_iter=500).fit(Xtr, ytr)
-    return m.predict_proba(Xte)[:, 1], time.time() - t0
+        F = p2.Features(tr[p2.ALLOWED_COLS].reset_index(drop=True), te[p2.ALLOWED_COLS].reset_index(drop=True), need_svd=False)
+        Mtr, Mte = F.blocks["tr"]["M"], F.blocks["te"]["M"]; Wtr, Wte = F.blocks["tr"]["D"], F.blocks["te"]["D"]
+        if family == "direct_lr":
+            dtr, dte = Dtr[:, -len(NUM2):], Dte[:, -len(NUM2):]
+        else:
+            dtr, dte = Dtr, Dte
+        Xtr = sp.hstack([sp.csr_matrix(dtr), Mtr] + ([Wtr] if variant == "B" else [])).tocsr()
+        Xte = sp.hstack([sp.csr_matrix(dte), Mte] + ([Wte] if variant == "B" else [])).tocsr()
+        m = LogisticRegression(C=cfg["C"], class_weight="balanced", max_iter=500).fit(Xtr, ytr)
+    result = (m.predict_proba(Xte)[:, 1], time.time() - t0)
+    if not return_model:
+        return result
+    if F is not None:
+        F.blocks = {}; F._c = {}
+    bundle = {"family": family, "variant": variant, "cfg": cfg, "model": m, "scaler": sc, "features": F,
+              "fit_seconds": result[1], "classes": ["not children", "children"]}
+    return (*result, bundle)
+
+
+def predict_fitted(bundle, frame):
+    if bundle["family"] == "dummy":
+        return np.zeros(len(frame))
+    v, family = bundle["variant"], bundle["family"]
+    D = bundle["scaler"].transform(frame[_tagcols(v) + NUM2])
+    if family in ("stack_lr", "stack_hgb"):
+        X = D
+    else:
+        blocks = bundle["features"].transform(frame[p2.ALLOWED_COLS])
+        numeric = D[:, -len(NUM2):] if family == "direct_lr" else D
+        X = sp.hstack([sp.csr_matrix(numeric), blocks["M"]] + ([blocks["D"]] if v == "B" else [])).tocsr()
+    return bundle["model"].predict_proba(X)[:, 1]
+
+
+def saved_children_models(train=None, sel=None, retrain=False, verbose=True):
+    paths = [p2.DATA_FILE, LABELS_FILE, OUT / "children_training_folds.csv", OUT / "cv_selection.csv",
+             p2.OUT / "split_juvenile.csv", Path(__file__), Path(p2.__file__), Path(model_store.__file__)]
+    sig = model_store.signature(paths)
+    saved = None if retrain else model_store.load("08_children_audience", sig, verbose=verbose)
+    if saved is not None:
+        return saved
+    if train is None:
+        dj = p2.task_frame(p2.load_cohort(), "juvenile")
+        labels = load_labels()
+        ids = pd.read_csv(OUT / "children_training_folds.csv", keep_default_na=False)
+        train = with_tags(labelled_frame(labels, dj), tag_scores(dj)).merge(ids[["identifier", "cv_fold"]], on="identifier")
+    if sel is None:
+        sel = pd.read_csv(OUT / "cv_selection.csv")
+    saved = {}
+    for v in p2.VARIANTS:
+        r = sel[(sel.variant == v) & sel.is_winner].iloc[0]
+        _, _, saved[v] = fit_predict(train, train.iloc[:1], v, r.family, json.loads(r.cfg), return_model=True)
+    model_store.save("08_children_audience", saved, sig, verbose=verbose)
+    return saved
 
 
 def prf(y, p):
@@ -239,12 +286,12 @@ def old_juvenile_predictions(test):
     return out
 
 
-def evaluate_test(train, test, sel):
+def evaluate_test(train, test, sel, force=False):
+    bundles = saved_children_models(train, sel, retrain=force)
     res, probs = {}, {}
-    for variant in p2.VARIANTS:
-        r = sel[(sel.variant == variant) & sel.is_winner].iloc[0]
-        pr, sec = fit_predict(train, test, variant, r.family, json.loads(r.cfg)); probs[variant] = pr
-        res[variant] = {"family": r.family, "cfg": r.cfg, "fit_seconds": sec}
+    for v, bundle in bundles.items():
+        probs[v] = predict_fitted(bundle, test)
+        res[v] = {"family": bundle["family"], "cfg": json.dumps(bundle.get("cfg", {})), "fit_seconds": bundle.get("fit_seconds", 0.0)}
     return res, probs
 
 

@@ -23,6 +23,7 @@ from sklearn.svm import LinearSVC
 from threadpoolctl import threadpool_limits
 
 import phase2_experiment as p2
+import model_store
 
 GENRE_LABELS = {"science_fiction": "science fiction", "fantasy": "fantasy", "mystery_thriller": "mystery / thriller"}
 
@@ -105,17 +106,32 @@ class Phase2Predictor:
     """family = 'classical' (notebook 06: CV-selected LogReg / LinearSVC / HistGradientBoosting) or 'neural' (notebook 07: small MLP)."""
 
     @classmethod
-    def from_project(cls, family="classical", verbose=True, tasks=None):
+    def from_project(cls, family="classical", verbose=True, tasks=None, retrain=False):
+        requested = tuple(tasks or p2.TASKS)
+        if family not in ("classical", "neural") or not requested or any(t not in p2.TASKS for t in requested):
+            raise ValueError("Use classical/neural and genre/juvenile tasks.")
         self = cls(); self.family = family
         env = json.loads((p2.OUT / "environment_phase2.json").read_text(encoding="utf-8"))
         if p2.sha256_file(p2.DATA_FILE) != env["data_sha256"]:
             raise ValueError("The dataset changed after the experiment; rerun notebook 06 before using this demo.")
-        df = p2.load_cohort()
+        df = None  # load training rows only when a fitted task checkpoint is missing
         self.models, self.defaults, self.sizes = {}, {}, {}
         t0 = time.time()
         if verbose:
-            print(f"Preparing the selected {family} models once from the saved training pools (no scraping, no CV rerun) ...")
-        for task in (tasks or p2.TASKS):          # default: both tasks (notebooks 06/07); notebook 09 asks for genre only
+            print(f"Loading saved {family} models; only missing or changed checkpoints require training ...")
+        for task in requested:
+            paths = [p2.DATA_FILE, p2.OUT / f"split_{task}.csv", p2.OUT / f"{task}_{family}_cv_selection.csv",
+                     Path(__file__), Path(p2.__file__), Path(model_store.__file__)]
+            sig = model_store.signature(paths, {"family": family, "task": task})
+            name = f"phase2_{family}_{task}"
+            saved = None if retrain else model_store.load(name, sig, verbose=verbose)
+            if saved is not None:
+                self.defaults[task], self.sizes[task] = saved["defaults"], saved["rows"]
+                for v, model in saved["models"].items():
+                    self.models[(task, v)] = model
+                continue
+            if df is None:
+                df = p2.load_cohort()
             d = p2.task_frame(df, task)
             meta = json.loads((p2.OUT / f"split_{task}_meta.json").read_text(encoding="utf-8"))
             if meta["sha256"] != p2.sha256_file(p2.OUT / f"split_{task}.csv"):
@@ -145,6 +161,10 @@ class Phase2Predictor:
                     else:
                         m = [_train_mlp_net(X, y, groups, K, w, cfg, s) for s in p2.MLP_SEEDS]
                 self.models[(task, r.variant)] = (r.algo, m, tfm)
+            del tfm.train_blocks  # prediction needs the fitted transformers, not the training matrices
+            saved = {"defaults": self.defaults[task], "rows": self.sizes[task],
+                     "models": {v: self.models[(task, v)] for v in p2.VARIANTS}}
+            model_store.save(name, saved, sig, verbose=verbose)
         self.n_train = self.sizes
         if verbose:
             print(f"Ready in {time.time() - t0:.0f} s. Edit BOOK and rerun only the Predict cell for each book.")
