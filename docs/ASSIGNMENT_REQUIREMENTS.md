@@ -34,6 +34,6 @@ Internet Archive, the 200-item comparison, the larger training dataset (5,600 bo
 | Firewall, rate limiting, multithreading | `run_mac_pf_demo.sh` (macOS `pf` stands in for `ufw`), `report/rate_limit_experiment.csv`, `--workers` option of the scrapers |
 | Cleaning, EDA, ML | `data/popularity_training_clean.csv`; notebooks 05, 08, 09, 10 (see `notebooks/README.md`) |
 | Recommendation | Section 8 of the final report |
-| Final report | `report/Lab_Network_Final_Report.docx` (export to PDF for submission) |
+| Final report | `report/Lab_Network_Final_Report.pdf` (Word version: `Lab_Network_Final_Report.docx`) |
 | Presentation (10 min) | `report/Lab_Network_Presentation.pptx` |
 

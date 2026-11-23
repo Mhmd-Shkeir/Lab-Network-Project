@@ -11,7 +11,7 @@ We compare three ways of collecting the same 200 Internet Archive books (API, Re
 | Three scraper scripts | `scrapers/ia_api_scraper.py`, `scrapers/ia_bs4_scraper.py`, `scrapers/ia_selenium_scraper.py` |
 | Networking analysis notebook (with screenshots) | `notebooks/network_analysis.ipynb`, screenshots in `screenshots/` |
 | ML notebooks | `notebooks/05_...`, `08_...`, `09_...`, `10_...` (see `notebooks/README.md`) |
-| Final report | `report/Lab_Network_Final_Report.docx` (export it to PDF for submission) |
+| Final report | `report/Lab_Network_Final_Report.pdf` (the Word version is `Lab_Network_Final_Report.docx`) |
 | Presentation (10 min) | `report/Lab_Network_Presentation.pptx` |
 
 ## Main results
