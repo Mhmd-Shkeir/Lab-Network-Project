@@ -10,7 +10,7 @@ We compare three ways of collecting the same 200 Internet Archive books (API, Re
 |---|---|
 | Three scraper scripts | `scrapers/ia_api_scraper.py`, `scrapers/ia_bs4_scraper.py`, `scrapers/ia_selenium_scraper.py` |
 | Networking analysis notebook (with screenshots) | `notebooks/network_analysis.ipynb`, screenshots in `screenshots/` |
-| ML notebooks | `notebooks/05_...`, `08_...`, `09_...`, `10_...` (see `notebooks/README.md`) |
+| ML notebooks | `notebooks/05_...`, `08_...`, `09_...`, `10_...` (table below) |
 | Final report | `report/Lab_Network_Final_Report.pdf` (the Word version is `Lab_Network_Final_Report.docx`) |
 | Presentation (10 min) | `report/Lab_Network_Presentation.pptx` |
 
@@ -38,7 +38,7 @@ The majority-class baseline for popularity is 35.2%. We did **not** reach 80% fo
 
 ## Data (`data/`)
 
-Only five CSV files are kept. See [data/README.md](data/README.md) for what every file and folder is, and for how to bring back the removed intermediate files from Git history.
+Only five CSV files are kept. The intermediate files of the collection (`training_ol_books.csv`, `training_ol_books_with_description.csv`, `training_with_descriptions.csv`, `openlibrary_ids_5600.csv`, `popularity_training_exclusions.csv`, `training_api_not_usable.csv`) and the helper scripts that built them (`build_*`, `fetch_*` in `scrapers/`) were removed; they are in Git history (`git checkout 4623777 -- <path>` brings one back). `data/archive/` keeps the raw description file of the first 5,600 books and the old dataset reports.
 
 | File | Rows | What it is |
 |---|---:|---|
@@ -46,18 +46,17 @@ Only five CSV files are kept. See [data/README.md](data/README.md) for what ever
 | `training_api.csv` | 5,600 | First training set (API): 200 benchmark books + 1,800 per genre |
 | `popularity_training_clean.csv` | 17,727 | Final clean dataset for the ML (37 columns, split by `ol_group`) |
 
-Raw run folders are in `data/runs/`, the frozen lists of chosen books in `data/manifest/`, the children-audience labels in `data/labels/`, and the checksums of the five CSVs in `data/checksums.sha256`. The data dictionary is in [docs/DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md).
+Raw run folders are in `data/runs/`, the frozen lists of chosen books in `data/manifest/`, the children-audience labels in `data/labels/`, and the checksums of the five CSVs in `data/checksums.sha256`.
 
 ## Repository layout
 
 | Folder | Content |
 |---|---|
 | `scrapers/` | The three collectors with their shared helpers (`ia_common.py`, `config.py`, `genres.py`, `descriptions.py`), `finalize_datasets.py` and `compare_runs.py` (build the CSVs from the run folders), `prepare_popularity_dataset.py` (builds the clean dataset) and `check_selenium_env.py` |
-| `notebooks/` | The analysis notebooks and their helper `.py` files; `README.md` there says which notebook uses which file |
+| `notebooks/` | The analysis notebooks and their helper `.py` files; the table in the Notebooks section below says which notebook uses which file |
 | `report/` | The final report, network measurement CSVs, `ml/` (saved results, figures, split manifests) and `figures/` |
 | `screenshots/` | Network screenshots (Issa), scraper terminal runs (`scrapers/`) and notebook screenshots (`ml/`) |
 | `measurements/`, `captures/` | Small demo run outputs; packet captures go in `captures/` |
-| `docs/` | Data dictionary, Mac capture notes, label rules, how to reopen the notebooks |
 | `tests/` | 32 offline tests (HTTP client, retries, parsers, threading limit, description cleaning, cohort) |
 | `run_mac_*.sh` | Issa's scripts for the Mac baselines and the PF firewall demo |
 
@@ -76,7 +75,19 @@ Use `--limit 3` for a small test. All three accept `--workers N` and `--min-inte
 
 **Offline tests** (no website requests): `python -B -m unittest discover -s tests -v` (32 tests) and, for the notebook helpers, `cd notebooks && python -B -m unittest discover -s tests -v` (12 tests).
 
-**Notebooks:** install `requirements-analysis.txt`, run them from `notebooks/` and keep `RETRAIN = False` at the top. The fitted models are saved in `report/ml/models/` (not in Git), so reopening a notebook does not retrain; see [docs/REOPENING_NOTEBOOKS.md](docs/REOPENING_NOTEBOOKS.md). Notebook 05 also needs `data/openlibrary_ids_5600.csv`, which was removed (restore it from Git history, see `data/README.md`).
+**Notebooks:** install `requirements-analysis.txt`, run them from `notebooks/` and keep `RETRAIN = False` at the top. The fitted models are saved in `report/ml/models/` (not in Git), so reopening a notebook does not retrain. Notebook 05 also needs `data/openlibrary_ids_5600.csv`, which was removed (restore it from Git history with `git checkout 4623777 -- data/openlibrary_ids_5600.csv`).
+
+### Which notebook uses which files
+
+| Notebook | What it does | Helper files in `notebooks/` | Saved results |
+|---|---|---|---|
+| `network_analysis.ipynb` | Network comparison of the three scrapers (Issa) | - | `report/network_*.csv`, `screenshots/` |
+| `05_popularity_description_comparison.ipynb` | Baseline popularity model, without and with description | `popularity_experiment.py`, `manual_book_prediction.py` | `report/ml/` |
+| `08_children_only_audience.ipynb` | Is a book intended for children? (provisional AI-made labels) | `children_audience.py`, `children_prediction.py`, `phase2_experiment.py` | `report/ml/children/`, `data/labels/` |
+| `09_genre_only.ipynb` | Genre only, with try-it examples | `phase2_experiment.py`, `phase2_demo.py` | reads `report/ml/phase2/` |
+| `10_popularity_improvements.ipynb` | Improved popularity prediction (author history, ordered classes) | `popularity_improvements.py`, `popularity_checkpoint.py`, `popularity_experiment.py` | `report/ml/popularity_improvements/` |
+
+`model_store.py` saves and loads the fitted models for all of them. `children_neural_check.py` and `popularity_neural_check.py` are extra scripts for the small neural-network comparisons (results in `report/ml/children/neural/` and `report/ml/popularity_improvements/neural/`). The genre and juvenile-marker results that 08 and 09 read were produced by earlier notebooks 06 and 07, which are only in Git history.
 
 ## Rules we followed and limits
 

@@ -2,7 +2,7 @@
 
 Target: INTENDED CHILDREN'S AUDIENCE (label C = children up to about 12; teens and adults are negatives), not a guarantee of age
 suitability and not the catalogue's juvenile subject marker. Labels: data/labels/children_audience_labels.csv (provisional, assigned by an
-AI labeller under docs/CHILDREN_LABEL_RULES.md; a manual review sample is in report/ml/children/review/).
+AI labeller under written labelling rules; a manual review sample is in report/ml/children/review/).
 
 Design (fixed before any fresh-test evaluation):
 * training labels  = pilot 400 + exploratory 158 + 250 new random pool books (all grouped by ol_group, 5 grouped CV folds);
@@ -94,7 +94,7 @@ def build_splits(L, dj, force=False):
     meta = {"seed": SEED, "cv_folds": N_FOLDS, "group_column": "ol_group", "training_rows": len(tr), "training_groups": int(tr.ol_group.nunique()),
             "training_children": int(tr.child.sum()), "fresh_test_rows": len(te), "fresh_test_groups": int(te.ol_group.nunique()), "fresh_test_children": int(te.child.sum()),
             "sha256_labels": sha256_file(LABELS_FILE), "sha256_training_folds": sha256_file(f_tr), "sha256_fresh_test_ids": sha256_file(f_te),
-            "created_utc": pd.Timestamp.utcnow().isoformat(), "rules": "docs/CHILDREN_LABEL_RULES.md"}
+            "created_utc": pd.Timestamp.utcnow().isoformat(), "rules": "written labelling rules"}
     f_meta.write_text(json.dumps(meta, indent=2), encoding="utf-8")
     return tr, te
 

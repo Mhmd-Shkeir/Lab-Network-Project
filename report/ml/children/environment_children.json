@@ -59,6 +59,6 @@
     "description_words"
   ],
   "labels_sha256": "91f95f65488a6415d216473cf26f2f87e9ce17846d2b7f088b189a022ae745e6",
-  "label_rules": "docs/CHILDREN_LABEL_RULES.md",
+  "label_rules": "written labelling rules",
   "criterion": "CV F1 of the children class"
 }

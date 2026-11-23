@@ -13,7 +13,7 @@ RUN_DIR="$ROOT/measurements/runs"
 mkdir -p "$CAPTURE_DIR" "$LOG_DIR" "$RUN_DIR"
 
 if [[ ! -x "$PYTHON" ]]; then
-  echo "Missing .venv; see docs/MAC_NETWORK_CAPTURE.md" >&2
+  echo "Missing .venv: create it and run pip install -r requirements.txt" >&2
   exit 1
 fi
 
